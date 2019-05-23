@@ -211,6 +211,14 @@ def write_npy_file(data_array, lbl_array, data_set_name, data_path):
     print('Saving to %s_svhn_labels.npy file done.' % data_set_name)
 
 
+def load_svhn_data(data_type, data_set_name):
+    """TODO: Document what it does here"""
+    path = DATA_PATH + data_set_name
+    imgs = np.load(os.path.join(path, data_set_name+'_'+data_type+'_imgs.npy'))
+    labels = np.load(os.path.join(path, data_set_name+'_'+data_type+'_labels.npy'))
+    return imgs, labels
+
+
 def parse_cropped_images():
     """TODO: Document what it does here"""
     train_data, train_labels = create_svhn('train', 'cropped')

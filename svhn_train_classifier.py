@@ -14,7 +14,7 @@ from datetime import datetime
 TENSORBOARD_SUMMARIES_DIR = 'logs/svhn_classifier_logs'
 TENSOR_BOARD_TRAIN_WRITER = TENSORBOARD_SUMMARIES_DIR+'/train'
 TENSOR_BOARD_VALID_WRITER = TENSORBOARD_SUMMARIES_DIR+'/validation'
-SAVE_FILE = TENSORBOARD_SUMMARIES_DIR+"/ckpt/classifier.ckpt"
+CLASSIFIER_CKPT = TENSORBOARD_SUMMARIES_DIR+"/ckpt/classifier.ckpt"
 
 NUM_LABELS = 10
 IMG_ROWS = 32
@@ -172,7 +172,7 @@ def train_classification(train_data, train_labels,
                 sys.stdout.flush()
 
         # Save the variables to disk.
-        save_path = saver.save(sess, SAVE_FILE)
+        save_path = saver.save(sess, CLASSIFIER_CKPT)
         print("Model saved in file: %s" % save_path)
 
         test_feed_dict = fill_feed_dict(test_data, test_labels, images_placeholder, labels_placeholder, step)

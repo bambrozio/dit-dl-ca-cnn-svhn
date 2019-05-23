@@ -1,5 +1,6 @@
 import svhn_preprocessing
-import svhn_train
+import svhn_train_classifier
+import svhn_train_regressor
 import svhn_test
 
 # This function when called should (a) download the training and test data, (b) train the model from scratch; and (c)
@@ -7,9 +8,9 @@ import svhn_test
 # across each class in your testset.
 # Must return f1-score
 def traintest():
-    ret = svhn_preprocessing.run()
-    ret += svhn_train.run()
-    return ret
+    svhn_preprocessing.run()
+    svhn_train_classifier.run()
+    return svhn_train_regressor.run()
 
 
 # which takes the name of a JPEG or PNG file that is assumed to be the same dimensions as the standard SVHN test data
