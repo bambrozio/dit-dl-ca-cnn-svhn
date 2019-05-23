@@ -1,3 +1,10 @@
+# Project ignores
+data/
+
+# IDE's
+.idea/*
+.vscode/*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
