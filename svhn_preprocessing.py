@@ -41,9 +41,13 @@ def read_digit_struct(data_path):
 
 
 def extract_data_file(file_name):
-    tar = tarfile.open(file_name, "r:gz")
-    tar.extractall(FULL_DATA_PATH)
-    tar.close()
+    dest = os.path.splitext(os.path.splitext(file_name)[0])[0]
+    if os.path.exists(dest):
+       print("Directory [%s] already exist. Assuming that the extraction was done before. Skipping..." % dest)
+    else:
+        tar = tarfile.open(file_name, "r:gz")
+        tar.extractall(FULL_DATA_PATH)
+        tar.close()
 
 
 def convert_imgs_to_array(img_array):
@@ -115,7 +119,7 @@ def make_data_dirs(master_set):
 
 def handle_tar_file(file_pointer):
     ''' Extract and return the data file '''
-    print ("extract", file_pointer)
+    print ("extracting: %s" % file_pointer)
     extract_data_file(file_pointer)
     extract_dir = os.path.splitext(os.path.splitext(file_pointer)[0])[0]
 
@@ -279,6 +283,7 @@ def generate_full_files():
 
 
 def generate_cropped_files():
+    print("Prepare cropped datasets...")
     train_data, train_labels = create_svhn('train', 'cropped')
     train_data, valid_data, train_labels, valid_labels = train_validation_spit(train_data, train_labels)
 
@@ -287,12 +292,14 @@ def generate_cropped_files():
 
     test_data, test_labels = create_svhn('test', 'cropped')
     write_npy_file(test_data, test_labels, 'test', 'cropped')
-    print("Cropped Files Done!!!")
+    print("Cropped datasets done!")
 
 
 def run():
+    print("Preprocessing - Start")
     generate_cropped_files()
     generate_full_files()
+    print("Preprocessing Done")
 
 if __name__ == '__main__':
     run()

@@ -52,9 +52,9 @@ class DigitStruct:
         return structure
 
     def get_all_imgs_and_digit_structure(self):
-        """TODO: Document what it does here"""
+        print('Getting all images and digit structure for file [%s]...' % self.file.filename)
         structs = []
         for i in range(len(self.digit_struct_name)):
             structs.append(self.get_digit_structure(i))
-        print("Done extract")
+        print("Image and digit structure for file [%s] done!" % self.file.filename)
         return structs
