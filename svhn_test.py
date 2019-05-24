@@ -5,12 +5,10 @@ import tensorflow as tf
 import PIL.Image as Image
 #import matplotlib.pyplot as plt
 
-
 from svhn_model import regression_head
-from svhn_data import load_svhn_data
+from svhn_preprocessing import load_svhn_data
 import time
 
-test_dataset, test_labels = load_svhn_data("test", "full")
 WEIGHTS_FILE = "regression.ckpt.data-00000-of-00001"
 
 

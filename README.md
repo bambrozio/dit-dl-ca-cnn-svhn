@@ -7,4 +7,5 @@ python -m pip install \
   tensorflow==1.13.1 \
   h5py \
   scipy \
-  sklearn
+  sklearn \
+  Pillow

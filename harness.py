@@ -5,11 +5,11 @@ import svhn
 
 def main():
     # I might start by calling on your code to do some processing based on the model that you already trained
-    result1 = svhn.test("mytestimage1.jpg")
-    print(result1)
+#    result1 = svhn.test("mytestimage1.jpg")
+#    print(result1)
     # i might also test with a PNG
-    result2 = svhn.test("mytestimage2.png")
-    print(result2)
+#    result2 = svhn.test("mytestimage2.png")
+#    print(result2)
 
     # I will also call to start training on your code from scratch. I might not always wait for training to complete
     # but I will start the training and make sure it is progressing.
