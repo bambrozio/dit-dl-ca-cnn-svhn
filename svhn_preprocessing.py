@@ -15,6 +15,8 @@ from six.moves.urllib.request import urlretrieve
 DATA_PATH = "data/svhn/"
 CROPPED_DATA_PATH = DATA_PATH+"cropped"
 FULL_DATA_PATH = DATA_PATH+"full"
+IMGS_FOR_MANUAL_TEST = DATA_PATH+'manualTest/'
+IMGS_FOR_MANUAL_TEST_N = 20
 PIXEL_DEPTH = 255
 NUM_LABELS = 10
 
@@ -140,7 +142,7 @@ def handle_tar_file(file_pointer):
         if(len(lbls) < MAX_LABELS):
             labels[i] = create_label_array(lbls)
             img_data[i] = create_img_array(file_name, top, left, height, width,
-                                           OUT_HEIGHT, OUT_WIDTH)
+                                           OUT_HEIGHT, OUT_WIDTH, i)
         else:
             print("Skipping {}, only images with less than {} numbers are allowed!").format(file_name, MAX_LABELS)
 
@@ -246,8 +248,7 @@ def create_label_array(el):
         labels_array[n+1] = el[n]
     return labels_array
 
-
-def create_img_array(file_name, top, left, height, width, out_height, out_width):
+def create_img_array(file_name, top, left, height, width, out_height, out_width, index):
     img = Image.open(file_name)
 
     img_top = np.amin(top)
@@ -261,6 +262,16 @@ def create_img_array(file_name, top, left, height, width, out_height, out_width)
     box_bottom = np.amin([np.ceil(img_top + 1.2 * img_height), img.size[1]])
 
     img = img.crop((box_left, box_top, box_right, box_bottom)).resize([out_height, out_width], Image.ANTIALIAS)
+
+
+    # Extracts IMGS_FOR_MANUAL_TEST_N images to be used on manual tests.
+    if 'test' in file_name:
+        if index < IMGS_FOR_MANUAL_TEST_N:
+            if not os.path.isdir(IMGS_FOR_MANUAL_TEST + os.path.split(file_name)[0]):
+                os.makedirs(IMGS_FOR_MANUAL_TEST + os.path.split(file_name)[0])
+            img.save(IMGS_FOR_MANUAL_TEST + file_name)
+            index+=1
+
     pix = np.array(img)
 
     norm_pix = (255-pix)*1.0/255.0
