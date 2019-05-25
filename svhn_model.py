@@ -1,4 +1,14 @@
 import tensorflow as tf
+import os
+
+# Avoid Warning logs
+tf.logging.set_verbosity(tf.logging.ERROR)
+
+# Avoid suggestion on log console like:
+# ...Your CPU supports... AVX2 FMA
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+
+tf.logging.set_verbosity(tf.logging.FATAL)
 
 # Image Parameters
 NUM_CHANNELS = 3

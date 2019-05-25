@@ -5,10 +5,8 @@ import tarfile
 import PIL.Image as Image
 
 from digit_struct import DigitStruct
-
 from scipy.io import loadmat
 from sklearn.model_selection import train_test_split
-from itertools import product
 from six.moves.urllib.request import urlretrieve
 
 

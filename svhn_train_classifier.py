@@ -11,6 +11,13 @@ from svhn_preprocessing import load_svhn_data
 from svhn_model import classification_head
 from datetime import datetime
 
+# Avoid Warning logs
+tf.logging.set_verbosity(tf.logging.ERROR)
+
+# Avoid suggestion on log console like:
+# ...Your CPU supports... AVX2 FMA
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+
 TENSORBOARD_SUMMARIES_DIR = 'logs/svhn_classifier_logs'
 TENSOR_BOARD_TRAIN_WRITER = TENSORBOARD_SUMMARIES_DIR+'/train'
 TENSOR_BOARD_VALID_WRITER = TENSORBOARD_SUMMARIES_DIR+'/validation'
