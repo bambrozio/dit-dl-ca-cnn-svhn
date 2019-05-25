@@ -1,5 +1,7 @@
 import tensorflow as tf
 
+
+tf.reset_default_graph()
 # Image Parameters
 NUM_CHANNELS = 3
 CL_NUM_LABELS = 10

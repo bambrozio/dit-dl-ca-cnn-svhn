@@ -14,13 +14,12 @@ from datetime import datetime
 
 # Run Options
 BATCH_SIZE = 32
-NUM_EPOCHS = 128
+NUM_EPOCHS = 128 # 128 complete iteration of the entire data set 
 TENSORBOARD_SUMMARIES_DIR = 'logs/svhn_regression_logs'
 TENSOR_BOARD_TRAIN_WRITER = TENSORBOARD_SUMMARIES_DIR+'/train'
 TENSOR_BOARD_VALID_WRITER = TENSORBOARD_SUMMARIES_DIR+'/validation'
 REGRESSION_CKPT = TENSORBOARD_SUMMARIES_DIR+"/ckpt/regression.ckpt"
 CLASSIFIER_CKPT = "logs/svhn_classifier_logs/ckpt/classifier.ckpt"
-
 
 # Image Settings
 IMG_HEIGHT = 64
@@ -54,7 +53,8 @@ def fill_feed_dict(data, labels, x, y_, step):
     batch_labels = labels[offset:(offset + BATCH_SIZE)]
     return {x: batch_data, y_: batch_labels}
 
-
+# With batch size we update the weights after passing the data samples each batch
+# means the gradients are calculated after passing each batch.    
 def train_regressor(train_data, train_labels, valid_data, valid_labels,
                     test_data, test_labels, train_size, saved_weights_path):
     ret = None
@@ -64,7 +64,6 @@ def train_regressor(train_data, train_labels, valid_data, valid_labels,
         images_placeholder = tf.placeholder(tf.float32,
                                             shape=(BATCH_SIZE, IMG_HEIGHT,
                                                    IMG_WIDTH, NUM_CHANNELS))
-
     with tf.name_scope('image'):
         tf.summary.image('input', images_placeholder, 10)
 
@@ -73,6 +72,8 @@ def train_regressor(train_data, train_labels, valid_data, valid_labels,
 
     [logits_1, logits_2, logits_3, logits_4, logits_5] = regression_head(images_placeholder, True)
 
+    # Calc the mean of elements across dimensions of each softmax function.
+    # Computes sparse softmax cross entropy between logits and labels.
     loss = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(logits=logits_1, labels=labels_placeholder[:, 1])) +\
         tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(logits=logits_2, labels=labels_placeholder[:, 2])) +\
         tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(logits=logits_3, labels=labels_placeholder[:, 3])) +\
@@ -86,6 +87,8 @@ def train_regressor(train_data, train_labels, valid_data, valid_labels,
     with tf.name_scope('train'):
         optimizer = tf.train.AdagradOptimizer(learning_rate).minimize(loss, global_step=global_step)
 
+    # predicts using softmax activation function the most likely result 
+    # for each of the possible 5 digits
     prediction = tf.stack([tf.nn.softmax(regression_head(images_placeholder)[0]),
                                 tf.nn.softmax(regression_head(images_placeholder)[1]),
                                 tf.nn.softmax(regression_head(images_placeholder)[2]),
@@ -147,8 +150,7 @@ def train_regressor(train_data, train_labels, valid_data, valid_labels,
         valid_writer.add_graph(sess.graph)
 
         run_options = tf.RunOptions(trace_level=tf.RunOptions.FULL_TRACE)
-        run_metadata = tf.RunMetadata()
-        ###
+        run_metadata = tf.RunMetadata()        
 
         # Loop through training steps.
         for step in xrange(int(NUM_EPOCHS * train_size) // BATCH_SIZE):
@@ -156,7 +158,7 @@ def train_regressor(train_data, train_labels, valid_data, valid_labels,
             examples_per_sec = BATCH_SIZE / duration
 
             # Run the graph and fetch some of the nodes.
-            # This dictionary maps the batch data (as a numpy array) to the
+            # This dictionary maps the batch data (as a numpy array)
             train_feed_dict = fill_feed_dict(train_data, train_labels, images_placeholder, labels_placeholder, step)
             _, l, lr, acc, predictions = sess.run([optimizer, loss, learning_rate,
                                                   accuracy, prediction],
