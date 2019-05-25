@@ -1,16 +1,13 @@
-import svhn_preprocessing
-import svhn_train_classifier
-import svhn_train_regressor
-import svhn_test
+import os
 
 # This function when called should (a) download the training and test data, (b) train the model from scratch; and (c)
 # perform analysis against test data. The final output of this function should be a production of average F1 scores
 # across each class in your testset.
 # Must return f1-score
 def traintest():
-    svhn_preprocessing.run()
-    svhn_train_classifier.run()
-    return svhn_train_regressor.run()
+    os.system('python svhn_preprocessing.py')
+    os.system('python svhn_train_classifier.py')
+    os.system('python svhn_train_regressor.py')
 
 
 # which takes the name of a JPEG or PNG file that is assumed to be the same dimensions as the standard SVHN test data
@@ -19,4 +16,4 @@ def traintest():
 # Expect either PNG and JPG
 # result must be returned (Not only printed)
 def test(img_path):
-    return svhn_test.classify(img_path)
+    os.system('python svhn_test.py {}'.format(img_path))

@@ -1,0 +1,304 @@
+svhn.test(<image>) logs:
+
+/Users/bambrozi/workspace/github.com/bambrozio/dit-dl-ca/env/bin/python /Users/bambrozi/workspace/github.com/bambrozio/dit-dl-ca/harness.py
+Reading Image file: [/Users/bambrozi/Downloads/tmp/246x0w.jpg]
+Resizing image to [64 x 64]...
+Loading model...
+Best Prediction: [123]. Time spent in seconds: [0.0478727817535]
+None
+Reading Image file: [data/svhn/manualTest/data/svhn/full/test/19.png]
+Loading model...
+Best Prediction: [60]. Time spent in seconds: [0.0386340618134]
+None
+Reading Image file: [data/svhn/manualTest/data/svhn/full/test/16.png]
+Loading model...
+Best Prediction: [14]. Time spent in seconds: [0.0468170642853]
+None
+Reading Image file: [/Users/bambrozi/Downloads/tmp/323.png]
+Image with width [141] and height [66].
+Cropping to the centre on [64 x 64]...
+Loading model...
+Best Prediction: [2]. Time spent in seconds: [0.0455930233002]
+None
+
+Process finished with exit code 0
+
+
+-----------
+
+svhn.traintest() log results (reduced for 5 iterations each train):
+
+/Users/bambrozi/workspace/github.com/bambrozio/dit-dl-ca/env/bin/python /Users/bambrozi/workspace/github.com/bambrozio/dit-dl-ca/harness.py
+Pre-processing - Start
+Prepare cropped version datasets...
+Saving to train_svhn_imgs.npy file done.
+Saving to train_svhn_labels.npy file done.
+Saving to valid_svhn_imgs.npy file done.
+Saving to valid_svhn_labels.npy file done.
+Saving to test_svhn_imgs.npy file done.
+Saving to test_svhn_labels.npy file done.
+Cropped version datasets done!
+Prepare full version datasets...
+extracting: data/svhn/full/train.tar.gz
+Directory [data/svhn/full/train] already exist. Assuming that the extraction was done before. Skipping...
+Getting all images and digit structure for the file [data/svhn/full/train/digitStruct.mat]...
+Image and digit structure for the file [data/svhn/full/train/digitStruct.mat] done!
+Skipping data/svhn/full/train/4111.png, only images with less than 5 numbers are allowed!
+Skipping data/svhn/full/train/6739.png, only images with less than 5 numbers are allowed!
+Skipping data/svhn/full/train/15958.png, only images with less than 5 numbers are allowed!
+Skipping data/svhn/full/train/18263.png, only images with less than 5 numbers are allowed!
+Skipping data/svhn/full/train/18944.png, only images with less than 5 numbers are allowed!
+Skipping data/svhn/full/train/24041.png, only images with less than 5 numbers are allowed!
+Skipping data/svhn/full/train/24552.png, only images with less than 5 numbers are allowed!
+Skipping data/svhn/full/train/26699.png, only images with less than 5 numbers are allowed!
+Skipping data/svhn/full/train/29930.png, only images with less than 5 numbers are allowed!
+Skipping data/svhn/full/train/33229.png, only images with less than 5 numbers are allowed!
+Saving to train_svhn_imgs.npy file done.
+Saving to train_svhn_labels.npy file done.
+Saving to valid_svhn_imgs.npy file done.
+Saving to valid_svhn_labels.npy file done.
+extracting: data/svhn/full/test.tar.gz
+Directory [data/svhn/full/test] already exist. Assuming that the extraction was done before. Skipping...
+Getting all images and digit structure for the file [data/svhn/full/test/digitStruct.mat]...
+Image and digit structure for the file [data/svhn/full/test/digitStruct.mat] done!
+Skipping data/svhn/full/test/2999.png, only images with less than 5 numbers are allowed!
+Skipping data/svhn/full/test/7314.png, only images with less than 5 numbers are allowed!
+Saving to test_svhn_imgs.npy file done.
+Saving to test_svhn_labels.npy file done.
+Full version datasets done!
+Pre-processing - Done
+Classifier training - Start
+Loading Saved Checkpoints From:  logs/svhn_classifier_logs/ckpt/classifier.ckpt
+No weights file found. Starting from scratch...
+Training (65931, 32, 32, 3)
+Valid (7326, 32, 32, 3)
+Test (26032, 32, 32, 3)
+Using drop out
+Not using dropout
+Validation Accuracy: 0.21%
+Training Accuracy: 0.13%
+Adding run metadata for 0
+2019-05-25 22:26:32.844803: step 0, loss = 2.29  learning rate = 0.075000  (269.5 examples/sec; 0.95 sec/batch)
+Mini-Batch Accuracy: 0.12%
+Model saved in file: logs/svhn_classifier_logs/ckpt/classifier.ckpt
+Test Accuracy: 0.16797%
+Classifier training - Done
+Regressor training - Start
+Loading Saved Checkpoints From:  logs/svhn_regression_logs/ckpt/regression.ckpt
+No weights file found. Starting from scratch...
+TrainData (30061, 64, 64, 3)
+Valid Data (3341, 64, 64, 3)
+Test Data (13068, 64, 64, 3)
+Model restored.
+Validation Accuracy: 0.54
+Training Set Accuracy: 0.44
+Adding run metadata for 0
+Test Accuracy: 0.62500%
+Model saved in file: logs/svhn_regression_logs/ckpt/regression.ckpt
+Regressor training - Done
+None
+
+Process finished with exit code 0
+
+-----------
+
+Dir structure after training:
+
+$ ls -lh
+total 272
+-rw-r--r--  1 bambrozi  staff   243B 25 May 15:54 README.md
+drwxr-xr-x  4 bambrozi  staff   128B 25 May 11:57 data
+-rw-r--r--  1 bambrozi  staff   2.4K 25 May 17:25 digit_struct.py
+-rw-r--r--  1 bambrozi  staff   3.4K 25 May 17:51 digit_struct.pyc
+drwxr-xr-x  6 bambrozi  staff   192B 23 May 21:12 env
+-rw-r--r--  1 bambrozi  staff   1.3K 25 May 17:04 harness.py
+drwxr-xr-x  4 bambrozi  staff   128B 25 May 22:26 logs
+-rw-r--r--  1 bambrozi  staff    12K 25 May 22:28 logs.logs
+-rw-r--r--  1 bambrozi  staff   586B 25 May 15:51 requirements.txt
+-rw-r--r--  1 bambrozi  staff   956B 25 May 22:20 svhn.py
+-rw-r--r--  1 bambrozi  staff   740B 25 May 22:20 svhn.pyc
+-rw-r--r--  1 bambrozi  staff   6.3K 25 May 16:12 svhn_model.py
+-rw-r--r--  1 bambrozi  staff   5.2K 25 May 17:04 svhn_model.pyc
+-rw-r--r--  1 bambrozi  staff    11K 25 May 17:25 svhn_preprocessing.py
+-rw-r--r--  1 bambrozi  staff    12K 25 May 17:51 svhn_preprocessing.pyc
+-rw-r--r--  1 bambrozi  staff   3.6K 25 May 16:10 svhn_test.py
+-rw-r--r--  1 bambrozi  staff   3.6K 25 May 16:10 svhn_test.pyc
+-rw-r--r--  1 bambrozi  staff   9.2K 25 May 21:30 svhn_train_classifier.py
+-rw-r--r--  1 bambrozi  staff   6.9K 25 May 21:41 svhn_train_classifier.pyc
+-rw-r--r--  1 bambrozi  staff    10K 25 May 21:43 svhn_train_regressor.py
+-rw-r--r--  1 bambrozi  staff   8.0K 25 May 21:45 svhn_train_regressor.pyc
+$ tree logs
+logs
+├── svhn_classifier_logs
+│   ├── checkpoint
+│   ├── ckpt
+│   │   ├── checkpoint
+│   │   ├── classifier.ckpt.data-00000-of-00001
+│   │   ├── classifier.ckpt.index
+│   │   └── classifier.ckpt.meta
+│   ├── train
+│   │   └── events.out.tfevents.1558819591.Brunos-MBP
+│   ├── train-0.data-00000-of-00001
+│   ├── train-0.index
+│   ├── train-0.meta
+│   ├── validation
+│   │   └── events.out.tfevents.1558819591.Brunos-MBP
+│   ├── validation-0.data-00000-of-00001
+│   ├── validation-0.index
+│   └── validation-0.meta
+└── svhn_regression_logs
+    ├── checkpoint
+    ├── ckpt
+    │   ├── checkpoint
+    │   ├── regression.ckpt.data-00000-of-00001
+    │   ├── regression.ckpt.index
+    │   └── regression.ckpt.meta
+    ├── train
+    │   ├── events.out.tfevents.1558819600.Brunos-MBP
+    │   └── events.out.tfevents.1558819601.Brunos-MBP
+    ├── train-0.data-00000-of-00001
+    ├── train-0.index
+    ├── train-0.meta
+    ├── validation
+    │   ├── events.out.tfevents.1558819600.Brunos-MBP
+    │   └── events.out.tfevents.1558819601.Brunos-MBP
+    ├── validation-0.data-00000-of-00001
+    ├── validation-0.index
+    └── validation-0.meta
+
+-----------
+
+(env) Brunos-MBP:dit-dl-ca bambrozi$ python harness.py
+WARNING:tensorflow:From /Users/bambrozi/workspace/github.com/bambrozio/dit-dl-ca/env/lib/python2.7/site-packages/tensorflow/python/framework/op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecate
+d and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+Creating data directories
+Attempting to download train_32x32.mat
+0%....5%....10%....15%....20%....25%....30%....35%....40%....45%....50%....55%....60%....65%....70%....75%....80%....85%....90%....95%....100%
+Download Complete!
+('Found and verified', 'data/svhn/cropped/train_32x32.mat')
+Saving to train_svhn_imgs.npy file done.
+Saving to train_svhn_labels.npy file done.
+Saving to valid_svhn_imgs.npy file done.
+Saving to valid_svhn_labels.npy file done.
+Creating data directories
+Attempting to download test_32x32.mat
+0%....5%....10%....15%....20%....25%....30%....35%....40%....45%....50%....55%....60%....65%....70%....75%....80%....85%....90%....95%....100%
+Download Complete!
+('Found and verified', 'data/svhn/cropped/test_32x32.mat')
+Saving to test_svhn_imgs.npy file done.
+Saving to test_svhn_labels.npy file done.
+Cropped Files Done!!!
+Creating data directories
+Attempting to download train.tar.gz
+0%....5%....10%....15%....20%....25%....30%....35%....40%....45%....50%....55%....60%....65%....70%....75%....80%....85%....90%....95%....100%
+Download Complete!
+('Found and verified', 'data/svhn/full/train.tar.gz')
+('extract', 'data/svhn/full/train.tar.gz')
+/Users/bambrozi/workspace/github.com/bambrozio/dit-dl-ca/env/lib/python2.7/site-packages/h5py/_hl/dataset.py:313: H5pyDeprecationWarning: dataset.value has been deprecated. Use dataset[()] instead.
+  "Use dataset[()] instead.", H5pyDeprecationWarning)
+Done extract
+Skipping data/svhn/full/train/4111.png, only images with less than 5 numbers are allowed!
+Skipping data/svhn/full/train/6739.png, only images with less than 5 numbers are allowed!
+Skipping data/svhn/full/train/15958.png, only images with less than 5 numbers are allowed!
+Skipping data/svhn/full/train/18263.png, only images with less than 5 numbers are allowed!
+Skipping data/svhn/full/train/18944.png, only images with less than 5 numbers are allowed!
+Skipping data/svhn/full/train/24041.png, only images with less than 5 numbers are allowed!
+Skipping data/svhn/full/train/24552.png, only images with less than 5 numbers are allowed!
+Skipping data/svhn/full/train/26699.png, only images with less than 5 numbers are allowed!
+Skipping data/svhn/full/train/29930.png, only images with less than 5 numbers are allowed!
+Skipping data/svhn/full/train/33229.png, only images with less than 5 numbers are allowed!
+Saving to train_svhn_imgs.npy file done.
+Saving to train_svhn_labels.npy file done.
+Saving to valid_svhn_imgs.npy file done.
+Saving to valid_svhn_labels.npy file done.
+Creating data directories
+Attempting to download test.tar.gz
+0%....5%....10%....15%....20%....25%....30%....35%....40%....45%....50%....55%....60%....65%....70%....75%....80%....85%....90%....95%....100%
+Download Complete!
+('Found and verified', 'data/svhn/full/test.tar.gz')
+('extract', 'data/svhn/full/test.tar.gz')
+Done extract
+Skipping data/svhn/full/test/2999.png, only images with less than 5 numbers are allowed!
+Skipping data/svhn/full/test/7314.png, only images with less than 5 numbers are allowed!
+Saving to test_svhn_imgs.npy file done.
+Saving to test_svhn_labels.npy file done.
+Full Files Done!!!
+No weights file informed. Starting from scratch...
+Training (65931, 32, 32, 3)
+Valid (7326, 32, 32, 3)
+Test (26032, 32, 32, 3)
+Using drop out
+WARNING:tensorflow:From /Users/bambrozi/workspace/github.com/bambrozio/dit-dl-ca/svhn_model.py:119: calling dropout (from tensorflow.python.ops.nn_ops) with keep_prob is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `rate` instead of `keep_prob`. Rate should be set to `rate = 1 - keep_prob`.
+WARNING:tensorflow:From /Users/bambrozi/workspace/github.com/bambrozio/dit-dl-ca/svhn_train_classifier.py:73: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+Not using dropout
+WARNING:tensorflow:From /Users/bambrozi/workspace/github.com/bambrozio/dit-dl-ca/env/lib/python2.7/site-packages/tensorflow/python/util/tf_should_use.py:193: initialize_all_variables (from tensorflow.python.ops.variables) is deprecated and will be removed after 2017-03-02.
+Instructions for updating:
+Use `tf.global_variables_initializer` instead.
+2019-05-24 08:50:43.020492: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+Validation Accuracy: 0.11%
+Training Accuracy: 0.13%
+Adding run metadata for 0
+2019-05-24 08:50:44.726176: step 0, loss = 2.29  learning rate = 0.075000  (297.5 examples/sec; 0.86 sec/batch)
+Mini-Batch Accuracy: 0.05%
+2019-05-24 08:51:18.046590: step 100, loss = 1.97  learning rate = 0.075000  (7.7 examples/sec; 33.32 sec/batch)
+Mini-Batch Accuracy: 0.31%
+2019-05-24 08:51:51.869194: step 200, loss = 1.06  learning rate = 0.075000  (7.6 examples/sec; 33.82 sec/batch)
+Mini-Batch Accuracy: 0.70%
+2019-05-24 08:52:24.318658: step 300, loss = 0.79  learning rate = 0.071250  (7.9 examples/sec; 32.45 sec/batch)
+Mini-Batch Accuracy: 0.77%
+2019-05-24 08:52:56.789254: step 400, loss = 0.48  learning rate = 0.071250  (7.9 examples/sec; 32.47 sec/batch)
+Mini-Batch Accuracy: 0.87%
+2019-05-24 08:53:29.008081: step 500, loss = 0.45  learning rate = 0.071250  (7.9 examples/sec; 32.22 sec/batch)
+Mini-Batch Accuracy: 0.86%
+2019-05-24 08:54:01.787935: step 600, loss = 0.48  learning rate = 0.067688  (7.8 examples/sec; 32.78 sec/batch)
+Mini-Batch Accuracy: 0.87%
+2019-05-24 08:54:33.997917: step 700, loss = 0.32  learning rate = 0.067688  (7.9 examples/sec; 32.21 sec/batch)
+Mini-Batch Accuracy: 0.93%
+2019-05-24 08:55:07.565075: step 800, loss = 0.47  learning rate = 0.064303  (7.6 examples/sec; 33.57 sec/batch)
+Mini-Batch Accuracy: 0.85%
+2019-05-24 08:55:40.797297: step 900, loss = 0.37  learning rate = 0.064303  (7.7 examples/sec; 33.23 sec/batch)
+Mini-Batch Accuracy: 0.87%
+Validation Accuracy: 0.88%
+Training Accuracy: 0.91%
+Adding run metadata for 1000
+2019-05-24 08:56:16.427503: step 1000, loss = 0.32  learning rate = 0.064303  (7.3 examples/sec; 34.98 sec/batch)
+Mini-Batch Accuracy: 0.89%
+2019-05-24 08:56:50.591824: step 1100, loss = 0.31  learning rate = 0.061088  (7.5 examples/sec; 34.16 sec/batch)
+Mini-Batch Accuracy: 0.91%
+^CTraceback (most recent call last):
+  File "harness.py", line 21, in <module>
+    main()
+  File "harness.py", line 16, in main
+    average_f1_scores = svhn.traintest()
+  File "/Users/bambrozi/workspace/github.com/bambrozio/dit-dl-ca/svhn.py", line 12, in traintest
+    svhn_train_classifier.run()
+  File "/Users/bambrozi/workspace/github.com/bambrozio/dit-dl-ca/svhn_train_classifier.py", line 213, in run
+    main(saved_weights_path)
+  File "/Users/bambrozi/workspace/github.com/bambrozio/dit-dl-ca/svhn_train_classifier.py", line 201, in main
+    saved_weights_path)
+  File "/Users/bambrozi/workspace/github.com/bambrozio/dit-dl-ca/svhn_train_classifier.py", line 143, in train_classification
+    _, l, lr, acc = sess.run([optimizer, loss, learning_rate, accuracy], feed_dict=feed_dict)
+  File "/Users/bambrozi/workspace/github.com/bambrozio/dit-dl-ca/env/lib/python2.7/site-packages/tensorflow/python/client/session.py", line 929, in run
+    run_metadata_ptr)
+  File "/Users/bambrozi/workspace/github.com/bambrozio/dit-dl-ca/env/lib/python2.7/site-packages/tensorflow/python/client/session.py", line 1152, in _run
+    feed_dict_tensor, options, run_metadata)
+  File "/Users/bambrozi/workspace/github.com/bambrozio/dit-dl-ca/env/lib/python2.7/site-packages/tensorflow/python/client/session.py", line 1328, in _do_run
+    run_metadata)
+  File "/Users/bambrozi/workspace/github.com/bambrozio/dit-dl-ca/env/lib/python2.7/site-packages/tensorflow/python/client/session.py", line 1334, in _do_call
+    return fn(*args)
+  File "/Users/bambrozi/workspace/github.com/bambrozio/dit-dl-ca/env/lib/python2.7/site-packages/tensorflow/python/client/session.py", line 1319, in _run_fn
+    options, feed_dict, fetch_list, target_list, run_metadata)
+  File "/Users/bambrozi/workspace/github.com/bambrozio/dit-dl-ca/env/lib/python2.7/site-packages/tensorflow/python/client/session.py", line 1407, in _call_tf_sessionrun
+    run_metadata)
+KeyboardInterrupt

@@ -309,7 +309,7 @@ def run():
     print("Pre-processing - Start")
     generate_cropped_files()
     generate_full_files()
-    print("Pre-processing Done")
+    print("Pre-processing - Done")
 
 if __name__ == '__main__':
     run()
