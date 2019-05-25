@@ -45,7 +45,7 @@ def read_digit_struct(data_path):
 def extract_data_file(file_name):
     dest = os.path.splitext(os.path.splitext(file_name)[0])[0]
     if os.path.exists(dest):
-       print("Directory [%s] already exist. Assuming that the extraction was done before. Skipping..." % dest)
+       print("Directory [{}] already exist. Assuming that the extraction was done before. Skipping...").format(dest)
     else:
         tar = tarfile.open(file_name, "r:gz")
         tar.extractall(FULL_DATA_PATH)
@@ -280,6 +280,7 @@ def create_img_array(file_name, top, left, height, width, out_height, out_width,
 
 
 def generate_full_files():
+    print("Prepare full version datasets...")
     train_data, train_labels = create_svhn('train', 'full')
     train_data, valid_data, train_labels, valid_labels = train_validation_spit(train_data, train_labels)
 
@@ -290,11 +291,11 @@ def generate_full_files():
     write_npy_file(test_data, test_labels, 'test', 'full')
 
     # extra_data, extra_labels = create_svhn('full', 'extra')
-    print("Full Files Done!!!")
+    print("Full version datasets done!")
 
 
 def generate_cropped_files():
-    print("Prepare cropped datasets...")
+    print("Prepare cropped version datasets...")
     train_data, train_labels = create_svhn('train', 'cropped')
     train_data, valid_data, train_labels, valid_labels = train_validation_spit(train_data, train_labels)
 
@@ -303,14 +304,14 @@ def generate_cropped_files():
 
     test_data, test_labels = create_svhn('test', 'cropped')
     write_npy_file(test_data, test_labels, 'test', 'cropped')
-    print("Cropped datasets done!")
+    print("Cropped version datasets done!")
 
 
 def run():
-    print("Preprocessing - Start")
+    print("Pre-processing - Start")
     generate_cropped_files()
     generate_full_files()
-    print("Preprocessing Done")
+    print("Pre-processing Done")
 
 if __name__ == '__main__':
     run()
