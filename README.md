@@ -52,7 +52,7 @@ Max Pooling
 * Max pooling is done by applying a max filter to (usually) non-overlapping subregions of the initial representation.
 
 Con2d
-'''python
+```python
 tf.nn.conv2d(
     input,
     filter,
@@ -63,7 +63,7 @@ tf.nn.conv2d(
     dilations=[1, 1, 1, 1],
     name=None
 )
-'''
+```
 Depth:
 * Depth of CONV layer is number of filters it is using. Depth of a filter is equal to depth of image it is using as input
 
