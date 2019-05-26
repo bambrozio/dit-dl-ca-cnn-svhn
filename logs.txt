@@ -302,3 +302,24 @@ Mini-Batch Accuracy: 0.91%
   File "/Users/bambrozi/workspace/github.com/bambrozio/dit-dl-ca/env/lib/python2.7/site-packages/tensorflow/python/client/session.py", line 1407, in _call_tf_sessionrun
     run_metadata)
 KeyboardInterrupt
+
+
+===========================================================
+===========================================================
+
+Request Details:
+Due date: May 26, 2019 02:43 PM
+
+Current action: chooseCluster
+
+Completed date:
+
+Request ID: 2371665
+
+Template: Ubuntu-16-04-64
+RAM Size: 8
+CPU Size: 6
+Domain: swg.usma.ibm.com
+New VM Name: dit-dl-ca
+Owner: bambrozi@ie.ibm.com
+
