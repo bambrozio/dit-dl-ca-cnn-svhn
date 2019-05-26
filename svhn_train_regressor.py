@@ -10,6 +10,7 @@ import tensorflow as tf
 from svhn_preprocessing import load_svhn_data
 from svhn_model import regression_head
 from datetime import datetime
+from svhn_train_classifier import CLASSIFIER_CKPT
 
 # Avoid Warning logs
 tf.logging.set_verbosity(tf.logging.ERROR)
@@ -24,8 +25,8 @@ NUM_EPOCHS = 128
 TENSORBOARD_SUMMARIES_DIR = 'logs/svhn_regression_logs'
 TENSOR_BOARD_TRAIN_WRITER = TENSORBOARD_SUMMARIES_DIR+'/train'
 TENSOR_BOARD_VALID_WRITER = TENSORBOARD_SUMMARIES_DIR+'/validation'
-REGRESSION_CKPT = TENSORBOARD_SUMMARIES_DIR+"/ckpt/regression.ckpt"
-CLASSIFIER_CKPT = "logs/svhn_classifier_logs/ckpt/classifier.ckpt"
+REGRESSION_CKPT_DIR = TENSORBOARD_SUMMARIES_DIR+'/ckpt'
+REGRESSION_CKPT = REGRESSION_CKPT_DIR+'/regression.ckpt'
 
 
 # Image Settings
@@ -46,9 +47,8 @@ STAIRCASE = True
 def prepare_log_dir():
     '''Clears the log files then creates new directories to place
         the tensorbard log file.'''
-    if tf.gfile.Exists(TENSORBOARD_SUMMARIES_DIR):
-        tf.gfile.DeleteRecursively(TENSORBOARD_SUMMARIES_DIR)
-    tf.gfile.MakeDirs(TENSORBOARD_SUMMARIES_DIR)
+    if not tf.gfile.Exists(TENSORBOARD_SUMMARIES_DIR):
+        tf.gfile.MakeDirs(TENSORBOARD_SUMMARIES_DIR)
 
 
 def fill_feed_dict(data, labels, x, y_, step):
@@ -63,7 +63,7 @@ def fill_feed_dict(data, labels, x, y_, step):
 
 def train_regressor(train_data, train_labels, valid_data, valid_labels,
                     test_data, test_labels, train_size, saved_weights_path):
-    ret = None
+
     global_step = tf.Variable(0, trainable=False)
     # This is where training samples and labels are fed to the graph.
     with tf.name_scope('input'):
@@ -157,7 +157,8 @@ def train_regressor(train_data, train_labels, valid_data, valid_labels,
         ###
 
         # Loop through training steps.
-        for step in xrange(int(NUM_EPOCHS * train_size) // BATCH_SIZE):
+        #for step in xrange(int(NUM_EPOCHS * train_size) // BATCH_SIZE):
+        for step in xrange(5):
             duration = time.time() - start_time
             examples_per_sec = BATCH_SIZE / duration
 
@@ -200,7 +201,7 @@ def train_regressor(train_data, train_labels, valid_data, valid_labels,
         test_feed_dict = fill_feed_dict(test_data, test_labels, images_placeholder, labels_placeholder, step)
         _, l, lr, test_acc = sess.run([optimizer, loss, learning_rate, accuracy], feed_dict=test_feed_dict, options=run_options, run_metadata=run_metadata)
 
-        ret = 'Test accuracy: %.2f' % test_acc
+        ret = 'Test Accuracy: %.5f%%' % test_acc
         print(ret)
 
         # Save the variables to disk.
@@ -209,6 +210,7 @@ def train_regressor(train_data, train_labels, valid_data, valid_labels,
 
         train_writer.close()
         valid_writer.close()
+        sess.close();
 
     return ret
 
@@ -228,18 +230,29 @@ def main(saved_weights_path):
                     test_data, test_labels, train_size, saved_weights_path)
 
 
-def run(saved_weights_path = None):
-    if saved_weights_path is not None:
-        print("Loading Saved Checkpoints From: ", saved_weights_path)
-        if os.path.isfile(saved_weights_path):
-            saved_weights_path = saved_weights_path
-        else:
-            raise EnvironmentError("The weights file [%] cannot be opened." % saved_weights_path)
-    else:
-        print("No weights file informed. Starting from scratch...")
+def run():
+    print("Regressor training - Start")
 
-    return main(saved_weights_path)
+    if not os.path.exists(CLASSIFIER_CKPT+'.index'):
+        raise EnvironmentError("File [{}] not found. Please, be sure to run svhn_train_classifier.py first".format(CLASSIFIER_CKPT))
+
+    print("Loading Saved Checkpoints From: ", REGRESSION_CKPT)
+
+    saved_weights_path = None
+    if os.path.isdir(REGRESSION_CKPT_DIR):
+        for file in os.listdir(os.path.dirname(REGRESSION_CKPT)):
+            if os.path.isfile(os.path.join(REGRESSION_CKPT_DIR, file)) and '.ckpt' in file:
+                saved_weights_path = REGRESSION_CKPT
+                break
+
+    if saved_weights_path is None:
+        print("No weights file found. Starting from scratch...")
+
+    ret_class = main(saved_weights_path)
+    print("Regressor training - Done")
+
+    return ret_class
+
 
 if __name__ == '__main__':
-    saved_weights_path = sys.argv[1] if len(sys.argv) > 1 else None
-    run(saved_weights_path)
+    run()

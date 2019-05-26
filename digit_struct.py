@@ -1,6 +1,8 @@
 """ Borrowed and adapted from https://github.com/bdiesel/tensorflow-svhn/blob/master/digit_struct.py"""
 import h5py
 
+import warnings
+warnings.filterwarnings("ignore")
 
 class DigitStruct:
     """TODO: Document what it does here"""
@@ -52,9 +54,9 @@ class DigitStruct:
         return structure
 
     def get_all_imgs_and_digit_structure(self):
-        print('Getting all images and digit structure for file [%s]...' % self.file.filename)
+        print('Getting all images and digit structure for the file [%s]...' % self.file.filename)
         structs = []
         for i in range(len(self.digit_struct_name)):
             structs.append(self.get_digit_structure(i))
-        print("Image and digit structure for file [%s] done!" % self.file.filename)
+        print("Image and digit structure for the file [%s] done!" % self.file.filename)
         return structs
