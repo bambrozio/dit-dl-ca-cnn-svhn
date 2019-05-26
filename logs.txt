@@ -1,34 +1,25 @@
-svhn.test(<image>) logs:
+svhn.traintest() log results (reduced for 5 iterations each train):
 
-/Users/bambrozi/workspace/github.com/bambrozio/dit-dl-ca/env/bin/python /Users/bambrozi/workspace/github.com/bambrozio/dit-dl-ca/harness.py
-Reading Image file: [/Users/bambrozi/Downloads/tmp/246x0w.jpg]
+(env) Brunos-MBP:dit-dl-ca bambrozi$ python harness.py
+Reading Image file: [data/svhn/manualTest/data/svhn/full/test/246x0w.jpg]
 Resizing image to [64 x 64]...
 Loading model...
-Best Prediction: [123]. Time spent in seconds: [0.0478727817535]
+Best Prediction: [123]. Time spent in seconds: [0.0269429683685]
 None
 Reading Image file: [data/svhn/manualTest/data/svhn/full/test/19.png]
 Loading model...
-Best Prediction: [60]. Time spent in seconds: [0.0386340618134]
+Best Prediction: [60]. Time spent in seconds: [0.0271680355072]
 None
 Reading Image file: [data/svhn/manualTest/data/svhn/full/test/16.png]
 Loading model...
-Best Prediction: [14]. Time spent in seconds: [0.0468170642853]
+Best Prediction: [14]. Time spent in seconds: [0.0314860343933]
 None
-Reading Image file: [/Users/bambrozi/Downloads/tmp/323.png]
+Reading Image file: [data/svhn/full/test/323.png]
 Image with width [141] and height [66].
 Cropping to the centre on [64 x 64]...
 Loading model...
-Best Prediction: [2]. Time spent in seconds: [0.0455930233002]
+Best Prediction: [2]. Time spent in seconds: [0.0268640518188]
 None
-
-Process finished with exit code 0
-
-
------------
-
-svhn.traintest() log results (reduced for 5 iterations each train):
-
-/Users/bambrozi/workspace/github.com/bambrozio/dit-dl-ca/env/bin/python /Users/bambrozi/workspace/github.com/bambrozio/dit-dl-ca/harness.py
 Pre-processing - Start
 Prepare cropped version datasets...
 Saving to train_svhn_imgs.npy file done.
@@ -69,36 +60,32 @@ Full version datasets done!
 Pre-processing - Done
 Classifier training - Start
 Loading Saved Checkpoints From:  logs/svhn_classifier_logs/ckpt/classifier.ckpt
-No weights file found. Starting from scratch...
 Training (65931, 32, 32, 3)
 Valid (7326, 32, 32, 3)
 Test (26032, 32, 32, 3)
 Using drop out
 Not using dropout
-Validation Accuracy: 0.21%
+Model restored.
+Validation Accuracy: 0.08%
 Training Accuracy: 0.13%
 Adding run metadata for 0
-2019-05-25 22:26:32.844803: step 0, loss = 2.29  learning rate = 0.075000  (269.5 examples/sec; 0.95 sec/batch)
-Mini-Batch Accuracy: 0.12%
+2019-05-26 17:13:42.285059: step 0, loss = 2.27  learning rate = 0.075000  (304.6 examples/sec; 0.84 sec/batch)
+Mini-Batch Accuracy: 0.11%
 Model saved in file: logs/svhn_classifier_logs/ckpt/classifier.ckpt
 Test Accuracy: 0.16797%
 Classifier training - Done
 Regressor training - Start
 Loading Saved Checkpoints From:  logs/svhn_regression_logs/ckpt/regression.ckpt
-No weights file found. Starting from scratch...
 TrainData (30061, 64, 64, 3)
 Valid Data (3341, 64, 64, 3)
 Test Data (13068, 64, 64, 3)
 Model restored.
 Validation Accuracy: 0.54
-Training Set Accuracy: 0.44
+Training Set Accuracy: 0.43
 Adding run metadata for 0
 Test Accuracy: 0.62500%
 Model saved in file: logs/svhn_regression_logs/ckpt/regression.ckpt
 Regressor training - Done
-None
-
-Process finished with exit code 0
 
 -----------
 

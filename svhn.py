@@ -5,10 +5,9 @@ import os
 # across each class in your testset.
 # Must return f1-score
 def traintest():
-    os.system('echo "" > harness.traintest.log')
-    os.system('python svhn_preprocessing.py >> harness.traintest.log')
-    os.system('python svhn_train_classifier.py >> harness.traintest.log')
-    os.system('python svhn_train_regressor.py >> harness.traintest.log')
+    os.system('python svhn_preprocessing.py')
+    os.system('python svhn_train_classifier.py')
+    os.system('python svhn_train_regressor.py')
 
 
 # which takes the name of a JPEG or PNG file that is assumed to be the same dimensions as the standard SVHN test data
