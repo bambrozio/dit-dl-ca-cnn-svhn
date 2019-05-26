@@ -64,7 +64,6 @@ def convert_imgs_to_array(img_array):
     # Note: not the most efficent way but can monitor what is happening
     new_array = np.empty(shape=(num_imgs, rows, cols, chans), dtype=np.float32)
     for x in range(0, num_imgs):
-        # TODO reuse normalize_img here
         chans = img_array[:, :, :, x]
         # normalize pixels to 0 and 1. 0 is pure white, 1 is pure channel color
         norm_vec = (255-chans)*1.0/255.0
@@ -246,7 +245,6 @@ def write_npy_file(data_array, lbl_array, data_set_name, data_path):
 
 #load numpy arrays data to be used in the training process
 def load_svhn_data(data_type, data_set_name):
-    # TODO add error handling here
     path = DATA_PATH + data_set_name
     imgs = np.load(os.path.join(path, data_set_name+'_'+data_type+'_imgs.npy'))
     labels = np.load(os.path.join(path, data_set_name+'_'+data_type+'_labels.npy'))

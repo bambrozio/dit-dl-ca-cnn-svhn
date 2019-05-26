@@ -5,7 +5,6 @@ import warnings
 warnings.filterwarnings("ignore")
 
 class DigitStruct:
-    """TODO: Document what it does here"""
     def __init__(self, file):
         self.file = h5py.File(file, 'r')
         self.digit_struct_name = self.file['digitStruct']['name']
