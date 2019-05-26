@@ -11,10 +11,18 @@ from svhn_preprocessing import load_svhn_data
 from svhn_model import classification_head
 from datetime import datetime
 
+# Avoid Warning logs
+tf.logging.set_verbosity(tf.logging.ERROR)
+
+# Avoid suggestion on log console like:
+# ...Your CPU supports... AVX2 FMA
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+
 TENSORBOARD_SUMMARIES_DIR = 'logs/svhn_classifier_logs'
 TENSOR_BOARD_TRAIN_WRITER = TENSORBOARD_SUMMARIES_DIR+'/train'
 TENSOR_BOARD_VALID_WRITER = TENSORBOARD_SUMMARIES_DIR+'/validation'
-CLASSIFIER_CKPT = TENSORBOARD_SUMMARIES_DIR+"/ckpt/classifier.ckpt"
+CLASSIFIER_CKPT_DIR = TENSORBOARD_SUMMARIES_DIR+'/ckpt'
+CLASSIFIER_CKPT = CLASSIFIER_CKPT_DIR+'/classifier.ckpt'
 
 #0-9
 NUM_LABELS = 10
@@ -34,9 +42,8 @@ STAIRCASE = True
 def prepare_log_dir():
     '''Clears the log files then creates new directories to place
         the tensorbard log file.'''
-    if tf.gfile.Exists(TENSORBOARD_SUMMARIES_DIR):
-        tf.gfile.DeleteRecursively(TENSORBOARD_SUMMARIES_DIR)
-    tf.gfile.MakeDirs(TENSORBOARD_SUMMARIES_DIR)
+    if not tf.gfile.Exists(TENSORBOARD_SUMMARIES_DIR):
+        tf.gfile.MakeDirs(TENSORBOARD_SUMMARIES_DIR)
 
 
 def fill_feed_dict(data, labels, x, y_, step):
@@ -186,10 +193,14 @@ def train_classification(train_data, train_labels,
 
         test_feed_dict = fill_feed_dict(test_data, test_labels, images_placeholder, labels_placeholder, step)
         summary, acc = sess.run([merged, accuracy], feed_dict=test_feed_dict)
-        print('Test Accuracy: %.5f%%' % acc)
+        ret = 'Test Accuracy: %.5f%%' % acc
+        print(ret)
 
         train_writer.close()
         valid_writer.close()
+        sess.close();
+
+    return ret
 
 
 def main(saved_weights_path):
@@ -207,25 +218,32 @@ def main(saved_weights_path):
     train_size = train_labels.shape[0]
     
     # call main training method to kick off classification training
-    train_classification(train_data, train_labels,
+    return train_classification(train_data, train_labels,
                          valid_data, valid_labels,
                          test_data, test_labels, train_size,
                          saved_weights_path)
 
 # passing the weights chkpt file location when calling for prediction
 # if chkpt file exists use it, if not kick off the training    
-def run(saved_weights_path = None):
-    if saved_weights_path is not None:
-        print("Loading Saved Checkpoints From: ", saved_weights_path)
-        if os.path.isfile(saved_weights_path):
-            saved_weights_path = saved_weights_path
-        else:
-            raise EnvironmentError("The weights file [%] cannot be opened." % saved_weights_path)
-    else:
-        print("No weights file informed. Starting from scratch...")
-    main(saved_weights_path)
+def run():
+    print("Classifier training - Start")
+    print("Loading Saved Checkpoints From: ", CLASSIFIER_CKPT)
+
+    saved_weights_path = None
+    if os.path.isdir(CLASSIFIER_CKPT_DIR):
+        for file in os.listdir(os.path.dirname(CLASSIFIER_CKPT)):
+            if os.path.isfile(os.path.join(CLASSIFIER_CKPT_DIR, file)) and '.ckpt' in file:
+                saved_weights_path = CLASSIFIER_CKPT
+                break
+
+    if saved_weights_path is None:
+        print("No weights file found. Starting from scratch...")
+
+    ret_class = main(saved_weights_path)
+    print("Classifier training - Done")
+
+    return ret_class
 
 if __name__ == '__main__':
-    saved_weights_path = sys.argv[1] if len(sys.argv) > 1 else None
-    run(saved_weights_path)
+    run()
 

@@ -3,13 +3,19 @@ import os
 import numpy as np
 import tensorflow as tf
 import PIL.Image as Image
-#import matplotlib.pyplot as plt
-
-from svhn_model import regression_head
-from svhn_preprocessing import load_svhn_data
+import matplotlib.pyplot as plt
 import time
 
-WEIGHTS_FILE = "regression.ckpt.data-00000-of-00001"
+from svhn_model import regression_head
+
+# Avoid Warning logs
+tf.logging.set_verbosity(tf.logging.ERROR)
+
+# Avoid suggestion on log console like:
+# ...Your CPU supports... AVX2 FMA
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+
+WEIGHTS_FILE = "/Users/bambrozi/workspace/github.com/bambrozio/tensorflow-svhn/regression.ckpt"
 
 
 def prediction_to_string(pred_array):
@@ -21,29 +27,48 @@ def prediction_to_string(pred_array):
             return pred_str
     return pred_str
 
+
+def resize(sample_img, to_size):
+    print("Resizing image to [{} x {}]...".format(to_size, to_size))
+    return sample_img.resize((to_size, to_size), Image.ANTIALIAS)
+
+
+def crop(sample_img, to_size):
+    width, height = sample_img.size
+    print("Image with width [{}] and height [{}].".format(width, height))
+    print('Cropping to the centre on [{} x {}]...').format(to_size, to_size)
+
+    left = (width - to_size) / 2
+    top = (height - to_size) / 2
+    right = (width + to_size) / 2
+    bottom = (height + to_size) / 2
+    return sample_img.crop((left, top, right, bottom))
+
+
+
 # Detect is called by the main program to find the image path
 # Do preprocessing of the input image with resize, reshape, decode_png
 def detect(img_path, saved_model_weights):
-    #image = Image.open(img_path)
-    #sample_img = tf.image.resize_images(image, (64, 64))
+    sample_img = Image.open(img_path)
 
     # preprocessing of input image
-    image = tf.image.decode_png(tf.read_file(img_path), channels=3)
-    image = tf.image.resize_images(image, [64, 64])
-    image = tf.image.convert_image_dtype(image, dtype=tf.float32)
-    sample_img = tf.reshape(image, [1, 64, 64, 3])
-    with tf.Session().as_default():
-        sample_img = sample_img.eval()
+    width, height = sample_img.size
 
-#    plt.imshow(sample_img)
-#    plt.show()
+    if width == height:
+        if width != 64:
+            sample_img = resize(sample_img, 64)
+    else:
+        sample_img = crop(sample_img, 64)
+        #sample_img = crop(sample_img, 32*1.2) # 32 + 20%
+        #sample_img = resize(sample_img, 64)
+
+    #sample_img = sample_img.convert('L')
+    plt.imshow(sample_img)
+    plt.show()
 
     pix = np.array(sample_img)
     norm_pix = (255-pix)*1.0/255.0
     exp = np.expand_dims(norm_pix, axis=0)
-
-    print(norm_pix.shape)
-    (1, 64, 64, 3)
 
     X = tf.placeholder(tf.float32, shape=(1, 64, 64, 3))
     
@@ -64,50 +89,46 @@ def detect(img_path, saved_model_weights):
 
     saver = tf.train.Saver()
     with tf.Session() as session:
-        saver.restore(session, "regression.ckpt")
-        print "Model restored."
+        print "Loading model..."
+        saver.restore(session, WEIGHTS_FILE)
 
-        print "Initialized"
-        #feed_dict = {X: exp}
-        feed_dict = {X: norm_pix}
-
+        feed_dict = {X: exp}
         start_time = time.time()
         predictions = session.run(best_prediction, feed_dict=feed_dict)
         pred = prediction_to_string(predictions[0])
         end_time = time.time()
-        print "Best Prediction", pred, "made in", end_time - start_time
+        print("Best Prediction: [{}]. Time spent in seconds: [{}]").format(pred, end_time - start_time)
+        return pred
 
-if __name__ == "__main__":
-    img_path = None
-    if len(sys.argv) > 1:
-        print("Reading Image file:", sys.argv[1])
-        if os.path.isfile(sys.argv[1]):
-            img_path = sys.argv[1]
-        else:
-            raise EnvironmentError("Cannot open image file.")
-    else:
-        raise EnvironmentError("You must pass an image file to process")
-
-    if os.path.isfile(WEIGHTS_FILE):
-        saved_model_weights = WEIGHTS_FILE
-    else:
-        raise IOError("Cannot find checkpoint file. Please run train_classifier.py")
-
-    detect(img_path, saved_model_weights)
+# if __name__ == "__main__":
+#     img_path = None
+#     if len(sys.argv) > 1:
+#         print("Reading Image file:", sys.argv[1])
+#         if os.path.isfile(sys.argv[1]):
+#             img_path = sys.argv[1]
+#         else:
+#             raise EnvironmentError("Cannot open image file.")
+#     else:
+#         raise EnvironmentError("You must pass an image file to process")
+#
+#     if os.path.isfile(WEIGHTS_FILE):
+#         saved_model_weights = WEIGHTS_FILE
+#     else:
+#         raise IOError("Cannot find checkpoint file. Please run train_classifier.py")
+#
+#     detect(img_path, saved_model_weights)
 
 
 
 def classify(img_path = None):
-    if img_path is not None:
-        print("Reading Image file: ", img_path)
-        if not os.path.isfile(img_path):
-            raise EnvironmentError("Cannot open image file.")
-    else:
-        raise EnvironmentError("You must inform an image file to process")
+    if img_path is None:
+        raise EnvironmentError("You must pass an image file to process")
 
-    if os.path.isfile(WEIGHTS_FILE):
-        saved_model_weights = WEIGHTS_FILE
-    else:
-        raise IOError("Cannot find checkpoint file. Please run train_classifier.py")
+    print("Reading Image file: [{}]").format(img_path)
+    if not os.path.isfile(img_path):
+        raise EnvironmentError("Image file cannot be opened.")
 
-    detect(img_path, saved_model_weights)
+    detect(img_path, WEIGHTS_FILE)
+
+if __name__ == "__main__":
+    classify(sys.argv[1])

@@ -5,16 +5,16 @@ import tarfile
 import PIL.Image as Image
 
 from digit_struct import DigitStruct
-
 from scipy.io import loadmat
 from sklearn.model_selection import train_test_split
-from itertools import product
 from six.moves.urllib.request import urlretrieve
 
 
 DATA_PATH = "data/svhn/"
 CROPPED_DATA_PATH = DATA_PATH+"cropped"
 FULL_DATA_PATH = DATA_PATH+"full"
+IMGS_FOR_MANUAL_TEST = DATA_PATH+'manualTest/'
+IMGS_FOR_MANUAL_TEST_N = 20
 PIXEL_DEPTH = 255
 NUM_LABELS = 10
 
@@ -22,7 +22,7 @@ NUM_LABELS = 10
 # number of channels represents color channels 1-4 (where 1 is greyscale and 3 for RGB)
 OUT_HEIGHT = 64
 OUT_WIDTH = 64
-NUM_CHANNELS = 3 
+NUM_CHANNELS = 3
 MAX_LABELS = 5 # Max label used for excluding labels with more than 5 digits
 
 last_percent_reported = None
@@ -48,7 +48,7 @@ def read_digit_struct(data_path):
 def extract_data_file(file_name):
     dest = os.path.splitext(os.path.splitext(file_name)[0])[0]
     if os.path.exists(dest):
-       print("Directory [%s] already exist. Assuming that the extraction was done before. Skipping..." % dest)
+       print("Directory [{}] already exist. Assuming that the extraction was done before. Skipping...").format(dest)
     else:
         tar = tarfile.open(file_name, "r:gz")
         tar.extractall(FULL_DATA_PATH)
@@ -154,7 +154,7 @@ def handle_tar_file(file_pointer):
         if(len(lbls) < MAX_LABELS):
             labels[i] = create_label_array(lbls)
             img_data[i] = create_img_array(file_name, top, left, height, width,
-                                           OUT_HEIGHT, OUT_WIDTH)
+                                           OUT_HEIGHT, OUT_WIDTH, i)
         else:
             print("Skipping {}, only images with less than {} numbers are allowed!").format(file_name, MAX_LABELS)
 
@@ -264,7 +264,7 @@ def create_label_array(el):
     return labels_array
 
 # create image arrays with respect with its bbox location    
-def create_img_array(file_name, top, left, height, width, out_height, out_width):
+def create_img_array(file_name, top, left, height, width, out_height, out_width, index):
     img = Image.open(file_name)
 
     img_top = np.amin(top)
@@ -279,6 +279,16 @@ def create_img_array(file_name, top, left, height, width, out_height, out_width)
     
     # crop imags in the exact location of the bboxes
     img = img.crop((box_left, box_top, box_right, box_bottom)).resize([out_height, out_width], Image.ANTIALIAS)
+
+
+    # Extracts IMGS_FOR_MANUAL_TEST_N images to be used on manual tests.
+    if 'test' in file_name:
+        if index < IMGS_FOR_MANUAL_TEST_N:
+            if not os.path.isdir(IMGS_FOR_MANUAL_TEST + os.path.split(file_name)[0]):
+                os.makedirs(IMGS_FOR_MANUAL_TEST + os.path.split(file_name)[0])
+            img.save(IMGS_FOR_MANUAL_TEST + file_name)
+            index+=1
+
     pix = np.array(img)
 
     # normalize the image data
@@ -288,6 +298,7 @@ def create_img_array(file_name, top, left, height, width, out_height, out_width)
 
 
 def generate_full_files():
+    print("Prepare full version datasets...")
     train_data, train_labels = create_svhn('train', 'full')
     train_data, valid_data, train_labels, valid_labels = train_validation_spit(train_data, train_labels)
 
@@ -298,11 +309,11 @@ def generate_full_files():
     write_npy_file(test_data, test_labels, 'test', 'full')
 
     # extra_data, extra_labels = create_svhn('full', 'extra')
-    print("Full Files Done!!!")
+    print("Full version datasets done!")
 
 
 def generate_cropped_files():
-    print("Prepare cropped datasets...")
+    print("Prepare cropped version datasets...")
     train_data, train_labels = create_svhn('train', 'cropped')
     train_data, valid_data, train_labels, valid_labels = train_validation_spit(train_data, train_labels)
 
@@ -311,14 +322,14 @@ def generate_cropped_files():
 
     test_data, test_labels = create_svhn('test', 'cropped')
     write_npy_file(test_data, test_labels, 'test', 'cropped')
-    print("Cropped datasets done!")
+    print("Cropped version datasets done!")
 
 
 def run():
-    print("Preprocessing - Start")
+    print("Pre-processing - Start")
     generate_cropped_files()
     generate_full_files()
-    print("Preprocessing Done")
+    print("Pre-processing - Done")
 
 if __name__ == '__main__':
     run()
