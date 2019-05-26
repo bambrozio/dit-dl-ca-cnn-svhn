@@ -141,8 +141,8 @@ def train_classification(train_data, train_labels,
         run_metadata = tf.RunMetadata()
 
         # Loop through training steps.
-        #for step in xrange(int(NUM_EPOCHS * train_size) // BATCH_SIZE):
-        for step in xrange(5):
+        for step in xrange(int(NUM_EPOCHS * train_size) // BATCH_SIZE):
+        #for step in xrange(5):
             # Run the graph and fetch some of the nodes.
             # This dictionary maps the batch data (as a numpy array) to the
             feed_dict = fill_feed_dict(train_data, train_labels,

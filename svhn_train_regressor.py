@@ -157,8 +157,8 @@ def train_regressor(train_data, train_labels, valid_data, valid_labels,
         ###
 
         # Loop through training steps.
-        #for step in xrange(int(NUM_EPOCHS * train_size) // BATCH_SIZE):
-        for step in xrange(5):
+        for step in xrange(int(NUM_EPOCHS * train_size) // BATCH_SIZE):
+        #for step in xrange(5):
             duration = time.time() - start_time
             examples_per_sec = BATCH_SIZE / duration
 
