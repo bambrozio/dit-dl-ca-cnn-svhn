@@ -21,11 +21,13 @@ def prediction_to_string(pred_array):
             return pred_str
     return pred_str
 
-
+# Detect is called by the main program to find the image path
+# Do preprocessing of the input image with resize, reshape, decode_png
 def detect(img_path, saved_model_weights):
     #image = Image.open(img_path)
     #sample_img = tf.image.resize_images(image, (64, 64))
 
+    # preprocessing of input image
     image = tf.image.decode_png(tf.read_file(img_path), channels=3)
     image = tf.image.resize_images(image, [64, 64])
     image = tf.image.convert_image_dtype(image, dtype=tf.float32)
@@ -44,14 +46,20 @@ def detect(img_path, saved_model_weights):
     (1, 64, 64, 3)
 
     X = tf.placeholder(tf.float32, shape=(1, 64, 64, 3))
+    
+    # call regression head method that takes the image and passes it through the network
+    # returns an array of 5 logits   
     [logits_1, logits_2, logits_3, logits_4, logits_5] = regression_head(X)
 
+    # each logit is passed to a softmax tf function that produces the most likely prediction
     predict = tf.stack([tf.nn.softmax(logits_1),
                       tf.nn.softmax(logits_2),
                       tf.nn.softmax(logits_3),
                       tf.nn.softmax(logits_4),
                       tf.nn.softmax(logits_5)])
 
+    # transpose prediction
+    # argmax returns the index with the largest value across axes of a tensor
     best_prediction = tf.transpose(tf.argmax(predict, 2))
 
     saver = tf.train.Saver()

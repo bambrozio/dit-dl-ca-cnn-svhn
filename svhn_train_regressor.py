@@ -46,8 +46,8 @@ def prepare_log_dir():
 
 def fill_feed_dict(data, labels, x, y_, step):
     set_size = labels.shape[0]
+    
     # Compute the offset of the current minibatch in the data.
-    # Note that we could use better randomization across epochs.
     offset = (step * BATCH_SIZE) % (set_size - BATCH_SIZE)
     batch_data = data[offset:(offset + BATCH_SIZE), ...]
     batch_labels = labels[offset:(offset + BATCH_SIZE)]
@@ -138,8 +138,6 @@ def train_regressor(train_data, train_labels, valid_data, valid_labels,
         run_options = tf.RunOptions(trace_level=tf.RunOptions.FULL_TRACE)
         run_metadata = tf.RunMetadata()
 
-        ###
-
         saver = tf.train.Saver()
         saver.save(sess, save_path=TENSOR_BOARD_TRAIN_WRITER, global_step=global_step)
         train_writer = tf.summary.FileWriter(TENSOR_BOARD_TRAIN_WRITER)  # create writer
@@ -166,6 +164,7 @@ def train_regressor(train_data, train_labels, valid_data, valid_labels,
 
             train_batched_labels = train_feed_dict.values()[1]
 
+            # every 1000 steps print the accuracy of the training data set
             if step % 1000 == 0:
                 valid_feed_dict = fill_feed_dict(valid_data, valid_labels, images_placeholder, labels_placeholder, step)
                 valid_batch_labels = valid_feed_dict.values()[1]
@@ -183,6 +182,7 @@ def train_regressor(train_data, train_labels, valid_data, valid_labels,
                 print('Training Set Accuracy: %.2f' % train_acc)
                 print('Adding run metadata for', step)
 
+            # every 100 steps print out the accuracy of the mini batches     
             elif step % 100 == 0:
                 elapsed_time = time.time() - start_time
                 start_time = time.time()
@@ -199,7 +199,7 @@ def train_regressor(train_data, train_labels, valid_data, valid_labels,
         ret = 'Test accuracy: %.2f' % test_acc
         print(ret)
 
-        # Save the variables to disk.
+        # Save the variables to regression.ckpt in disk.
         save_path = saver.save(sess, REGRESSION_CKPT)
         print("Model saved in file: %s" % save_path)
 
