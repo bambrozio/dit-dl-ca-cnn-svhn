@@ -310,3 +310,1252 @@ Domain: swg.usma.ibm.com
 New VM Name: dit-dl-ca
 Owner: bambrozi@ie.ibm.com
 
+===========================================================
+===========================================================
+
+Training again, after all changes:
+
+25/May/2019. Command started: 17:33
+
+(env) Brunos-MBP:dit-dl-ca bambrozi$ python harness.py
+Pre-processing - Start
+Prepare cropped version datasets...
+Saving to train_svhn_imgs.npy file done.
+Saving to train_svhn_labels.npy file done.
+Saving to valid_svhn_imgs.npy file done.
+Saving to valid_svhn_labels.npy file done.
+Saving to test_svhn_imgs.npy file done.
+Saving to test_svhn_labels.npy file done.
+Cropped version datasets done!
+Prepare full version datasets...
+extracting: data/svhn/full/train.tar.gz
+Directory [data/svhn/full/train] already exist. Assuming that the extraction was done before. Skipping...
+Getting all images and digit structure for the file [data/svhn/full/train/digitStruct.mat]...
+Image and digit structure for the file [data/svhn/full/train/digitStruct.mat] done!
+Skipping data/svhn/full/train/4111.png, only images with less than 5 numbers are allowed!
+Skipping data/svhn/full/train/6739.png, only images with less than 5 numbers are allowed!
+Skipping data/svhn/full/train/15958.png, only images with less than 5 numbers are allowed!
+Skipping data/svhn/full/train/18263.png, only images with less than 5 numbers are allowed!
+Skipping data/svhn/full/train/18944.png, only images with less than 5 numbers are allowed!
+Skipping data/svhn/full/train/24041.png, only images with less than 5 numbers are allowed!
+Skipping data/svhn/full/train/24552.png, only images with less than 5 numbers are allowed!
+Skipping data/svhn/full/train/26699.png, only images with less than 5 numbers are allowed!
+Skipping data/svhn/full/train/29930.png, only images with less than 5 numbers are allowed!
+Skipping data/svhn/full/train/33229.png, only images with less than 5 numbers are allowed!
+Saving to train_svhn_imgs.npy file done.
+Saving to train_svhn_labels.npy file done.
+Saving to valid_svhn_imgs.npy file done.
+Saving to valid_svhn_labels.npy file done.
+extracting: data/svhn/full/test.tar.gz
+Directory [data/svhn/full/test] already exist. Assuming that the extraction was done before. Skipping...
+Getting all images and digit structure for the file [data/svhn/full/test/digitStruct.mat]...
+Image and digit structure for the file [data/svhn/full/test/digitStruct.mat] done!
+Skipping data/svhn/full/test/2999.png, only images with less than 5 numbers are allowed!
+Skipping data/svhn/full/test/7314.png, only images with less than 5 numbers are allowed!
+Saving to test_svhn_imgs.npy file done.
+Saving to test_svhn_labels.npy file done.
+Full version datasets done!
+Pre-processing - Done
+Classifier training - Start
+Loading Saved Checkpoints From:  logs/svhn_classifier_logs/ckpt/classifier.ckpt
+No weights file found. Starting from scratch...
+Training (65931, 32, 32, 3)
+Valid (7326, 32, 32, 3)
+Test (26032, 32, 32, 3)
+Using drop out
+Not using dropout
+Validation Accuracy: 0.07%
+Training Accuracy: 0.13%
+Adding run metadata for 0
+2019-05-26 17:39:53.671446: step 0, loss = 2.29  learning rate = 0.075000  (324.6 examples/sec; 0.79 sec/batch)
+Mini-Batch Accuracy: 0.08%
+2019-05-26 17:40:26.997099: step 100, loss = 1.96  learning rate = 0.075000  (7.7 examples/sec; 33.33 sec/batch)
+Mini-Batch Accuracy: 0.32%
+2019-05-26 17:41:01.504217: step 200, loss = 1.08  learning rate = 0.075000  (7.4 examples/sec; 34.51 sec/batch)
+Mini-Batch Accuracy: 0.70%
+2019-05-26 17:41:35.814226: step 300, loss = 0.78  learning rate = 0.071250  (7.5 examples/sec; 34.31 sec/batch)
+Mini-Batch Accuracy: 0.78%
+2019-05-26 17:42:11.102225: step 400, loss = 0.47  learning rate = 0.071250  (7.3 examples/sec; 35.29 sec/batch)
+Mini-Batch Accuracy: 0.85%
+2019-05-26 17:42:45.790075: step 500, loss = 0.46  learning rate = 0.071250  (7.4 examples/sec; 34.69 sec/batch)
+Mini-Batch Accuracy: 0.86%
+2019-05-26 17:43:19.225689: step 600, loss = 0.43  learning rate = 0.067688  (7.7 examples/sec; 33.44 sec/batch)
+Mini-Batch Accuracy: 0.87%
+2019-05-26 17:43:51.738370: step 700, loss = 0.35  learning rate = 0.067688  (7.9 examples/sec; 32.51 sec/batch)
+Mini-Batch Accuracy: 0.91%
+2019-05-26 17:44:23.165119: step 800, loss = 0.46  learning rate = 0.064303  (8.1 examples/sec; 31.43 sec/batch)
+Mini-Batch Accuracy: 0.86%
+2019-05-26 17:44:51.689449: step 900, loss = 0.37  learning rate = 0.064303  (9.0 examples/sec; 28.52 sec/batch)
+Mini-Batch Accuracy: 0.89%
+Validation Accuracy: 0.87%
+Training Accuracy: 0.91%
+Adding run metadata for 1000
+2019-05-26 17:45:20.654334: step 1000, loss = 0.34  learning rate = 0.064303  (9.0 examples/sec; 28.37 sec/batch)
+Mini-Batch Accuracy: 0.89%
+2019-05-26 17:45:49.119588: step 1100, loss = 0.28  learning rate = 0.061088  (9.0 examples/sec; 28.47 sec/batch)
+Mini-Batch Accuracy: 0.90%
+2019-05-26 17:46:17.351823: step 1200, loss = 0.28  learning rate = 0.061088  (9.1 examples/sec; 28.23 sec/batch)
+Mini-Batch Accuracy: 0.93%
+2019-05-26 17:46:45.715333: step 1300, loss = 0.35  learning rate = 0.058034  (9.0 examples/sec; 28.36 sec/batch)
+Mini-Batch Accuracy: 0.92%
+2019-05-26 17:47:13.907591: step 1400, loss = 0.41  learning rate = 0.058034  (9.1 examples/sec; 28.19 sec/batch)
+Mini-Batch Accuracy: 0.88%
+2019-05-26 17:47:42.293852: step 1500, loss = 0.37  learning rate = 0.058034  (9.0 examples/sec; 28.39 sec/batch)
+Mini-Batch Accuracy: 0.90%
+2019-05-26 17:48:10.881808: step 1600, loss = 0.28  learning rate = 0.055132  (9.0 examples/sec; 28.59 sec/batch)
+Mini-Batch Accuracy: 0.91%
+2019-05-26 17:48:42.070589: step 1700, loss = 0.26  learning rate = 0.055132  (8.2 examples/sec; 31.19 sec/batch)
+Mini-Batch Accuracy: 0.93%
+2019-05-26 17:49:14.227609: step 1800, loss = 0.27  learning rate = 0.052375  (8.0 examples/sec; 32.16 sec/batch)
+Mini-Batch Accuracy: 0.93%
+2019-05-26 17:49:45.980271: step 1900, loss = 0.30  learning rate = 0.052375  (8.1 examples/sec; 31.75 sec/batch)
+Mini-Batch Accuracy: 0.92%
+Validation Accuracy: 0.90%
+Training Accuracy: 0.95%
+Adding run metadata for 2000
+2019-05-26 17:50:17.301567: step 2000, loss = 0.19  learning rate = 0.052375  (8.4 examples/sec; 30.63 sec/batch)
+Mini-Batch Accuracy: 0.93%
+2019-05-26 17:50:46.347069: step 2100, loss = 0.21  learning rate = 0.049757  (8.8 examples/sec; 29.05 sec/batch)
+Mini-Batch Accuracy: 0.97%
+2019-05-26 17:51:14.535418: step 2200, loss = 0.24  learning rate = 0.049757  (9.1 examples/sec; 28.19 sec/batch)
+Mini-Batch Accuracy: 0.94%
+2019-05-26 17:51:43.136842: step 2300, loss = 0.31  learning rate = 0.049757  (9.0 examples/sec; 28.60 sec/batch)
+Mini-Batch Accuracy: 0.93%
+2019-05-26 17:52:12.101191: step 2400, loss = 0.37  learning rate = 0.047269  (8.8 examples/sec; 28.96 sec/batch)
+Mini-Batch Accuracy: 0.90%
+2019-05-26 17:52:40.977726: step 2500, loss = 0.29  learning rate = 0.047269  (8.9 examples/sec; 28.88 sec/batch)
+Mini-Batch Accuracy: 0.92%
+2019-05-26 17:53:09.431655: step 2600, loss = 0.36  learning rate = 0.044905  (9.0 examples/sec; 28.45 sec/batch)
+Mini-Batch Accuracy: 0.92%
+2019-05-26 17:53:37.644744: step 2700, loss = 0.22  learning rate = 0.044905  (9.1 examples/sec; 28.21 sec/batch)
+Mini-Batch Accuracy: 0.95%
+2019-05-26 17:54:06.418246: step 2800, loss = 0.24  learning rate = 0.044905  (8.9 examples/sec; 28.77 sec/batch)
+Mini-Batch Accuracy: 0.96%
+2019-05-26 17:54:34.676640: step 2900, loss = 0.30  learning rate = 0.042660  (9.1 examples/sec; 28.26 sec/batch)
+Mini-Batch Accuracy: 0.94%
+Validation Accuracy: 0.91%
+Training Accuracy: 0.97%
+Adding run metadata for 3000
+2019-05-26 17:55:03.709884: step 3000, loss = 0.15  learning rate = 0.042660  (9.0 examples/sec; 28.45 sec/batch)
+Mini-Batch Accuracy: 0.95%
+2019-05-26 17:55:32.423594: step 3100, loss = 0.24  learning rate = 0.040527  (8.9 examples/sec; 28.71 sec/batch)
+Mini-Batch Accuracy: 0.94%
+2019-05-26 17:56:01.612411: step 3200, loss = 0.14  learning rate = 0.040527  (8.8 examples/sec; 29.19 sec/batch)
+Mini-Batch Accuracy: 0.97%
+2019-05-26 17:56:32.280084: step 3300, loss = 0.15  learning rate = 0.040527  (8.3 examples/sec; 30.67 sec/batch)
+Mini-Batch Accuracy: 0.98%
+2019-05-26 17:57:01.823768: step 3400, loss = 0.18  learning rate = 0.038501  (8.7 examples/sec; 29.54 sec/batch)
+Mini-Batch Accuracy: 0.96%
+2019-05-26 17:57:33.265342: step 3500, loss = 0.20  learning rate = 0.038501  (8.1 examples/sec; 31.44 sec/batch)
+Mini-Batch Accuracy: 0.95%
+2019-05-26 17:58:04.304654: step 3600, loss = 0.23  learning rate = 0.036576  (8.2 examples/sec; 31.04 sec/batch)
+Mini-Batch Accuracy: 0.95%
+2019-05-26 17:58:34.247302: step 3700, loss = 0.16  learning rate = 0.036576  (8.5 examples/sec; 29.94 sec/batch)
+Mini-Batch Accuracy: 0.96%
+2019-05-26 17:59:05.546625: step 3800, loss = 0.16  learning rate = 0.036576  (8.2 examples/sec; 31.30 sec/batch)
+Mini-Batch Accuracy: 0.95%
+2019-05-26 17:59:39.205883: step 3900, loss = 0.20  learning rate = 0.034747  (7.6 examples/sec; 33.66 sec/batch)
+Mini-Batch Accuracy: 0.93%
+Validation Accuracy: 0.91%
+Training Accuracy: 0.96%
+Adding run metadata for 4000
+2019-05-26 18:00:09.054176: step 4000, loss = 0.14  learning rate = 0.034747  (8.8 examples/sec; 29.23 sec/batch)
+Mini-Batch Accuracy: 0.96%
+2019-05-26 18:00:37.762233: step 4100, loss = 0.20  learning rate = 0.034747  (8.9 examples/sec; 28.71 sec/batch)
+Mini-Batch Accuracy: 0.96%
+2019-05-26 18:01:06.790650: step 4200, loss = 0.22  learning rate = 0.033009  (8.8 examples/sec; 29.03 sec/batch)
+Mini-Batch Accuracy: 0.94%
+2019-05-26 18:01:34.710445: step 4300, loss = 0.16  learning rate = 0.033009  (9.2 examples/sec; 27.92 sec/batch)
+Mini-Batch Accuracy: 0.95%
+2019-05-26 18:02:02.653894: step 4400, loss = 0.19  learning rate = 0.031359  (9.2 examples/sec; 27.94 sec/batch)
+Mini-Batch Accuracy: 0.95%
+2019-05-26 18:02:30.474211: step 4500, loss = 0.17  learning rate = 0.031359  (9.2 examples/sec; 27.82 sec/batch)
+Mini-Batch Accuracy: 0.97%
+2019-05-26 18:02:58.274513: step 4600, loss = 0.10  learning rate = 0.031359  (9.2 examples/sec; 27.80 sec/batch)
+Mini-Batch Accuracy: 0.98%
+2019-05-26 18:03:26.083774: step 4700, loss = 0.15  learning rate = 0.029791  (9.2 examples/sec; 27.81 sec/batch)
+Mini-Batch Accuracy: 0.96%
+2019-05-26 18:03:53.815258: step 4800, loss = 0.15  learning rate = 0.029791  (9.2 examples/sec; 27.73 sec/batch)
+Mini-Batch Accuracy: 0.95%
+2019-05-26 18:04:21.868645: step 4900, loss = 0.14  learning rate = 0.028302  (9.1 examples/sec; 28.05 sec/batch)
+Mini-Batch Accuracy: 0.96%
+Validation Accuracy: 0.91%
+Training Accuracy: 0.98%
+Adding run metadata for 5000
+2019-05-26 18:04:50.208567: step 5000, loss = 0.15  learning rate = 0.028302  (9.2 examples/sec; 27.76 sec/batch)
+Mini-Batch Accuracy: 0.97%
+2019-05-26 18:05:17.978095: step 5100, loss = 0.15  learning rate = 0.028302  (9.2 examples/sec; 27.77 sec/batch)
+Mini-Batch Accuracy: 0.97%
+2019-05-26 18:05:45.769456: step 5200, loss = 0.14  learning rate = 0.026886  (9.2 examples/sec; 27.79 sec/batch)
+Mini-Batch Accuracy: 0.97%
+2019-05-26 18:06:13.561099: step 5300, loss = 0.08  learning rate = 0.026886  (9.2 examples/sec; 27.79 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 18:06:41.344136: step 5400, loss = 0.14  learning rate = 0.025542  (9.2 examples/sec; 27.78 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 18:07:09.278712: step 5500, loss = 0.11  learning rate = 0.025542  (9.2 examples/sec; 27.93 sec/batch)
+Mini-Batch Accuracy: 0.98%
+2019-05-26 18:07:37.031691: step 5600, loss = 0.13  learning rate = 0.025542  (9.2 examples/sec; 27.75 sec/batch)
+Mini-Batch Accuracy: 0.97%
+2019-05-26 18:08:04.755946: step 5700, loss = 0.13  learning rate = 0.024265  (9.2 examples/sec; 27.72 sec/batch)
+Mini-Batch Accuracy: 0.96%
+2019-05-26 18:08:32.565386: step 5800, loss = 0.23  learning rate = 0.024265  (9.2 examples/sec; 27.81 sec/batch)
+Mini-Batch Accuracy: 0.95%
+2019-05-26 18:09:00.406909: step 5900, loss = 0.12  learning rate = 0.024265  (9.2 examples/sec; 27.84 sec/batch)
+Mini-Batch Accuracy: 0.99%
+Validation Accuracy: 0.90%
+Training Accuracy: 0.98%
+Adding run metadata for 6000
+2019-05-26 18:09:28.860671: step 6000, loss = 0.12  learning rate = 0.023052  (9.2 examples/sec; 27.86 sec/batch)
+Mini-Batch Accuracy: 0.98%
+2019-05-26 18:09:56.719380: step 6100, loss = 0.14  learning rate = 0.023052  (9.2 examples/sec; 27.86 sec/batch)
+Mini-Batch Accuracy: 0.97%
+2019-05-26 18:10:24.570925: step 6200, loss = 0.14  learning rate = 0.021899  (9.2 examples/sec; 27.85 sec/batch)
+Mini-Batch Accuracy: 0.98%
+2019-05-26 18:10:52.440719: step 6300, loss = 0.09  learning rate = 0.021899  (9.2 examples/sec; 27.87 sec/batch)
+Mini-Batch Accuracy: 0.98%
+2019-05-26 18:11:20.263925: step 6400, loss = 0.09  learning rate = 0.021899  (9.2 examples/sec; 27.82 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 18:11:48.243060: step 6500, loss = 0.10  learning rate = 0.020804  (9.1 examples/sec; 27.98 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 18:12:16.180809: step 6600, loss = 0.18  learning rate = 0.020804  (9.2 examples/sec; 27.94 sec/batch)
+Mini-Batch Accuracy: 0.98%
+2019-05-26 18:12:44.106886: step 6700, loss = 0.14  learning rate = 0.019764  (9.2 examples/sec; 27.93 sec/batch)
+Mini-Batch Accuracy: 0.97%
+2019-05-26 18:13:11.973296: step 6800, loss = 0.15  learning rate = 0.019764  (9.2 examples/sec; 27.87 sec/batch)
+Mini-Batch Accuracy: 0.98%
+2019-05-26 18:13:39.843323: step 6900, loss = 0.12  learning rate = 0.019764  (9.2 examples/sec; 27.87 sec/batch)
+Mini-Batch Accuracy: 0.98%
+Validation Accuracy: 0.92%
+Training Accuracy: 0.99%
+Adding run metadata for 7000
+2019-05-26 18:14:08.325875: step 7000, loss = 0.09  learning rate = 0.018776  (9.2 examples/sec; 27.89 sec/batch)
+Mini-Batch Accuracy: 0.98%
+2019-05-26 18:14:36.420647: step 7100, loss = 0.12  learning rate = 0.018776  (9.1 examples/sec; 28.09 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 18:15:04.325727: step 7200, loss = 0.08  learning rate = 0.017837  (9.2 examples/sec; 27.91 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 18:15:32.267648: step 7300, loss = 0.11  learning rate = 0.017837  (9.2 examples/sec; 27.94 sec/batch)
+Mini-Batch Accuracy: 0.98%
+2019-05-26 18:16:00.228877: step 7400, loss = 0.12  learning rate = 0.017837  (9.2 examples/sec; 27.96 sec/batch)
+Mini-Batch Accuracy: 0.97%
+2019-05-26 18:16:28.217797: step 7500, loss = 0.12  learning rate = 0.016945  (9.1 examples/sec; 27.99 sec/batch)
+Mini-Batch Accuracy: 0.98%
+2019-05-26 18:16:56.356032: step 7600, loss = 0.09  learning rate = 0.016945  (9.1 examples/sec; 28.14 sec/batch)
+Mini-Batch Accuracy: 0.98%
+2019-05-26 18:17:24.295370: step 7700, loss = 0.13  learning rate = 0.016945  (9.2 examples/sec; 27.94 sec/batch)
+Mini-Batch Accuracy: 0.97%
+2019-05-26 18:17:52.214883: step 7800, loss = 0.08  learning rate = 0.016098  (9.2 examples/sec; 27.92 sec/batch)
+Mini-Batch Accuracy: 0.98%
+2019-05-26 18:18:20.132913: step 7900, loss = 0.04  learning rate = 0.016098  (9.2 examples/sec; 27.92 sec/batch)
+Mini-Batch Accuracy: 0.99%
+Validation Accuracy: 0.88%
+Training Accuracy: 0.99%
+Adding run metadata for 8000
+2019-05-26 18:18:48.665714: step 8000, loss = 0.07  learning rate = 0.015293  (9.2 examples/sec; 27.95 sec/batch)
+Mini-Batch Accuracy: 0.98%
+2019-05-26 18:19:16.610162: step 8100, loss = 0.06  learning rate = 0.015293  (9.2 examples/sec; 27.94 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 18:19:44.562018: step 8200, loss = 0.10  learning rate = 0.015293  (9.2 examples/sec; 27.95 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 18:20:12.517955: step 8300, loss = 0.07  learning rate = 0.014528  (9.2 examples/sec; 27.96 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 18:20:40.735034: step 8400, loss = 0.11  learning rate = 0.014528  (9.1 examples/sec; 28.22 sec/batch)
+Mini-Batch Accuracy: 0.98%
+2019-05-26 18:21:09.643482: step 8500, loss = 0.08  learning rate = 0.013802  (8.9 examples/sec; 28.91 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 18:21:37.632061: step 8600, loss = 0.09  learning rate = 0.013802  (9.1 examples/sec; 27.99 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 18:22:05.909571: step 8700, loss = 0.21  learning rate = 0.013802  (9.1 examples/sec; 28.28 sec/batch)
+Mini-Batch Accuracy: 0.97%
+2019-05-26 18:22:34.041463: step 8800, loss = 0.09  learning rate = 0.013112  (9.1 examples/sec; 28.13 sec/batch)
+Mini-Batch Accuracy: 0.98%
+2019-05-26 18:23:01.944597: step 8900, loss = 0.05  learning rate = 0.013112  (9.2 examples/sec; 27.90 sec/batch)
+Mini-Batch Accuracy: 1.00%
+Validation Accuracy: 0.88%
+Training Accuracy: 0.99%
+Adding run metadata for 9000
+2019-05-26 18:23:30.362224: step 9000, loss = 0.09  learning rate = 0.012456  (9.2 examples/sec; 27.83 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 18:23:58.184864: step 9100, loss = 0.04  learning rate = 0.012456  (9.2 examples/sec; 27.82 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 18:24:25.985965: step 9200, loss = 0.10  learning rate = 0.012456  (9.2 examples/sec; 27.80 sec/batch)
+Mini-Batch Accuracy: 0.98%
+2019-05-26 18:24:54.052819: step 9300, loss = 0.10  learning rate = 0.011833  (9.1 examples/sec; 28.07 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 18:25:21.837824: step 9400, loss = 0.10  learning rate = 0.011833  (9.2 examples/sec; 27.79 sec/batch)
+Mini-Batch Accuracy: 0.98%
+2019-05-26 18:25:49.594160: step 9500, loss = 0.07  learning rate = 0.011833  (9.2 examples/sec; 27.76 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 18:26:17.438570: step 9600, loss = 0.06  learning rate = 0.011242  (9.2 examples/sec; 27.84 sec/batch)
+Mini-Batch Accuracy: 0.98%
+2019-05-26 18:26:45.183532: step 9700, loss = 0.05  learning rate = 0.011242  (9.2 examples/sec; 27.74 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 18:27:13.185283: step 9800, loss = 0.06  learning rate = 0.010680  (9.1 examples/sec; 28.00 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 18:27:40.938609: step 9900, loss = 0.07  learning rate = 0.010680  (9.2 examples/sec; 27.75 sec/batch)
+Mini-Batch Accuracy: 0.98%
+Validation Accuracy: 0.88%
+Training Accuracy: 1.00%
+Adding run metadata for 10000
+2019-05-26 18:28:09.269795: step 10000, loss = 0.06  learning rate = 0.010680  (9.2 examples/sec; 27.74 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 18:28:36.988488: step 10100, loss = 0.13  learning rate = 0.010146  (9.2 examples/sec; 27.72 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 18:29:04.755622: step 10200, loss = 0.12  learning rate = 0.010146  (9.2 examples/sec; 27.77 sec/batch)
+Mini-Batch Accuracy: 0.98%
+2019-05-26 18:29:32.491528: step 10300, loss = 0.09  learning rate = 0.009638  (9.2 examples/sec; 27.74 sec/batch)
+Mini-Batch Accuracy: 0.98%
+2019-05-26 18:30:00.329733: step 10400, loss = 0.09  learning rate = 0.009638  (9.2 examples/sec; 27.84 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 18:30:28.064947: step 10500, loss = 0.07  learning rate = 0.009638  (9.2 examples/sec; 27.74 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 18:30:55.818006: step 10600, loss = 0.07  learning rate = 0.009156  (9.2 examples/sec; 27.75 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 18:31:23.523778: step 10700, loss = 0.06  learning rate = 0.009156  (9.2 examples/sec; 27.71 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 18:31:51.300154: step 10800, loss = 0.05  learning rate = 0.008699  (9.2 examples/sec; 27.78 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 18:32:19.123304: step 10900, loss = 0.07  learning rate = 0.008699  (9.2 examples/sec; 27.82 sec/batch)
+Mini-Batch Accuracy: 0.99%
+Validation Accuracy: 0.91%
+Training Accuracy: 0.99%
+Adding run metadata for 11000
+2019-05-26 18:32:47.418514: step 11000, loss = 0.04  learning rate = 0.008699  (9.2 examples/sec; 27.72 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 18:33:15.132609: step 11100, loss = 0.08  learning rate = 0.008264  (9.2 examples/sec; 27.71 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 18:33:42.873479: step 11200, loss = 0.05  learning rate = 0.008264  (9.2 examples/sec; 27.74 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 18:34:10.570109: step 11300, loss = 0.08  learning rate = 0.008264  (9.2 examples/sec; 27.70 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 18:34:38.248743: step 11400, loss = 0.05  learning rate = 0.007851  (9.2 examples/sec; 27.68 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 18:35:06.165984: step 11500, loss = 0.07  learning rate = 0.007851  (9.2 examples/sec; 27.92 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 18:35:33.833296: step 11600, loss = 0.05  learning rate = 0.007458  (9.3 examples/sec; 27.67 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 18:36:01.337462: step 11700, loss = 0.10  learning rate = 0.007458  (9.3 examples/sec; 27.50 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 18:36:28.746824: step 11800, loss = 0.06  learning rate = 0.007458  (9.3 examples/sec; 27.41 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 18:36:56.533761: step 11900, loss = 0.06  learning rate = 0.007085  (9.2 examples/sec; 27.79 sec/batch)
+Mini-Batch Accuracy: 0.99%
+Validation Accuracy: 0.89%
+Training Accuracy: 1.00%
+Adding run metadata for 12000
+2019-05-26 18:37:24.893760: step 12000, loss = 0.08  learning rate = 0.007085  (9.2 examples/sec; 27.78 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 18:37:52.598985: step 12100, loss = 0.08  learning rate = 0.006731  (9.2 examples/sec; 27.71 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 18:38:20.299160: step 12200, loss = 0.09  learning rate = 0.006731  (9.2 examples/sec; 27.70 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 18:38:48.862341: step 12300, loss = 0.12  learning rate = 0.006731  (9.0 examples/sec; 28.56 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 18:39:17.159341: step 12400, loss = 0.05  learning rate = 0.006394  (9.0 examples/sec; 28.30 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 18:39:45.677604: step 12500, loss = 0.12  learning rate = 0.006394  (9.0 examples/sec; 28.52 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 18:40:13.476248: step 12600, loss = 0.06  learning rate = 0.006075  (9.2 examples/sec; 27.80 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 18:40:41.538210: step 12700, loss = 0.13  learning rate = 0.006075  (9.1 examples/sec; 28.06 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 18:41:09.243637: step 12800, loss = 0.06  learning rate = 0.006075  (9.2 examples/sec; 27.71 sec/batch)
+Mini-Batch Accuracy: 0.98%
+2019-05-26 18:41:36.942375: step 12900, loss = 0.06  learning rate = 0.005771  (9.2 examples/sec; 27.70 sec/batch)
+Mini-Batch Accuracy: 0.99%
+Validation Accuracy: 0.94%
+Training Accuracy: 0.99%
+Adding run metadata for 13000
+2019-05-26 18:42:05.278463: step 13000, loss = 0.12  learning rate = 0.005771  (9.2 examples/sec; 27.76 sec/batch)
+Mini-Batch Accuracy: 0.98%
+2019-05-26 18:42:33.011796: step 13100, loss = 0.06  learning rate = 0.005771  (9.2 examples/sec; 27.73 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 18:43:00.710441: step 13200, loss = 0.09  learning rate = 0.005482  (9.2 examples/sec; 27.70 sec/batch)
+Mini-Batch Accuracy: 0.98%
+2019-05-26 18:43:28.433306: step 13300, loss = 0.06  learning rate = 0.005482  (9.2 examples/sec; 27.72 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 18:43:56.125332: step 13400, loss = 0.11  learning rate = 0.005208  (9.2 examples/sec; 27.69 sec/batch)
+Mini-Batch Accuracy: 0.98%
+2019-05-26 18:44:23.857770: step 13500, loss = 0.07  learning rate = 0.005208  (9.2 examples/sec; 27.73 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 18:44:51.759419: step 13600, loss = 0.06  learning rate = 0.005208  (9.2 examples/sec; 27.90 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 18:45:19.522418: step 13700, loss = 0.05  learning rate = 0.004948  (9.2 examples/sec; 27.76 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 18:45:47.206228: step 13800, loss = 0.03  learning rate = 0.004948  (9.2 examples/sec; 27.68 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 18:46:14.908165: step 13900, loss = 0.06  learning rate = 0.004700  (9.2 examples/sec; 27.70 sec/batch)
+Mini-Batch Accuracy: 0.99%
+Validation Accuracy: 0.92%
+Training Accuracy: 1.00%
+Adding run metadata for 14000
+2019-05-26 18:46:43.181721: step 14000, loss = 0.08  learning rate = 0.004700  (9.2 examples/sec; 27.69 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 18:47:10.952428: step 14100, loss = 0.04  learning rate = 0.004700  (9.2 examples/sec; 27.77 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 18:47:38.647387: step 14200, loss = 0.05  learning rate = 0.004465  (9.2 examples/sec; 27.69 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 18:48:06.290565: step 14300, loss = 0.05  learning rate = 0.004465  (9.3 examples/sec; 27.64 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 18:48:33.969425: step 14400, loss = 0.06  learning rate = 0.004242  (9.2 examples/sec; 27.68 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 18:49:01.663852: step 14500, loss = 0.04  learning rate = 0.004242  (9.2 examples/sec; 27.69 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 18:49:29.445153: step 14600, loss = 0.13  learning rate = 0.004242  (9.2 examples/sec; 27.78 sec/batch)
+Mini-Batch Accuracy: 0.98%
+2019-05-26 18:49:57.171889: step 14700, loss = 0.07  learning rate = 0.004030  (9.2 examples/sec; 27.73 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 18:50:24.899181: step 14800, loss = 0.05  learning rate = 0.004030  (9.2 examples/sec; 27.73 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 18:50:52.672482: step 14900, loss = 0.04  learning rate = 0.004030  (9.2 examples/sec; 27.77 sec/batch)
+Mini-Batch Accuracy: 1.00%
+Validation Accuracy: 0.91%
+Training Accuracy: 1.00%
+Adding run metadata for 15000
+2019-05-26 18:51:20.979625: step 15000, loss = 0.05  learning rate = 0.003829  (9.2 examples/sec; 27.72 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 18:51:48.796385: step 15100, loss = 0.09  learning rate = 0.003829  (9.2 examples/sec; 27.82 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 18:52:16.616675: step 15200, loss = 0.08  learning rate = 0.003637  (9.2 examples/sec; 27.82 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 18:52:44.319198: step 15300, loss = 0.06  learning rate = 0.003637  (9.2 examples/sec; 27.70 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 18:53:12.015375: step 15400, loss = 0.05  learning rate = 0.003637  (9.2 examples/sec; 27.70 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 18:53:39.723878: step 15500, loss = 0.04  learning rate = 0.003455  (9.2 examples/sec; 27.71 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 18:54:07.454079: step 15600, loss = 0.05  learning rate = 0.003455  (9.2 examples/sec; 27.73 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 18:54:35.238199: step 15700, loss = 0.04  learning rate = 0.003282  (9.2 examples/sec; 27.78 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 18:55:03.777075: step 15800, loss = 0.04  learning rate = 0.003282  (9.0 examples/sec; 28.54 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 18:55:33.960806: step 15900, loss = 0.02  learning rate = 0.003282  (8.5 examples/sec; 30.18 sec/batch)
+Mini-Batch Accuracy: 1.00%
+Validation Accuracy: 0.90%
+Training Accuracy: 1.00%
+Adding run metadata for 16000
+2019-05-26 18:56:02.851145: step 16000, loss = 0.04  learning rate = 0.003118  (9.1 examples/sec; 28.28 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 18:56:32.008325: step 16100, loss = 0.11  learning rate = 0.003118  (8.8 examples/sec; 29.16 sec/batch)
+Mini-Batch Accuracy: 0.98%
+2019-05-26 18:57:04.009551: step 16200, loss = 0.09  learning rate = 0.002962  (8.0 examples/sec; 32.00 sec/batch)
+Mini-Batch Accuracy: 0.98%
+2019-05-26 18:57:34.428377: step 16300, loss = 0.08  learning rate = 0.002962  (8.4 examples/sec; 30.42 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 18:58:05.056938: step 16400, loss = 0.07  learning rate = 0.002962  (8.4 examples/sec; 30.63 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 18:58:37.006710: step 16500, loss = 0.04  learning rate = 0.002814  (8.0 examples/sec; 31.95 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 18:59:08.075043: step 16600, loss = 0.04  learning rate = 0.002814  (8.2 examples/sec; 31.07 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 18:59:37.932653: step 16700, loss = 0.06  learning rate = 0.002814  (8.6 examples/sec; 29.86 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 19:00:08.183458: step 16800, loss = 0.04  learning rate = 0.002674  (8.5 examples/sec; 30.25 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:00:37.789715: step 16900, loss = 0.07  learning rate = 0.002674  (8.6 examples/sec; 29.61 sec/batch)
+Mini-Batch Accuracy: 0.99%
+Validation Accuracy: 0.94%
+Training Accuracy: 1.00%
+Adding run metadata for 17000
+2019-05-26 19:01:08.725049: step 17000, loss = 0.04  learning rate = 0.002540  (8.5 examples/sec; 30.28 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:01:38.846120: step 17100, loss = 0.06  learning rate = 0.002540  (8.5 examples/sec; 30.12 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:02:10.006048: step 17200, loss = 0.09  learning rate = 0.002540  (8.2 examples/sec; 31.16 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 19:02:40.238038: step 17300, loss = 0.04  learning rate = 0.002413  (8.5 examples/sec; 30.23 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 19:03:10.526575: step 17400, loss = 0.05  learning rate = 0.002413  (8.5 examples/sec; 30.29 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:03:40.710127: step 17500, loss = 0.03  learning rate = 0.002292  (8.5 examples/sec; 30.18 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:04:10.870136: step 17600, loss = 0.06  learning rate = 0.002292  (8.5 examples/sec; 30.16 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:04:40.998320: step 17700, loss = 0.08  learning rate = 0.002292  (8.5 examples/sec; 30.13 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 19:05:12.837120: step 17800, loss = 0.06  learning rate = 0.002178  (8.0 examples/sec; 31.84 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:05:43.580115: step 17900, loss = 0.06  learning rate = 0.002178  (8.3 examples/sec; 30.74 sec/batch)
+Mini-Batch Accuracy: 1.00%
+Validation Accuracy: 0.91%
+Training Accuracy: 0.99%
+Adding run metadata for 18000
+2019-05-26 19:06:15.011424: step 18000, loss = 0.08  learning rate = 0.002069  (8.3 examples/sec; 30.81 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 19:06:46.672140: step 18100, loss = 0.07  learning rate = 0.002069  (8.1 examples/sec; 31.66 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 19:07:18.276751: step 18200, loss = 0.11  learning rate = 0.002069  (8.1 examples/sec; 31.60 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:07:50.283072: step 18300, loss = 0.03  learning rate = 0.001965  (8.0 examples/sec; 32.01 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:08:21.272984: step 18400, loss = 0.10  learning rate = 0.001965  (8.3 examples/sec; 30.99 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:08:52.031215: step 18500, loss = 0.06  learning rate = 0.001965  (8.3 examples/sec; 30.76 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:09:23.521006: step 18600, loss = 0.08  learning rate = 0.001867  (8.1 examples/sec; 31.49 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 19:09:54.382368: step 18700, loss = 0.04  learning rate = 0.001867  (8.3 examples/sec; 30.86 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:10:25.411327: step 18800, loss = 0.05  learning rate = 0.001774  (8.3 examples/sec; 31.03 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:10:56.255067: step 18900, loss = 0.08  learning rate = 0.001774  (8.3 examples/sec; 30.84 sec/batch)
+Mini-Batch Accuracy: 0.99%
+Validation Accuracy: 0.91%
+Training Accuracy: 0.99%
+Adding run metadata for 19000
+2019-05-26 19:11:27.118197: step 19000, loss = 0.07  learning rate = 0.001774  (8.5 examples/sec; 30.23 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 19:11:57.573561: step 19100, loss = 0.05  learning rate = 0.001685  (8.4 examples/sec; 30.46 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 19:12:29.169081: step 19200, loss = 0.07  learning rate = 0.001685  (8.1 examples/sec; 31.60 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 19:13:00.554173: step 19300, loss = 0.06  learning rate = 0.001601  (8.2 examples/sec; 31.39 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 19:13:32.655250: step 19400, loss = 0.05  learning rate = 0.001601  (8.0 examples/sec; 32.10 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:14:03.489968: step 19500, loss = 0.03  learning rate = 0.001601  (8.3 examples/sec; 30.83 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:14:33.784728: step 19600, loss = 0.04  learning rate = 0.001521  (8.5 examples/sec; 30.29 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:15:04.137318: step 19700, loss = 0.06  learning rate = 0.001521  (8.4 examples/sec; 30.35 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:15:34.736452: step 19800, loss = 0.04  learning rate = 0.001445  (8.4 examples/sec; 30.60 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:16:05.687252: step 19900, loss = 0.07  learning rate = 0.001445  (8.3 examples/sec; 30.95 sec/batch)
+Mini-Batch Accuracy: 0.99%
+Validation Accuracy: 0.92%
+Training Accuracy: 0.99%
+Adding run metadata for 20000
+2019-05-26 19:16:36.674182: step 20000, loss = 0.05  learning rate = 0.001445  (8.4 examples/sec; 30.37 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 19:17:06.950622: step 20100, loss = 0.04  learning rate = 0.001372  (8.5 examples/sec; 30.28 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:17:37.204422: step 20200, loss = 0.04  learning rate = 0.001372  (8.5 examples/sec; 30.25 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:18:07.587554: step 20300, loss = 0.05  learning rate = 0.001372  (8.4 examples/sec; 30.38 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:18:37.972423: step 20400, loss = 0.06  learning rate = 0.001304  (8.4 examples/sec; 30.38 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:19:09.790826: step 20500, loss = 0.07  learning rate = 0.001304  (8.0 examples/sec; 31.82 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:19:41.991570: step 20600, loss = 0.04  learning rate = 0.001239  (8.0 examples/sec; 32.20 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:20:11.507741: step 20700, loss = 0.04  learning rate = 0.001239  (8.7 examples/sec; 29.52 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:20:42.247350: step 20800, loss = 0.05  learning rate = 0.001239  (8.3 examples/sec; 30.74 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:21:10.486714: step 20900, loss = 0.04  learning rate = 0.001177  (9.1 examples/sec; 28.24 sec/batch)
+Mini-Batch Accuracy: 1.00%
+Validation Accuracy: 0.92%
+Training Accuracy: 1.00%
+Adding run metadata for 21000
+2019-05-26 19:21:39.079447: step 21000, loss = 0.07  learning rate = 0.001177  (9.1 examples/sec; 27.99 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:22:08.630530: step 21100, loss = 0.07  learning rate = 0.001118  (8.7 examples/sec; 29.55 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:22:38.718708: step 21200, loss = 0.05  learning rate = 0.001118  (8.5 examples/sec; 30.09 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:23:07.811853: step 21300, loss = 0.04  learning rate = 0.001118  (8.8 examples/sec; 29.09 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:23:38.313153: step 21400, loss = 0.05  learning rate = 0.001062  (8.4 examples/sec; 30.50 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:24:07.848587: step 21500, loss = 0.05  learning rate = 0.001062  (8.7 examples/sec; 29.54 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:24:36.446073: step 21600, loss = 0.03  learning rate = 0.001009  (9.0 examples/sec; 28.60 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:25:08.219943: step 21700, loss = 0.05  learning rate = 0.001009  (8.1 examples/sec; 31.77 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:25:38.187018: step 21800, loss = 0.05  learning rate = 0.001009  (8.5 examples/sec; 29.97 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:26:07.714790: step 21900, loss = 0.04  learning rate = 0.000958  (8.7 examples/sec; 29.53 sec/batch)
+Mini-Batch Accuracy: 1.00%
+Validation Accuracy: 0.90%
+Training Accuracy: 0.99%
+Adding run metadata for 22000
+2019-05-26 19:26:38.559776: step 22000, loss = 0.06  learning rate = 0.000958  (8.5 examples/sec; 30.11 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 19:27:09.481062: step 22100, loss = 0.08  learning rate = 0.000958  (8.3 examples/sec; 30.92 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 19:27:40.095952: step 22200, loss = 0.06  learning rate = 0.000911  (8.4 examples/sec; 30.61 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:28:11.203686: step 22300, loss = 0.07  learning rate = 0.000911  (8.2 examples/sec; 31.11 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 19:28:41.778821: step 22400, loss = 0.08  learning rate = 0.000865  (8.4 examples/sec; 30.58 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 19:29:13.473576: step 22500, loss = 0.03  learning rate = 0.000865  (8.1 examples/sec; 31.69 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:29:44.990318: step 22600, loss = 0.09  learning rate = 0.000865  (8.1 examples/sec; 31.52 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 19:30:16.468379: step 22700, loss = 0.05  learning rate = 0.000822  (8.1 examples/sec; 31.48 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:30:47.915810: step 22800, loss = 0.03  learning rate = 0.000822  (8.1 examples/sec; 31.45 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:31:19.476467: step 22900, loss = 0.04  learning rate = 0.000781  (8.1 examples/sec; 31.56 sec/batch)
+Mini-Batch Accuracy: 1.00%
+Validation Accuracy: 0.90%
+Training Accuracy: 0.99%
+Adding run metadata for 23000
+2019-05-26 19:31:51.676361: step 23000, loss = 0.09  learning rate = 0.000781  (8.1 examples/sec; 31.54 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 19:32:23.506156: step 23100, loss = 0.09  learning rate = 0.000781  (8.0 examples/sec; 31.83 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 19:32:54.232261: step 23200, loss = 0.05  learning rate = 0.000742  (8.3 examples/sec; 30.73 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:33:25.300439: step 23300, loss = 0.04  learning rate = 0.000742  (8.2 examples/sec; 31.07 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:33:55.954100: step 23400, loss = 0.04  learning rate = 0.000705  (8.4 examples/sec; 30.65 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 19:34:26.647027: step 23500, loss = 0.03  learning rate = 0.000705  (8.3 examples/sec; 30.69 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:34:57.189064: step 23600, loss = 0.06  learning rate = 0.000705  (8.4 examples/sec; 30.54 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:35:28.839065: step 23700, loss = 0.06  learning rate = 0.000669  (8.1 examples/sec; 31.65 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:36:00.973673: step 23800, loss = 0.06  learning rate = 0.000669  (8.0 examples/sec; 32.13 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 19:36:32.334281: step 23900, loss = 0.04  learning rate = 0.000669  (8.2 examples/sec; 31.36 sec/batch)
+Mini-Batch Accuracy: 1.00%
+Validation Accuracy: 0.89%
+Training Accuracy: 1.00%
+Adding run metadata for 24000
+2019-05-26 19:37:04.626921: step 24000, loss = 0.05  learning rate = 0.000636  (8.1 examples/sec; 31.64 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:37:36.210630: step 24100, loss = 0.12  learning rate = 0.000636  (8.1 examples/sec; 31.58 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 19:38:08.328712: step 24200, loss = 0.04  learning rate = 0.000604  (8.0 examples/sec; 32.12 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:38:38.148384: step 24300, loss = 0.06  learning rate = 0.000604  (8.6 examples/sec; 29.82 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:39:08.096254: step 24400, loss = 0.04  learning rate = 0.000604  (8.5 examples/sec; 29.95 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:39:38.106612: step 24500, loss = 0.09  learning rate = 0.000574  (8.5 examples/sec; 30.01 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 19:40:07.130705: step 24600, loss = 0.05  learning rate = 0.000574  (8.8 examples/sec; 29.02 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 19:40:39.825644: step 24700, loss = 0.06  learning rate = 0.000545  (7.8 examples/sec; 32.69 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 19:41:11.392770: step 24800, loss = 0.06  learning rate = 0.000545  (8.1 examples/sec; 31.57 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:41:44.062464: step 24900, loss = 0.06  learning rate = 0.000545  (7.8 examples/sec; 32.67 sec/batch)
+Mini-Batch Accuracy: 0.99%
+Validation Accuracy: 0.90%
+Training Accuracy: 1.00%
+Adding run metadata for 25000
+2019-05-26 19:42:16.952725: step 25000, loss = 0.04  learning rate = 0.000518  (7.9 examples/sec; 32.24 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:42:48.156750: step 25100, loss = 0.04  learning rate = 0.000518  (8.2 examples/sec; 31.20 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:43:19.544629: step 25200, loss = 0.05  learning rate = 0.000492  (8.2 examples/sec; 31.39 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 19:43:51.414929: step 25300, loss = 0.08  learning rate = 0.000492  (8.0 examples/sec; 31.87 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 19:44:22.515397: step 25400, loss = 0.05  learning rate = 0.000492  (8.2 examples/sec; 31.10 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:44:53.482603: step 25500, loss = 0.04  learning rate = 0.000467  (8.3 examples/sec; 30.97 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:45:24.928414: step 25600, loss = 0.08  learning rate = 0.000467  (8.1 examples/sec; 31.45 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:45:56.748051: step 25700, loss = 0.05  learning rate = 0.000467  (8.0 examples/sec; 31.82 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:46:28.317760: step 25800, loss = 0.10  learning rate = 0.000444  (8.1 examples/sec; 31.57 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 19:46:58.355529: step 25900, loss = 0.05  learning rate = 0.000444  (8.5 examples/sec; 30.04 sec/batch)
+Mini-Batch Accuracy: 0.99%
+Validation Accuracy: 0.90%
+Training Accuracy: 1.00%
+Adding run metadata for 26000
+2019-05-26 19:47:29.516220: step 26000, loss = 0.04  learning rate = 0.000422  (8.4 examples/sec; 30.54 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:47:59.710278: step 26100, loss = 0.06  learning rate = 0.000422  (8.5 examples/sec; 30.19 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:48:29.593825: step 26200, loss = 0.05  learning rate = 0.000422  (8.6 examples/sec; 29.88 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:49:00.344680: step 26300, loss = 0.04  learning rate = 0.000401  (8.3 examples/sec; 30.75 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 19:49:29.895457: step 26400, loss = 0.04  learning rate = 0.000401  (8.7 examples/sec; 29.55 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:49:59.607322: step 26500, loss = 0.04  learning rate = 0.000381  (8.6 examples/sec; 29.71 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:50:30.519014: step 26600, loss = 0.05  learning rate = 0.000381  (8.3 examples/sec; 30.91 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:51:01.941538: step 26700, loss = 0.08  learning rate = 0.000381  (8.1 examples/sec; 31.42 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 19:51:32.898355: step 26800, loss = 0.03  learning rate = 0.000362  (8.3 examples/sec; 30.96 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:52:04.274896: step 26900, loss = 0.09  learning rate = 0.000362  (8.2 examples/sec; 31.38 sec/batch)
+Mini-Batch Accuracy: 0.99%
+Validation Accuracy: 0.89%
+Training Accuracy: 1.00%
+Adding run metadata for 27000
+2019-05-26 19:52:36.031355: step 27000, loss = 0.05  learning rate = 0.000344  (8.2 examples/sec; 31.08 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:53:06.975700: step 27100, loss = 0.05  learning rate = 0.000344  (8.3 examples/sec; 30.94 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 19:53:38.254571: step 27200, loss = 0.06  learning rate = 0.000344  (8.2 examples/sec; 31.28 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:54:09.283322: step 27300, loss = 0.04  learning rate = 0.000326  (8.3 examples/sec; 31.03 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:54:40.931786: step 27400, loss = 0.04  learning rate = 0.000326  (8.1 examples/sec; 31.65 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:55:11.428879: step 27500, loss = 0.07  learning rate = 0.000326  (8.4 examples/sec; 30.50 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:55:42.804267: step 27600, loss = 0.03  learning rate = 0.000310  (8.2 examples/sec; 31.38 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:56:14.122072: step 27700, loss = 0.04  learning rate = 0.000310  (8.2 examples/sec; 31.32 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:56:45.238452: step 27800, loss = 0.06  learning rate = 0.000295  (8.2 examples/sec; 31.12 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:57:16.133276: step 27900, loss = 0.06  learning rate = 0.000295  (8.3 examples/sec; 30.89 sec/batch)
+Mini-Batch Accuracy: 0.99%
+Validation Accuracy: 0.89%
+Training Accuracy: 1.00%
+Adding run metadata for 28000
+2019-05-26 19:57:46.666576: step 28000, loss = 0.06  learning rate = 0.000295  (8.6 examples/sec; 29.91 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:58:17.329727: step 28100, loss = 0.04  learning rate = 0.000280  (8.3 examples/sec; 30.66 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:58:47.801461: step 28200, loss = 0.06  learning rate = 0.000280  (8.4 examples/sec; 30.47 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 19:59:18.291730: step 28300, loss = 0.06  learning rate = 0.000266  (8.4 examples/sec; 30.49 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 19:59:49.397740: step 28400, loss = 0.04  learning rate = 0.000266  (8.2 examples/sec; 31.11 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 20:00:20.070814: step 28500, loss = 0.06  learning rate = 0.000266  (8.3 examples/sec; 30.67 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 20:00:50.783175: step 28600, loss = 0.05  learning rate = 0.000253  (8.3 examples/sec; 30.71 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 20:01:21.862799: step 28700, loss = 0.08  learning rate = 0.000253  (8.2 examples/sec; 31.08 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 20:01:54.279273: step 28800, loss = 0.03  learning rate = 0.000240  (7.9 examples/sec; 32.42 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 20:02:26.331658: step 28900, loss = 0.07  learning rate = 0.000240  (8.0 examples/sec; 32.05 sec/batch)
+Mini-Batch Accuracy: 1.00%
+Validation Accuracy: 0.89%
+Training Accuracy: 1.00%
+Adding run metadata for 29000
+2019-05-26 20:02:58.162423: step 29000, loss = 0.05  learning rate = 0.000240  (8.2 examples/sec; 31.20 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 20:03:29.358884: step 29100, loss = 0.07  learning rate = 0.000228  (8.2 examples/sec; 31.20 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 20:03:59.857860: step 29200, loss = 0.06  learning rate = 0.000228  (8.4 examples/sec; 30.50 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 20:04:29.995084: step 29300, loss = 0.06  learning rate = 0.000217  (8.5 examples/sec; 30.14 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 20:05:00.121287: step 29400, loss = 0.04  learning rate = 0.000217  (8.5 examples/sec; 30.13 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 20:05:30.300069: step 29500, loss = 0.03  learning rate = 0.000217  (8.5 examples/sec; 30.18 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 20:06:00.987339: step 29600, loss = 0.03  learning rate = 0.000206  (8.3 examples/sec; 30.69 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 20:06:31.300644: step 29700, loss = 0.06  learning rate = 0.000206  (8.4 examples/sec; 30.31 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 20:07:01.789786: step 29800, loss = 0.03  learning rate = 0.000206  (8.4 examples/sec; 30.49 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 20:07:30.992593: step 29900, loss = 0.04  learning rate = 0.000195  (8.8 examples/sec; 29.20 sec/batch)
+Mini-Batch Accuracy: 1.00%
+Validation Accuracy: 0.90%
+Training Accuracy: 0.99%
+Adding run metadata for 30000
+2019-05-26 20:08:02.540956: step 30000, loss = 0.12  learning rate = 0.000195  (8.3 examples/sec; 30.91 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 20:08:33.840960: step 30100, loss = 0.07  learning rate = 0.000186  (8.2 examples/sec; 31.30 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 20:09:05.543036: step 30200, loss = 0.05  learning rate = 0.000186  (8.1 examples/sec; 31.70 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 20:09:36.550282: step 30300, loss = 0.04  learning rate = 0.000186  (8.3 examples/sec; 31.01 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 20:10:07.824615: step 30400, loss = 0.04  learning rate = 0.000176  (8.2 examples/sec; 31.27 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 20:10:38.670171: step 30500, loss = 0.05  learning rate = 0.000176  (8.3 examples/sec; 30.85 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 20:11:08.816212: step 30600, loss = 0.05  learning rate = 0.000168  (8.5 examples/sec; 30.15 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 20:11:40.002066: step 30700, loss = 0.06  learning rate = 0.000168  (8.2 examples/sec; 31.19 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 20:12:11.488023: step 30800, loss = 0.05  learning rate = 0.000168  (8.1 examples/sec; 31.49 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 20:12:42.407554: step 30900, loss = 0.03  learning rate = 0.000159  (8.3 examples/sec; 30.92 sec/batch)
+Mini-Batch Accuracy: 1.00%
+Validation Accuracy: 0.93%
+Training Accuracy: 1.00%
+Adding run metadata for 31000
+2019-05-26 20:13:15.950885: step 31000, loss = 0.03  learning rate = 0.000159  (7.8 examples/sec; 32.80 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 20:13:48.717060: step 31100, loss = 0.03  learning rate = 0.000151  (7.8 examples/sec; 32.77 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 20:14:21.117342: step 31200, loss = 0.11  learning rate = 0.000151  (7.9 examples/sec; 32.40 sec/batch)
+Mini-Batch Accuracy: 0.98%
+2019-05-26 20:14:52.720507: step 31300, loss = 0.04  learning rate = 0.000151  (8.1 examples/sec; 31.60 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 20:15:24.430544: step 31400, loss = 0.03  learning rate = 0.000144  (8.1 examples/sec; 31.71 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 20:15:56.861340: step 31500, loss = 0.05  learning rate = 0.000144  (7.9 examples/sec; 32.43 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 20:16:27.166168: step 31600, loss = 0.04  learning rate = 0.000144  (8.4 examples/sec; 30.30 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 20:16:55.991021: step 31700, loss = 0.08  learning rate = 0.000136  (8.9 examples/sec; 28.82 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 20:17:24.309988: step 31800, loss = 0.04  learning rate = 0.000136  (9.0 examples/sec; 28.32 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 20:17:52.284037: step 31900, loss = 0.05  learning rate = 0.000130  (9.2 examples/sec; 27.97 sec/batch)
+Mini-Batch Accuracy: 1.00%
+Validation Accuracy: 0.91%
+Training Accuracy: 1.00%
+Adding run metadata for 32000
+2019-05-26 20:18:20.770111: step 32000, loss = 0.03  learning rate = 0.000130  (9.2 examples/sec; 27.91 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 20:18:48.742422: step 32100, loss = 0.05  learning rate = 0.000130  (9.2 examples/sec; 27.97 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 20:19:17.636439: step 32200, loss = 0.11  learning rate = 0.000123  (8.9 examples/sec; 28.89 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 20:19:47.058130: step 32300, loss = 0.04  learning rate = 0.000123  (8.7 examples/sec; 29.42 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 20:20:16.543334: step 32400, loss = 0.04  learning rate = 0.000117  (8.7 examples/sec; 29.49 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 20:20:45.769229: step 32500, loss = 0.05  learning rate = 0.000117  (8.8 examples/sec; 29.23 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 20:21:14.978697: step 32600, loss = 0.07  learning rate = 0.000117  (8.8 examples/sec; 29.21 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 20:21:44.212516: step 32700, loss = 0.07  learning rate = 0.000111  (8.8 examples/sec; 29.23 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 20:22:13.458904: step 32800, loss = 0.11  learning rate = 0.000111  (8.8 examples/sec; 29.25 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 20:22:41.613185: step 32900, loss = 0.06  learning rate = 0.000106  (9.1 examples/sec; 28.15 sec/batch)
+Mini-Batch Accuracy: 1.00%
+Model saved in file: logs/svhn_classifier_logs/ckpt/classifier.ckpt
+Test Accuracy: 0.88281%
+Classifier training - Done
+
+
+
+Regressor training - Start
+Loading Saved Checkpoints From:  logs/svhn_regression_logs/ckpt/regression.ckpt
+No weights file found. Starting from scratch...
+TrainData (30061, 64, 64, 3)
+Valid Data (3341, 64, 64, 3)
+Test Data (13068, 64, 64, 3)
+Model restored.
+Validation Accuracy: 0.54
+Training Set Accuracy: 0.44
+Adding run metadata for 0
+2019-05-26 20:23:26.430149: step 100, loss = 5.79  learning rate = 0.07  (1.4 examples/sec; 22.112 sec/batch)
+Minibatch accuracy2: 0.62
+2019-05-26 20:23:49.414590: step 200, loss = 6.16  learning rate = 0.07  (1.4 examples/sec; 22.763 sec/batch)
+Minibatch accuracy2: 0.61
+2019-05-26 20:24:12.430549: step 300, loss = 6.20  learning rate = 0.07  (1.4 examples/sec; 22.764 sec/batch)
+Minibatch accuracy2: 0.63
+2019-05-26 20:24:36.056815: step 400, loss = 6.11  learning rate = 0.07  (1.4 examples/sec; 23.397 sec/batch)
+Minibatch accuracy2: 0.61
+2019-05-26 20:24:58.927051: step 500, loss = 5.64  learning rate = 0.07  (1.4 examples/sec; 22.651 sec/batch)
+Minibatch accuracy2: 0.65
+2019-05-26 20:25:21.580978: step 600, loss = 5.70  learning rate = 0.07  (1.4 examples/sec; 22.432 sec/batch)
+Minibatch accuracy2: 0.64
+2019-05-26 20:25:43.974425: step 700, loss = 6.72  learning rate = 0.07  (1.4 examples/sec; 22.171 sec/batch)
+Minibatch accuracy2: 0.59
+2019-05-26 20:26:06.571054: step 800, loss = 5.95  learning rate = 0.07  (1.4 examples/sec; 22.375 sec/batch)
+Minibatch accuracy2: 0.61
+2019-05-26 20:26:30.508100: step 900, loss = 6.04  learning rate = 0.07  (1.3 examples/sec; 23.714 sec/batch)
+Minibatch accuracy2: 0.62
+Validation Accuracy: 0.57
+Training Set Accuracy: 0.64
+Adding run metadata for 1000
+2019-05-26 20:27:19.092944: step 1100, loss = 5.85  learning rate = 0.07  (0.7 examples/sec; 48.357 sec/batch)
+Minibatch accuracy2: 0.62
+2019-05-26 20:27:42.097291: step 1200, loss = 5.93  learning rate = 0.07  (1.4 examples/sec; 22.783 sec/batch)
+Minibatch accuracy2: 0.62
+2019-05-26 20:28:06.108485: step 1300, loss = 6.15  learning rate = 0.07  (1.3 examples/sec; 23.791 sec/batch)
+Minibatch accuracy2: 0.62
+2019-05-26 20:28:28.049178: step 1400, loss = 5.49  learning rate = 0.07  (1.5 examples/sec; 21.732 sec/batch)
+Minibatch accuracy2: 0.63
+2019-05-26 20:28:49.535514: step 1500, loss = 6.30  learning rate = 0.07  (1.5 examples/sec; 21.245 sec/batch)
+Minibatch accuracy2: 0.61
+2019-05-26 20:29:11.759278: step 1600, loss = 5.90  learning rate = 0.07  (1.5 examples/sec; 22.012 sec/batch)
+Minibatch accuracy2: 0.64
+2019-05-26 20:29:32.987841: step 1700, loss = 5.85  learning rate = 0.07  (1.5 examples/sec; 21.014 sec/batch)
+Minibatch accuracy2: 0.61
+2019-05-26 20:29:54.222896: step 1800, loss = 5.74  learning rate = 0.07  (1.5 examples/sec; 21.018 sec/batch)
+Minibatch accuracy2: 0.61
+2019-05-26 20:30:15.377581: step 1900, loss = 5.58  learning rate = 0.07  (1.5 examples/sec; 20.949 sec/batch)
+Minibatch accuracy2: 0.67
+Validation Accuracy: 0.63
+Training Set Accuracy: 0.62
+Adding run metadata for 2000
+2019-05-26 20:30:58.150343: step 2100, loss = 5.48  learning rate = 0.07  (0.8 examples/sec; 42.559 sec/batch)
+Minibatch accuracy2: 0.65
+2019-05-26 20:31:19.317736: step 2200, loss = 5.70  learning rate = 0.07  (1.5 examples/sec; 20.957 sec/batch)
+Minibatch accuracy2: 0.62
+2019-05-26 20:31:40.633225: step 2300, loss = 5.95  learning rate = 0.07  (1.5 examples/sec; 21.108 sec/batch)
+Minibatch accuracy2: 0.61
+2019-05-26 20:32:01.875039: step 2400, loss = 5.88  learning rate = 0.07  (1.5 examples/sec; 21.029 sec/batch)
+Minibatch accuracy2: 0.62
+2019-05-26 20:32:23.084959: step 2500, loss = 5.52  learning rate = 0.07  (1.5 examples/sec; 21.000 sec/batch)
+Minibatch accuracy2: 0.64
+2019-05-26 20:32:44.169370: step 2600, loss = 5.38  learning rate = 0.07  (1.5 examples/sec; 20.873 sec/batch)
+Minibatch accuracy2: 0.64
+2019-05-26 20:33:05.230492: step 2700, loss = 4.99  learning rate = 0.06  (1.5 examples/sec; 20.850 sec/batch)
+Minibatch accuracy2: 0.67
+2019-05-26 20:33:26.396424: step 2800, loss = 4.61  learning rate = 0.06  (1.5 examples/sec; 20.954 sec/batch)
+Minibatch accuracy2: 0.71
+2019-05-26 20:33:47.537879: step 2900, loss = 3.07  learning rate = 0.06  (1.5 examples/sec; 20.930 sec/batch)
+Minibatch accuracy2: 0.81
+Validation Accuracy: 0.79
+Training Set Accuracy: 0.82
+Adding run metadata for 3000
+2019-05-26 20:34:30.393598: step 3100, loss = 2.79  learning rate = 0.06  (0.8 examples/sec; 42.644 sec/batch)
+Minibatch accuracy2: 0.84
+2019-05-26 20:34:51.598597: step 3200, loss = 2.17  learning rate = 0.06  (1.5 examples/sec; 20.993 sec/batch)
+Minibatch accuracy2: 0.85
+2019-05-26 20:35:12.815814: step 3300, loss = 1.60  learning rate = 0.06  (1.5 examples/sec; 21.004 sec/batch)
+Minibatch accuracy2: 0.89
+2019-05-26 20:35:34.021171: step 3400, loss = 1.29  learning rate = 0.06  (1.5 examples/sec; 20.997 sec/batch)
+Minibatch accuracy2: 0.93
+2019-05-26 20:35:55.214963: step 3500, loss = 1.72  learning rate = 0.06  (1.5 examples/sec; 20.981 sec/batch)
+Minibatch accuracy2: 0.91
+2019-05-26 20:36:16.425118: step 3600, loss = 2.24  learning rate = 0.06  (1.5 examples/sec; 20.990 sec/batch)
+Minibatch accuracy2: 0.89
+2019-05-26 20:36:37.837292: step 3700, loss = 1.17  learning rate = 0.06  (1.5 examples/sec; 21.198 sec/batch)
+Minibatch accuracy2: 0.93
+2019-05-26 20:36:59.313813: step 3800, loss = 1.95  learning rate = 0.06  (1.5 examples/sec; 21.265 sec/batch)
+Minibatch accuracy2: 0.86
+2019-05-26 20:37:20.513679: step 3900, loss = 1.57  learning rate = 0.06  (1.5 examples/sec; 20.990 sec/batch)
+Minibatch accuracy2: 0.91
+Validation Accuracy: 0.90
+Training Set Accuracy: 0.98
+Adding run metadata for 4000
+2019-05-26 20:38:03.348295: step 4100, loss = 2.87  learning rate = 0.06  (0.8 examples/sec; 42.623 sec/batch)
+Minibatch accuracy2: 0.82
+2019-05-26 20:38:24.493380: step 4200, loss = 1.87  learning rate = 0.06  (1.5 examples/sec; 20.935 sec/batch)
+Minibatch accuracy2: 0.89
+2019-05-26 20:38:45.622730: step 4300, loss = 1.43  learning rate = 0.06  (1.5 examples/sec; 20.918 sec/batch)
+Minibatch accuracy2: 0.92
+2019-05-26 20:39:06.829387: step 4400, loss = 1.56  learning rate = 0.06  (1.5 examples/sec; 20.994 sec/batch)
+Minibatch accuracy2: 0.91
+2019-05-26 20:39:27.934659: step 4500, loss = 1.56  learning rate = 0.06  (1.5 examples/sec; 20.895 sec/batch)
+Minibatch accuracy2: 0.90
+2019-05-26 20:39:49.007458: step 4600, loss = 1.42  learning rate = 0.06  (1.5 examples/sec; 20.864 sec/batch)
+Minibatch accuracy2: 0.92
+2019-05-26 20:40:10.123907: step 4700, loss = 1.80  learning rate = 0.06  (1.5 examples/sec; 20.904 sec/batch)
+Minibatch accuracy2: 0.91
+2019-05-26 20:40:31.248654: step 4800, loss = 1.70  learning rate = 0.06  (1.5 examples/sec; 20.916 sec/batch)
+Minibatch accuracy2: 0.93
+2019-05-26 20:40:52.545522: step 4900, loss = 0.87  learning rate = 0.06  (1.5 examples/sec; 21.089 sec/batch)
+Minibatch accuracy2: 0.96
+Validation Accuracy: 0.95
+Training Set Accuracy: 0.98
+Adding run metadata for 5000
+2019-05-26 20:41:35.398155: step 5100, loss = 1.37  learning rate = 0.06  (0.8 examples/sec; 42.644 sec/batch)
+Minibatch accuracy2: 0.91
+2019-05-26 20:41:56.562888: step 5200, loss = 0.80  learning rate = 0.06  (1.5 examples/sec; 20.950 sec/batch)
+Minibatch accuracy2: 0.93
+2019-05-26 20:42:17.688233: step 5300, loss = 1.45  learning rate = 0.06  (1.5 examples/sec; 20.913 sec/batch)
+Minibatch accuracy2: 0.94
+2019-05-26 20:42:38.849434: step 5400, loss = 0.76  learning rate = 0.06  (1.5 examples/sec; 20.949 sec/batch)
+Minibatch accuracy2: 0.95
+2019-05-26 20:42:59.940083: step 5500, loss = 0.53  learning rate = 0.06  (1.5 examples/sec; 20.882 sec/batch)
+Minibatch accuracy2: 0.96
+2019-05-26 20:43:21.064723: step 5600, loss = 1.03  learning rate = 0.06  (1.5 examples/sec; 20.914 sec/batch)
+Minibatch accuracy2: 0.94
+2019-05-26 20:43:42.137395: step 5700, loss = 1.24  learning rate = 0.05  (1.5 examples/sec; 20.865 sec/batch)
+Minibatch accuracy2: 0.94
+2019-05-26 20:44:03.278938: step 5800, loss = 1.48  learning rate = 0.05  (1.5 examples/sec; 20.933 sec/batch)
+Minibatch accuracy2: 0.93
+2019-05-26 20:44:24.323858: step 5900, loss = 0.35  learning rate = 0.05  (1.5 examples/sec; 20.833 sec/batch)
+Minibatch accuracy2: 0.99
+Validation Accuracy: 0.93
+Training Set Accuracy: 0.98
+Adding run metadata for 6000
+2019-05-26 20:45:07.036247: step 6100, loss = 1.07  learning rate = 0.05  (0.8 examples/sec; 42.502 sec/batch)
+Minibatch accuracy2: 0.94
+2019-05-26 20:45:28.227581: step 6200, loss = 0.30  learning rate = 0.05  (1.5 examples/sec; 20.983 sec/batch)
+Minibatch accuracy2: 0.99
+2019-05-26 20:45:49.341806: step 6300, loss = 0.93  learning rate = 0.05  (1.5 examples/sec; 20.903 sec/batch)
+Minibatch accuracy2: 0.93
+2019-05-26 20:46:10.479990: step 6400, loss = 0.63  learning rate = 0.05  (1.5 examples/sec; 20.929 sec/batch)
+Minibatch accuracy2: 0.96
+2019-05-26 20:46:31.597423: step 6500, loss = 0.52  learning rate = 0.05  (1.5 examples/sec; 20.907 sec/batch)
+Minibatch accuracy2: 0.96
+2019-05-26 20:46:53.299171: step 6600, loss = 1.18  learning rate = 0.05  (1.5 examples/sec; 21.485 sec/batch)
+Minibatch accuracy2: 0.92
+2019-05-26 20:47:14.766646: step 6700, loss = 1.21  learning rate = 0.05  (1.5 examples/sec; 21.255 sec/batch)
+Minibatch accuracy2: 0.94
+2019-05-26 20:47:35.919050: step 6800, loss = 0.50  learning rate = 0.05  (1.5 examples/sec; 20.941 sec/batch)
+Minibatch accuracy2: 0.98
+2019-05-26 20:47:57.127503: step 6900, loss = 0.71  learning rate = 0.05  (1.5 examples/sec; 20.998 sec/batch)
+Minibatch accuracy2: 0.94
+Validation Accuracy: 0.88
+Training Set Accuracy: 0.96
+Adding run metadata for 7000
+2019-05-26 20:48:39.718236: step 7100, loss = 0.74  learning rate = 0.05  (0.8 examples/sec; 42.373 sec/batch)
+Minibatch accuracy2: 0.94
+2019-05-26 20:49:01.057586: step 7200, loss = 0.28  learning rate = 0.05  (1.5 examples/sec; 21.131 sec/batch)
+Minibatch accuracy2: 0.99
+2019-05-26 20:49:22.233972: step 7300, loss = 0.73  learning rate = 0.05  (1.5 examples/sec; 20.964 sec/batch)
+Minibatch accuracy2: 0.96
+2019-05-26 20:49:43.329684: step 7400, loss = 0.75  learning rate = 0.05  (1.5 examples/sec; 20.883 sec/batch)
+Minibatch accuracy2: 0.95
+2019-05-26 20:50:04.542493: step 7500, loss = 0.36  learning rate = 0.05  (1.5 examples/sec; 21.002 sec/batch)
+Minibatch accuracy2: 0.98
+2019-05-26 20:50:25.622272: step 7600, loss = 0.37  learning rate = 0.05  (1.5 examples/sec; 20.868 sec/batch)
+Minibatch accuracy2: 0.99
+2019-05-26 20:50:46.641713: step 7700, loss = 0.48  learning rate = 0.05  (1.5 examples/sec; 20.809 sec/batch)
+Minibatch accuracy2: 0.98
+2019-05-26 20:51:07.808977: step 7800, loss = 0.61  learning rate = 0.05  (1.5 examples/sec; 20.955 sec/batch)
+Minibatch accuracy2: 0.97
+2019-05-26 20:51:28.831190: step 7900, loss = 0.49  learning rate = 0.05  (1.5 examples/sec; 20.812 sec/batch)
+Minibatch accuracy2: 0.97
+Validation Accuracy: 0.89
+Training Set Accuracy: 1.00
+Adding run metadata for 8000
+2019-05-26 20:52:11.598847: step 8100, loss = 0.25  learning rate = 0.05  (0.8 examples/sec; 42.566 sec/batch)
+Minibatch accuracy2: 0.99
+2019-05-26 20:52:32.741897: step 8200, loss = 0.61  learning rate = 0.05  (1.5 examples/sec; 20.932 sec/batch)
+Minibatch accuracy2: 0.96
+2019-05-26 20:52:53.827030: step 8300, loss = 0.53  learning rate = 0.05  (1.5 examples/sec; 20.872 sec/batch)
+Minibatch accuracy2: 0.96
+2019-05-26 20:53:14.927480: step 8400, loss = 0.38  learning rate = 0.05  (1.5 examples/sec; 20.888 sec/batch)
+Minibatch accuracy2: 0.98
+2019-05-26 20:53:36.031494: step 8500, loss = 0.33  learning rate = 0.05  (1.5 examples/sec; 20.891 sec/batch)
+Minibatch accuracy2: 0.98
+2019-05-26 20:53:57.127556: step 8600, loss = 0.26  learning rate = 0.05  (1.5 examples/sec; 20.883 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 20:54:18.365707: step 8700, loss = 0.39  learning rate = 0.05  (1.5 examples/sec; 21.030 sec/batch)
+Minibatch accuracy2: 0.98
+2019-05-26 20:54:39.392688: step 8800, loss = 0.58  learning rate = 0.05  (1.5 examples/sec; 20.819 sec/batch)
+Minibatch accuracy2: 0.98
+2019-05-26 20:55:00.370465: step 8900, loss = 0.60  learning rate = 0.05  (1.5 examples/sec; 20.768 sec/batch)
+Minibatch accuracy2: 0.96
+Validation Accuracy: 0.93
+Training Set Accuracy: 1.00
+Adding run metadata for 9000
+2019-05-26 20:55:42.908923: step 9100, loss = 0.32  learning rate = 0.05  (0.8 examples/sec; 42.325 sec/batch)
+Minibatch accuracy2: 0.99
+2019-05-26 20:56:03.964376: step 9200, loss = 0.16  learning rate = 0.05  (1.5 examples/sec; 20.846 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 20:56:25.006203: step 9300, loss = 0.17  learning rate = 0.05  (1.5 examples/sec; 20.829 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 20:56:46.070763: step 9400, loss = 0.30  learning rate = 0.04  (1.5 examples/sec; 20.854 sec/batch)
+Minibatch accuracy2: 0.99
+2019-05-26 20:57:08.043805: step 9500, loss = 0.49  learning rate = 0.04  (1.5 examples/sec; 21.760 sec/batch)
+Minibatch accuracy2: 0.98
+2019-05-26 20:57:29.071843: step 9600, loss = 0.42  learning rate = 0.04  (1.5 examples/sec; 20.819 sec/batch)
+Minibatch accuracy2: 0.97
+2019-05-26 20:57:50.109059: step 9700, loss = 0.48  learning rate = 0.04  (1.5 examples/sec; 20.824 sec/batch)
+Minibatch accuracy2: 0.97
+2019-05-26 20:58:11.090513: step 9800, loss = 0.27  learning rate = 0.04  (1.5 examples/sec; 20.774 sec/batch)
+Minibatch accuracy2: 0.99
+2019-05-26 20:58:32.176370: step 9900, loss = 0.18  learning rate = 0.04  (1.5 examples/sec; 20.875 sec/batch)
+Minibatch accuracy2: 1.00
+Validation Accuracy: 0.91
+Training Set Accuracy: 1.00
+Adding run metadata for 10000
+2019-05-26 20:59:14.978815: step 10100, loss = 0.50  learning rate = 0.04  (0.8 examples/sec; 42.596 sec/batch)
+Minibatch accuracy2: 0.98
+2019-05-26 20:59:35.965506: step 10200, loss = 0.14  learning rate = 0.04  (1.5 examples/sec; 20.773 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 20:59:57.073588: step 10300, loss = 0.38  learning rate = 0.04  (1.5 examples/sec; 20.897 sec/batch)
+Minibatch accuracy2: 0.98
+2019-05-26 21:00:18.201642: step 10400, loss = 0.29  learning rate = 0.04  (1.5 examples/sec; 20.917 sec/batch)
+Minibatch accuracy2: 0.99
+2019-05-26 21:00:39.249487: step 10500, loss = 0.56  learning rate = 0.04  (1.5 examples/sec; 20.839 sec/batch)
+Minibatch accuracy2: 0.98
+2019-05-26 21:01:00.272511: step 10600, loss = 0.46  learning rate = 0.04  (1.5 examples/sec; 20.815 sec/batch)
+Minibatch accuracy2: 0.98
+2019-05-26 21:01:21.356265: step 10700, loss = 0.21  learning rate = 0.04  (1.5 examples/sec; 20.873 sec/batch)
+Minibatch accuracy2: 0.99
+2019-05-26 21:01:42.362139: step 10800, loss = 0.36  learning rate = 0.04  (1.5 examples/sec; 20.800 sec/batch)
+Minibatch accuracy2: 0.99
+2019-05-26 21:02:03.546885: step 10900, loss = 0.27  learning rate = 0.04  (1.5 examples/sec; 20.972 sec/batch)
+Minibatch accuracy2: 0.98
+Validation Accuracy: 0.91
+Training Set Accuracy: 1.00
+Adding run metadata for 11000
+2019-05-26 21:02:46.011900: step 11100, loss = 0.15  learning rate = 0.04  (0.8 examples/sec; 42.259 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:03:07.001149: step 11200, loss = 0.15  learning rate = 0.04  (1.5 examples/sec; 20.783 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:03:28.070288: step 11300, loss = 0.30  learning rate = 0.04  (1.5 examples/sec; 20.857 sec/batch)
+Minibatch accuracy2: 0.98
+2019-05-26 21:03:49.116806: step 11400, loss = 0.11  learning rate = 0.04  (1.5 examples/sec; 20.834 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:04:10.232732: step 11500, loss = 0.23  learning rate = 0.04  (1.5 examples/sec; 20.907 sec/batch)
+Minibatch accuracy2: 0.99
+2019-05-26 21:04:32.790003: step 11600, loss = 0.25  learning rate = 0.04  (1.4 examples/sec; 22.336 sec/batch)
+Minibatch accuracy2: 0.99
+2019-05-26 21:04:54.553113: step 11700, loss = 0.08  learning rate = 0.04  (1.5 examples/sec; 21.529 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:05:16.492386: step 11800, loss = 0.09  learning rate = 0.04  (1.5 examples/sec; 21.724 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:05:37.790976: step 11900, loss = 0.11  learning rate = 0.04  (1.5 examples/sec; 21.075 sec/batch)
+Minibatch accuracy2: 1.00
+Validation Accuracy: 0.94
+Training Set Accuracy: 1.00
+Adding run metadata for 12000
+2019-05-26 21:06:23.546670: step 12100, loss = 0.24  learning rate = 0.04  (0.7 examples/sec; 45.531 sec/batch)
+Minibatch accuracy2: 0.99
+2019-05-26 21:06:46.104265: step 12200, loss = 0.14  learning rate = 0.04  (1.4 examples/sec; 22.319 sec/batch)
+Minibatch accuracy2: 0.99
+2019-05-26 21:07:10.016970: step 12300, loss = 0.14  learning rate = 0.04  (1.4 examples/sec; 23.678 sec/batch)
+Minibatch accuracy2: 0.99
+2019-05-26 21:07:33.592928: step 12400, loss = 0.11  learning rate = 0.04  (1.4 examples/sec; 23.325 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:07:56.669649: step 12500, loss = 0.07  learning rate = 0.04  (1.4 examples/sec; 22.857 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:08:18.659641: step 12600, loss = 0.12  learning rate = 0.04  (1.5 examples/sec; 21.774 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:08:40.636525: step 12700, loss = 0.09  learning rate = 0.04  (1.5 examples/sec; 21.760 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:09:02.842516: step 12800, loss = 0.10  learning rate = 0.04  (1.5 examples/sec; 21.926 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:09:25.752295: step 12900, loss = 0.11  learning rate = 0.04  (1.4 examples/sec; 22.677 sec/batch)
+Minibatch accuracy2: 0.99
+Validation Accuracy: 0.93
+Training Set Accuracy: 1.00
+Adding run metadata for 13000
+2019-05-26 21:10:11.214612: step 13100, loss = 0.15  learning rate = 0.04  (0.7 examples/sec; 45.201 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:10:34.426567: step 13200, loss = 0.14  learning rate = 0.04  (1.4 examples/sec; 22.987 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:10:56.848466: step 13300, loss = 0.12  learning rate = 0.04  (1.4 examples/sec; 22.207 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:11:19.231660: step 13400, loss = 0.12  learning rate = 0.04  (1.4 examples/sec; 22.162 sec/batch)
+Minibatch accuracy2: 0.99
+2019-05-26 21:11:41.163215: step 13500, loss = 0.23  learning rate = 0.04  (1.5 examples/sec; 21.709 sec/batch)
+Minibatch accuracy2: 0.99
+2019-05-26 21:12:04.104372: step 13600, loss = 0.10  learning rate = 0.04  (1.4 examples/sec; 22.682 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:12:27.951579: step 13700, loss = 0.10  learning rate = 0.04  (1.4 examples/sec; 23.611 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:12:51.500946: step 13800, loss = 0.27  learning rate = 0.04  (1.4 examples/sec; 23.268 sec/batch)
+Minibatch accuracy2: 0.99
+2019-05-26 21:13:14.005126: step 13900, loss = 0.06  learning rate = 0.04  (1.4 examples/sec; 22.292 sec/batch)
+Minibatch accuracy2: 1.00
+Validation Accuracy: 0.93
+Training Set Accuracy: 1.00
+Adding run metadata for 14000
+2019-05-26 21:14:00.077897: step 14100, loss = 0.06  learning rate = 0.03  (0.7 examples/sec; 45.823 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:14:23.497638: step 14200, loss = 0.07  learning rate = 0.03  (1.4 examples/sec; 23.177 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:14:46.884584: step 14300, loss = 0.09  learning rate = 0.03  (1.4 examples/sec; 23.136 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:15:10.978515: step 14400, loss = 0.05  learning rate = 0.03  (1.3 examples/sec; 23.866 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:15:34.029153: step 14500, loss = 0.10  learning rate = 0.03  (1.4 examples/sec; 22.827 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:15:56.987504: step 14600, loss = 0.05  learning rate = 0.03  (1.4 examples/sec; 22.737 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:16:19.785957: step 14700, loss = 0.06  learning rate = 0.03  (1.4 examples/sec; 22.578 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:16:42.487389: step 14800, loss = 0.07  learning rate = 0.03  (1.4 examples/sec; 22.464 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:17:06.237572: step 14900, loss = 0.04  learning rate = 0.03  (1.4 examples/sec; 23.522 sec/batch)
+Minibatch accuracy2: 1.00
+Validation Accuracy: 0.92
+Training Set Accuracy: 1.00
+Adding run metadata for 15000
+2019-05-26 21:17:52.106493: step 15100, loss = 0.06  learning rate = 0.03  (0.7 examples/sec; 45.653 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:18:15.073996: step 15200, loss = 0.07  learning rate = 0.03  (1.4 examples/sec; 22.725 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:18:38.587037: step 15300, loss = 0.07  learning rate = 0.03  (1.4 examples/sec; 23.279 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:19:02.634680: step 15400, loss = 0.05  learning rate = 0.03  (1.3 examples/sec; 23.801 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:19:26.777907: step 15500, loss = 0.03  learning rate = 0.03  (1.3 examples/sec; 23.922 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:19:49.790431: step 15600, loss = 0.07  learning rate = 0.03  (1.4 examples/sec; 22.790 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:20:13.199721: step 15700, loss = 0.07  learning rate = 0.03  (1.4 examples/sec; 23.158 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:20:37.115829: step 15800, loss = 0.05  learning rate = 0.03  (1.4 examples/sec; 23.686 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:21:00.542168: step 15900, loss = 0.03  learning rate = 0.03  (1.4 examples/sec; 23.160 sec/batch)
+Minibatch accuracy2: 1.00
+Validation Accuracy: 0.97
+Training Set Accuracy: 1.00
+Adding run metadata for 16000
+2019-05-26 21:21:48.537856: step 16100, loss = 0.07  learning rate = 0.03  (0.7 examples/sec; 47.765 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:22:10.974171: step 16200, loss = 0.06  learning rate = 0.03  (1.4 examples/sec; 22.224 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:22:32.714139: step 16300, loss = 0.05  learning rate = 0.03  (1.5 examples/sec; 21.524 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:22:56.161464: step 16400, loss = 0.02  learning rate = 0.03  (1.4 examples/sec; 23.156 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:23:20.484189: step 16500, loss = 0.06  learning rate = 0.03  (1.3 examples/sec; 24.084 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:23:45.114892: step 16600, loss = 0.08  learning rate = 0.03  (1.3 examples/sec; 24.391 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:24:08.814871: step 16700, loss = 0.08  learning rate = 0.03  (1.4 examples/sec; 23.383 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:24:32.385148: step 16800, loss = 0.05  learning rate = 0.03  (1.4 examples/sec; 23.307 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:24:55.877742: step 16900, loss = 0.04  learning rate = 0.03  (1.4 examples/sec; 23.279 sec/batch)
+Minibatch accuracy2: 1.00
+Validation Accuracy: 0.93
+Training Set Accuracy: 1.00
+Adding run metadata for 17000
+2019-05-26 21:25:40.019445: step 17100, loss = 0.06  learning rate = 0.03  (0.7 examples/sec; 43.928 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:26:01.472425: step 17200, loss = 0.05  learning rate = 0.03  (1.5 examples/sec; 21.237 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:26:23.053099: step 17300, loss = 0.05  learning rate = 0.03  (1.5 examples/sec; 21.356 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:26:44.398517: step 17400, loss = 0.09  learning rate = 0.03  (1.5 examples/sec; 21.133 sec/batch)
+Minibatch accuracy2: 0.99
+2019-05-26 21:27:05.961620: step 17500, loss = 0.05  learning rate = 0.03  (1.5 examples/sec; 21.346 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:27:27.604246: step 17600, loss = 0.06  learning rate = 0.03  (1.5 examples/sec; 21.430 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:27:48.933437: step 17700, loss = 0.06  learning rate = 0.03  (1.5 examples/sec; 21.117 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:28:10.355001: step 17800, loss = 0.04  learning rate = 0.03  (1.5 examples/sec; 21.176 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:28:33.034661: step 17900, loss = 0.03  learning rate = 0.03  (1.4 examples/sec; 22.439 sec/batch)
+Minibatch accuracy2: 1.00
+Validation Accuracy: 0.93
+Training Set Accuracy: 1.00
+Adding run metadata for 18000
+2019-05-26 21:29:19.290262: step 18100, loss = 0.04  learning rate = 0.03  (0.7 examples/sec; 46.022 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:29:42.106138: step 18200, loss = 0.05  learning rate = 0.03  (1.4 examples/sec; 22.590 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:30:04.851302: step 18300, loss = 0.06  learning rate = 0.03  (1.4 examples/sec; 22.518 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:30:28.536854: step 18400, loss = 0.06  learning rate = 0.03  (1.4 examples/sec; 23.470 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:30:50.648608: step 18500, loss = 0.04  learning rate = 0.03  (1.5 examples/sec; 21.893 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:31:13.159136: step 18600, loss = 0.03  learning rate = 0.03  (1.4 examples/sec; 22.276 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:31:35.322463: step 18700, loss = 0.04  learning rate = 0.03  (1.5 examples/sec; 21.948 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:31:57.681610: step 18800, loss = 0.05  learning rate = 0.03  (1.5 examples/sec; 22.066 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:32:21.136085: step 18900, loss = 0.06  learning rate = 0.03  (1.4 examples/sec; 23.227 sec/batch)
+Minibatch accuracy2: 1.00
+Validation Accuracy: 0.93
+Training Set Accuracy: 1.00
+Adding run metadata for 19000
+2019-05-26 21:33:06.944497: step 19100, loss = 0.04  learning rate = 0.03  (0.7 examples/sec; 45.579 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:33:29.608598: step 19200, loss = 0.05  learning rate = 0.03  (1.4 examples/sec; 22.435 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:33:52.609743: step 19300, loss = 0.07  learning rate = 0.03  (1.4 examples/sec; 22.768 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:34:14.799382: step 19400, loss = 0.03  learning rate = 0.03  (1.5 examples/sec; 21.977 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:34:36.871864: step 19500, loss = 0.07  learning rate = 0.03  (1.5 examples/sec; 21.848 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:34:58.806482: step 19600, loss = 0.04  learning rate = 0.03  (1.5 examples/sec; 21.727 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:35:20.388400: step 19700, loss = 0.05  learning rate = 0.03  (1.5 examples/sec; 21.370 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:35:41.683281: step 19800, loss = 0.07  learning rate = 0.03  (1.5 examples/sec; 21.082 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 21:36:03.053040: step 19900, loss = 0.04  learning rate = 0.03  (1.5 examples/sec; 21.158 sec/batch)
+Minibatch accuracy2: 1.00
+Validation Accuracy: 0.94
+Training Set Accuracy: 1.00
+Adding run metadata for 20000
