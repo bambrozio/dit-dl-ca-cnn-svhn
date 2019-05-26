@@ -45,7 +45,6 @@ def crop(sample_img, to_size):
     return sample_img.crop((left, top, right, bottom))
 
 
-
 # Detect is called by the main program to find the image path
 # Do preprocessing of the input image with resize, reshape, decode_png
 def detect(img_path, saved_model_weights):
@@ -62,6 +61,7 @@ def detect(img_path, saved_model_weights):
         #sample_img = crop(sample_img, 32*1.2) # 32 + 20%
         #sample_img = resize(sample_img, 64)
 
+        
     #sample_img = sample_img.convert('L')
     plt.imshow(sample_img)
     plt.show()

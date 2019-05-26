@@ -9,7 +9,6 @@ Python 2.7.10
 $ python -m pip --version
 pip 19.1.1
 ```
-
 # Dependencies
 See [requirements.txt](requirements.txt)
 

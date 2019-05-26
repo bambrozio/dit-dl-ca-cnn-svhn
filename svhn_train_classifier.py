@@ -151,6 +151,7 @@ def train_classification(train_data, train_labels,
 
         # Loop through training steps.
         for step in xrange(int(NUM_EPOCHS * train_size) // BATCH_SIZE):
+        #for step in xrange(5):
             # Run the graph and fetch some of the nodes.
             # This dictionary maps the batch data (as a numpy array) to the
             feed_dict = fill_feed_dict(train_data, train_labels,
@@ -216,7 +217,7 @@ def main(saved_weights_path):
     print("Test", test_data.shape)
 
     train_size = train_labels.shape[0]
-    
+
     # call main training method to kick off classification training
     return train_classification(train_data, train_labels,
                          valid_data, valid_labels,
@@ -225,6 +226,23 @@ def main(saved_weights_path):
 
 # passing the weights chkpt file location when calling for prediction
 # if chkpt file exists use it, if not kick off the training    
+def run():
+    print("Classifier training - Start")
+    print("Loading Saved Checkpoints From: ", CLASSIFIER_CKPT)
+
+    saved_weights_path = None
+    if os.path.isdir(CLASSIFIER_CKPT_DIR):
+        for file in os.listdir(os.path.dirname(CLASSIFIER_CKPT)):
+            if os.path.isfile(os.path.join(CLASSIFIER_CKPT_DIR, file)) and '.ckpt' in file:
+                saved_weights_path = CLASSIFIER_CKPT
+                break
+
+    if saved_weights_path is None:
+        print("No weights file found. Starting from scratch...")
+
+    ret_class = main(saved_weights_path)
+    print("Classifier training - Done")
+
 def run():
     print("Classifier training - Start")
     print("Loading Saved Checkpoints From: ", CLASSIFIER_CKPT)
