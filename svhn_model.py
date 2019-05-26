@@ -82,15 +82,25 @@ def activation_summary(x):
 
 def convolution_model(data):
     with tf.variable_scope('Layer_1', reuse=True) as scope:
+        
+        # con layer passing in its attributes 
+        # data input, filters from "conv1_weight" variable
+        # stride of 1 and padding "VALID" which means no padding (not needed since stride is 1)
         con = tf.nn.conv2d(data, conv1_weights,
                            [1, 1, 1, 1], 'VALID', name='C1')
+        
+        # Computes rectified linear used as activation function for hidden layers
         hid = tf.nn.relu(con + conv1_biases)
         activation_summary(hid)
 
+    # Apply maxpooling to our hidden layers         
     pol = tf.nn.max_pool(hid,
                          [1, 2, 2, 1], [1, 2, 2, 1], 'SAME', name='Pool_1')
+    
+    # normalization to the pool layer
     lrn = tf.nn.local_response_normalization(pol, name="Normalize_1")
 
+    # repeat process on other layers 2 and 3...
     with tf.variable_scope('Layer_2') as scope:
         con = tf.nn.conv2d(lrn, conv2_weights,
                            [1, 1, 1, 1], padding='VALID', name='C3')
@@ -131,6 +141,7 @@ def classification_head(data, keep_prob=1.0, train=False):
         print("Not using dropout")
 
     # Fully Connected Layer 1
+    # The final output layer, which gives the output.
     with tf.variable_scope('fully_connected_1') as scope:
         fc1 = tf.reshape(conv_layer, [shape[0], -1])
         fc1 = tf.add(tf.matmul(fc1, cl_l3_weights), cl_l3_biases)
@@ -155,6 +166,8 @@ def regression_head(data, train=False):
     # else:
     #     print("Not using dropout")
 
+    # Fully connected layer 
+    # The final output layer, which gives the output.
     with tf.variable_scope('full_connected_1') as scope:
         con = tf.nn.conv2d(conv_layer, conv4_weights, [1, 2, 2, 1], padding='VALID', name='C5')
         hid = tf.nn.relu(con + conv4_biases)
@@ -162,6 +175,7 @@ def regression_head(data, train=False):
     shape = hid.get_shape().as_list()
     reshape = tf.reshape(hid, [shape[0], shape[1] * shape[2] * shape[3]])
 
+    # calculate the logits plus biases to compute the output result
     with tf.variable_scope('Output') as scope:
         logits_1 = tf.matmul(reshape, reg1_weights) + reg1_biases
         logits_2 = tf.matmul(reshape, reg2_weights) + reg2_biases

@@ -18,10 +18,12 @@ IMGS_FOR_MANUAL_TEST_N = 20
 PIXEL_DEPTH = 255
 NUM_LABELS = 10
 
+# Images dimentions are 64x64
+# number of channels represents color channels 1-4 (where 1 is greyscale and 3 for RGB)
 OUT_HEIGHT = 64
 OUT_WIDTH = 64
 NUM_CHANNELS = 3
-MAX_LABELS = 5
+MAX_LABELS = 5 # Max label used for excluding labels with more than 5 digits
 
 last_percent_reported = None
 
@@ -32,7 +34,10 @@ def read_data_file(file_name):
     file.close()
     return data
 
-
+#The bounding box information are stored in digitStruct.mat (instead of drawn directly on the images in the dataset)
+#Each element in digitStruct has the following fields: name which is a string containing the filename of the corresponding image; 
+#bbox which is a struct array that contains the position, size and label of each digit bounding box in the image. 
+#Eg: digitStruct(300).bbox(2).height gives height of the 2nd digit bounding box in the 300th image. 
 def read_digit_struct(data_path):
     struct_file = os.path.join(data_path, "digitStruct.mat")
     dstruct = DigitStruct(struct_file)
@@ -63,27 +68,32 @@ def convert_imgs_to_array(img_array):
         chans = img_array[:, :, :, x]
         # normalize pixels to 0 and 1. 0 is pure white, 1 is pure channel color
         norm_vec = (255-chans)*1.0/255.0
-        # Mean Subtraction
+        # Mean Subtraction - normalization technique
         norm_vec -= np.mean(norm_vec, axis=0)
         new_array[x] = norm_vec
     return new_array
 
-
+# creates a np array of labels from 0-9
+# 1 for each digit. Digit '1' has label 1, '9' has label 9 and '0' has label 10. 
 def convert_labels_to_one_hot(labels):
     labels = (np.arange(NUM_LABELS) == labels[:, None]).astype(np.float32)
     return labels
 
-
+# load and processes the mat files
+# 'corrects' the labeling in the dataset for the '0' digit 
+# for house number 520 the following array
+# [5 2 0 10 10]     
 def process_data_file(file):
     data = loadmat(file)
     imgs = data['X']
     labels = data['y'].flatten()
-    labels[labels == 10] = 0  # Fix for weird labeling in dataset
+    labels[labels == 10] = 0  # Fix for labeling in dataset
     labels_one_hot = convert_labels_to_one_hot(labels)
     img_array = convert_imgs_to_array(imgs)
     return img_array, labels_one_hot
 
-
+# helper method for organizing dataset folders and files. 
+# For this tutorial both cropped and full sizes images are used
 def get_data_file_name(master_set, dataset):
     if master_set == "cropped":
         if dataset == "train":
@@ -105,7 +115,7 @@ def get_data_file_name(master_set, dataset):
         raise Exception('Master data set must be full or cropped')
     return data_file_name
 
-
+# If doen't alreayd existant, create the 'cropped' and 'full' folders 
 def make_data_dirs(master_set):
     if master_set == "cropped":
         if not os.path.exists(CROPPED_DATA_PATH):
@@ -116,7 +126,11 @@ def make_data_dirs(master_set):
     else:
         raise Exception('Master data set must be full or cropped')
 
-
+# unzip tar.gz files
+# Also has logic that reads the data struct files to determine the number of digits in each image
+# If it has more than 5 digits it skips it
+# only a few images have more than 5 digits so it is beneficial to the model to skip it    
+# Call create image array        
 def handle_tar_file(file_pointer):
     ''' Extract and return the data file '''
     print ("extracting: %s" % file_pointer)
@@ -146,7 +160,9 @@ def handle_tar_file(file_pointer):
 
     return img_data, labels
 
-
+# Helper method for creating svhn dataset 
+# depending if we are doing a single digit prediction using 'cropped' images 
+# or for the multi digit prediction using 'full' data set   
 def create_svhn(dataset, master_set):
     path = DATA_PATH+master_set
     data_file_name = get_data_file_name(master_set, dataset)
@@ -171,7 +187,7 @@ def create_svhn(dataset, master_set):
             ''' Return the data file '''
             return read_data_file(new_file)
 
-
+# keep a progress bar that prints every 5%
 def download_progress(count, block_size, total_size):
     global last_percent_reported
     percent = int(count * block_size * 100 / total_size)
@@ -184,7 +200,7 @@ def download_progress(count, block_size, total_size):
             sys.stdout.flush()
         last_percent_reported = percent
 
-
+# download data set from main url repository
 def download_data_file(path, filename, force=False):
     base_url = "http://ufldl.stanford.edu/housenumbers/"
     print "Attempting to download", filename
@@ -197,7 +213,7 @@ def download_data_file(path, filename, force=False):
         raise Exception("Failed to verify " + filename)
     return saved_file
 
-
+# extra checks for confiming all files were successfully downloaded
 def get_expected_bytes(filename):
     if filename == "train_32x32.mat":
         byte_size = 182040794
@@ -215,19 +231,20 @@ def get_expected_bytes(filename):
         raise Exception("Invalid file name " + filename)
     return byte_size
 
-
+# split the dataset into train and validation 
+# validation set is used to avoid overfitting during training    
 def train_validation_spit(train_dataset, train_labels):
     train_dataset, validation_dataset, train_labels, validation_labels = train_test_split(train_dataset, train_labels, test_size=0.1, random_state = 42)
     return train_dataset, validation_dataset, train_labels, validation_labels
 
-
+# create the npy array files of the images to be used for training
 def write_npy_file(data_array, lbl_array, data_set_name, data_path):
     np.save(os.path.join(DATA_PATH+data_path, data_path+"_"+data_set_name+'_imgs.npy'), data_array)
     print('Saving to %s_svhn_imgs.npy file done.' % data_set_name)
     np.save(os.path.join(DATA_PATH+data_path, data_path+"_"+data_set_name+'_labels.npy'), lbl_array)
     print('Saving to %s_svhn_labels.npy file done.' % data_set_name)
 
-
+#load numpy arrays data to be used in the training process
 def load_svhn_data(data_type, data_set_name):
     # TODO add error handling here
     path = DATA_PATH + data_set_name
@@ -246,6 +263,7 @@ def create_label_array(el):
         labels_array[n+1] = el[n]
     return labels_array
 
+# create image arrays with respect with its bbox location    
 def create_img_array(file_name, top, left, height, width, out_height, out_width, index):
     img = Image.open(file_name)
 
@@ -258,7 +276,8 @@ def create_img_array(file_name, top, left, height, width, out_height, out_width,
     box_top = np.floor(img_top - 0.1 * img_height)
     box_right = np.amin([np.ceil(box_left + 1.2 * img_width), img.size[0]])
     box_bottom = np.amin([np.ceil(img_top + 1.2 * img_height), img.size[1]])
-
+    
+    # crop imags in the exact location of the bboxes
     img = img.crop((box_left, box_top, box_right, box_bottom)).resize([out_height, out_width], Image.ANTIALIAS)
 
 
@@ -272,6 +291,7 @@ def create_img_array(file_name, top, left, height, width, out_height, out_width,
 
     pix = np.array(img)
 
+    # normalize the image data
     norm_pix = (255-pix)*1.0/255.0
     norm_pix -= np.mean(norm_pix, axis=0)
     return norm_pix

@@ -24,17 +24,19 @@ TENSOR_BOARD_VALID_WRITER = TENSORBOARD_SUMMARIES_DIR+'/validation'
 CLASSIFIER_CKPT_DIR = TENSORBOARD_SUMMARIES_DIR+'/ckpt'
 CLASSIFIER_CKPT = CLASSIFIER_CKPT_DIR+'/classifier.ckpt'
 
+#0-9
 NUM_LABELS = 10
 IMG_ROWS = 32
 IMG_COLS = 32
-NUM_CHANNELS = 3
+NUM_CHANNELS = 3 # (32,32,3)
 
-BATCH_SIZE = 256
-NUM_EPOCHS = 128
+BATCH_SIZE = 256 # every 256 images the model and its WEIGHTS are updated
+NUM_EPOCHS = 128 # total iteration 
 
-# LEARING RATE HYPER PARAMS
-LEARN_RATE = 0.075
-DECAY_RATE = 0.95
+# LEARNING RATE HYPER PARAMS
+#LR controls the adjust in the weights with respect to loss gradient. 
+LEARN_RATE = 0.075 
+DECAY_RATE = 0.95 #This prevents the weights from growing too large  
 STAIRCASE = True
 
 def prepare_log_dir():
@@ -53,13 +55,14 @@ def fill_feed_dict(data, labels, x, y_, step):
     batch_labels = labels[offset:(offset + BATCH_SIZE)]
     return {x: batch_data, y_: batch_labels}
 
-
+# main helper method for training the classifer 
 def train_classification(train_data, train_labels,
                          valid_data, valid_labels,
                          test_data, test_labels,
                          train_size, saved_weights_path):
-
-    global_step = tf.Variable(0, trainable=False)
+    
+    #This creates a global tf variable named "global_step" 
+    global_step = tf.Variable(0, trainable=False) 
 
     # This is where training samples and labels are fed to the graph.
     with tf.name_scope('input'):
@@ -72,23 +75,28 @@ def train_classification(train_data, train_labels,
         tf.summary.image('train_input', images_placeholder, 10)
 
 
-
     # Training computation: logits + cross-entropy loss.
+    # Computes softmax cross entropy between logits and labels
     logits = classification_head(images_placeholder, train=True)
     with tf.name_scope('loss'):
         loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(
                           logits=logits, labels=labels_placeholder))
         tf.summary.scalar('loss', loss)
+        
+    #applies an exponential decay function to a provided initial learning rate. 
+    #It requires a global_step value to compute the decayed learning rate. 
+    #Decay prevents the weights from growing too large  
     learning_rate = tf.train.exponential_decay(LEARN_RATE,
                                                global_step*BATCH_SIZE,
                                                train_size,
                                                DECAY_RATE,
                                                staircase=STAIRCASE)
 
+    #Outputs a Summary protocol buffer containing a single scalar value.
     tf.summary.scalar('learning_rate', learning_rate)
+    
     '''Optimizer: set up a variable that's incremented
       once per batch and controls the learning rate decay.'''
-
     with tf.name_scope('train'):
         optimizer = tf.train.AdagradOptimizer(learning_rate).minimize(loss, global_step=global_step)
 
@@ -104,7 +112,7 @@ def train_classification(train_data, train_labels,
     start_time = time.time()
     with tf.Session(config=tf.ConfigProto(log_device_placement=False)) as sess:
 
-        # Restore variables from disk.
+        # Restore variables and WEIGHTS checkpoint from disk. 
         if(saved_weights_path):
             saver.restore(sess, saved_weights_path)
             print("Model restored.")
@@ -113,10 +121,11 @@ def train_classification(train_data, train_labels,
         # Run all the initializers to prepare the trainable parameters.
 
         # Add histograms for trainable variables.
+        # histogram summary to visualize data's distribution in TensorBoard. 
         for var in tf.trainable_variables():
             tf.summary.histogram(var.op.name, var)
 
-        # Add accuracy to tesnosrboard
+        # Add accuracy to tensorboard
         with tf.name_scope('accuracy'):
             with tf.name_scope('correct_prediction'):
                 correct_prediction = tf.equal(tf.argmax(train_prediction, 1),
@@ -141,8 +150,8 @@ def train_classification(train_data, train_labels,
         run_metadata = tf.RunMetadata()
 
         # Loop through training steps.
-        #for step in xrange(int(NUM_EPOCHS * train_size) // BATCH_SIZE):
-        for step in xrange(5):
+        for step in xrange(int(NUM_EPOCHS * train_size) // BATCH_SIZE):
+        #for step in xrange(5):
             # Run the graph and fetch some of the nodes.
             # This dictionary maps the batch data (as a numpy array) to the
             feed_dict = fill_feed_dict(train_data, train_labels,
@@ -179,7 +188,7 @@ def train_classification(train_data, train_labels,
 
                 sys.stdout.flush()
 
-        # Save the variables to disk.
+        # Save the variables to CLASSIFIER_CKPT.
         save_path = saver.save(sess, CLASSIFIER_CKPT)
         print("Model saved in file: %s" % save_path)
 
@@ -197,6 +206,8 @@ def train_classification(train_data, train_labels,
 
 def main(saved_weights_path):
     prepare_log_dir()
+    
+    # Load the data arrays from its correct file location and assign variables
     train_data, train_labels = load_svhn_data("train", "cropped")
     valid_data, valid_labels = load_svhn_data("valid", "cropped")
     test_data, test_labels = load_svhn_data("test", "cropped")
@@ -207,11 +218,30 @@ def main(saved_weights_path):
 
     train_size = train_labels.shape[0]
 
+    # call main training method to kick off classification training
     return train_classification(train_data, train_labels,
                          valid_data, valid_labels,
                          test_data, test_labels, train_size,
                          saved_weights_path)
 
+# passing the weights chkpt file location when calling for prediction
+# if chkpt file exists use it, if not kick off the training    
+def run():
+    print("Classifier training - Start")
+    print("Loading Saved Checkpoints From: ", CLASSIFIER_CKPT)
+
+    saved_weights_path = None
+    if os.path.isdir(CLASSIFIER_CKPT_DIR):
+        for file in os.listdir(os.path.dirname(CLASSIFIER_CKPT)):
+            if os.path.isfile(os.path.join(CLASSIFIER_CKPT_DIR, file)) and '.ckpt' in file:
+                saved_weights_path = CLASSIFIER_CKPT
+                break
+
+    if saved_weights_path is None:
+        print("No weights file found. Starting from scratch...")
+
+    ret_class = main(saved_weights_path)
+    print("Classifier training - Done")
 
 def run():
     print("Classifier training - Start")

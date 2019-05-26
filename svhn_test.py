@@ -45,9 +45,12 @@ def crop(sample_img, to_size):
     return sample_img.crop((left, top, right, bottom))
 
 
+# Detect is called by the main program to find the image path
+# Do preprocessing of the input image with resize, reshape, decode_png
 def detect(img_path, saved_model_weights):
     sample_img = Image.open(img_path)
 
+    # preprocessing of input image
     width, height = sample_img.size
 
     if width == height:
@@ -58,6 +61,7 @@ def detect(img_path, saved_model_weights):
         #sample_img = crop(sample_img, 32*1.2) # 32 + 20%
         #sample_img = resize(sample_img, 64)
 
+        
     #sample_img = sample_img.convert('L')
     plt.imshow(sample_img)
     plt.show()
@@ -67,14 +71,20 @@ def detect(img_path, saved_model_weights):
     exp = np.expand_dims(norm_pix, axis=0)
 
     X = tf.placeholder(tf.float32, shape=(1, 64, 64, 3))
+    
+    # call regression head method that takes the image and passes it through the network
+    # returns an array of 5 logits   
     [logits_1, logits_2, logits_3, logits_4, logits_5] = regression_head(X)
 
+    # each logit is passed to a softmax tf function that produces the most likely prediction
     predict = tf.stack([tf.nn.softmax(logits_1),
                       tf.nn.softmax(logits_2),
                       tf.nn.softmax(logits_3),
                       tf.nn.softmax(logits_4),
                       tf.nn.softmax(logits_5)])
 
+    # transpose prediction
+    # argmax returns the index with the largest value across axes of a tensor
     best_prediction = tf.transpose(tf.argmax(predict, 2))
 
     saver = tf.train.Saver()
