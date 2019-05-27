@@ -23,6 +23,9 @@ def main():
     result4 = svhn.test("img_samples/full_ds_img/323.png") #2
     print(result4)
 
+    ##############################
+    ##############################
+
     # # I will also call to start training on your code from scratch. I might not always wait for training to complete
     # # but I will start the training and make sure it is progressing.
     # average_f1_scores = svhn.traintest()
