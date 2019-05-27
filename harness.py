@@ -14,14 +14,19 @@ def main():
     # i might also test with a PNG
 
     # Images from full dataset, preprocessed
-    result2 = svhn.test("img_samples/cropped/19.png") #60
+    result2 = svhn.test("img_samples/cropped/16.png") #14
     print(result2)
-    result3 = svhn.test("img_samples/cropped/16.png") #14
+
+    result3 = svhn.test("img_samples/cropped/19.png") #60
     print(result3)
 
     # Image from full dataset, non-preprocessed
-    result4 = svhn.test("img_samples/full_ds_img/323.png") #2
+    result4 = svhn.test("img_samples/full_ds_img/19.png") #60
     print(result4)
+
+    # Image from full dataset, non-preprocessed
+    result5 = svhn.test("img_samples/full_ds_img/323.png")  # 2
+    print(result5)
 
     ##############################
     ##############################

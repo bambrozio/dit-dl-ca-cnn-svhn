@@ -13,6 +13,8 @@ tf.logging.set_verbosity(tf.logging.FATAL)
 # Image Parameters
 NUM_CHANNELS = 3
 CL_NUM_LABELS = 10
+
+# hot encode sequence. Eg: 234 => [3, 2, 3, 4, 10, 10]
 NUM_LABELS = CL_NUM_LABELS + 1  # 0-9, + 1 blank
 
 # Hyper Parameters
@@ -23,6 +25,7 @@ DEPTH_3 = 128
 DEPTH_4 = 160
 LOCAL = 192
 
+# When in use, If train is improving above this number, but validation doesn't, thus dropout is applied.
 DROPOUT = 0.85
 
 # Convolution Weight and Bias Variables
