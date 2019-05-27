@@ -50,6 +50,7 @@ $ sw_vers
 ProductName:    Mac OS X
 ProductVersion: 10.14.5
 BuildVersion:   18F132
+
 $ system_profiler SPHardwareDataType
 Hardware:
 
@@ -75,10 +76,11 @@ Python, pip and library versions:
 ------------------------------------------------------------------------------------------------------------------
 $ python --version
 Python 2.7.10
+
 $ python -m pip --version
 pip 19.1.1 from /Users/bambrozi/workspace/github.com/bambrozio/dit-dl-ca/env/lib/python2.7/site-packages/pip (python 2.7)
+
 $ python -m pip freeze
-DEPRECATION: Python 2.7 will reach the end of its life on January 1st, 2020. Please upgrade your Python as Python 2.7 won't be maintained after that date. A future version of pip will drop support for Python 2.7.
 absl-py==0.7.1
 astor==0.8.0
 backports.functools-lru-cache==1.5
