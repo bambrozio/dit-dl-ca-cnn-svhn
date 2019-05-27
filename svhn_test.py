@@ -111,7 +111,7 @@ def classify(img_path = None):
     if not os.path.isfile(img_path):
         raise EnvironmentError("Image file cannot be opened.")
 
-    detect(img_path)
+    return detect(img_path)
 
 if __name__ == "__main__":
     classify(sys.argv[1])

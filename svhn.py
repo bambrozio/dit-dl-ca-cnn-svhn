@@ -1,4 +1,5 @@
 import os
+import svhn_test
 
 # This function when called should (a) download the training and test data, (b) train the model from scratch; and (c)
 # perform analysis against test data. The final output of this function should be a production of average F1 scores
@@ -16,4 +17,4 @@ def traintest():
 # Expect either PNG and JPG
 # result must be returned (Not only printed)
 def test(img_path):
-    os.system('python svhn_test.py {}'.format(img_path))
+    return svhn_test.classify(img_path)
