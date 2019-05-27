@@ -84,6 +84,10 @@ termcolor==1.1.0
 Werkzeug==0.15.4
 ```
 
+## Source Code Reference
+Adapted from: 
+1. B. Diesel, Decoding a Sequences of Digits in Real World Photos Using a Convolutional Neural Network. 2016 [Online]. Available: https://github.com/bdiesel/tensorflow-svhn. [Accessed: 27- May- 2019]
+
 ## References
 1. F. Adelkhani, Understanding Convolutional Neural Networks + Edge Detectors, ConvNets, and DIGITS. 2019 [Online]. Available: https://www.youtube.com/watch?v=SbLJLT8xXD0. [Accessed: 27- May- 2019]
 1. T. Almenningen, "05-svhn-multi-preprocessing.ipynb", GitHub, 2017. [Online]. Available: https://github.com/thomalm/svhn-multi-digit/blob/master/05-svhn-multi-preprocessing.ipynb. [Accessed: 27- May- 2019]
