@@ -47,7 +47,6 @@ class DigitStruct:
         return bbox
 
     def get_digit_structure(self, n):
-        """TODO: Document what it does here"""
         structure = self.get_bbox(n)
         structure['name'] = self.get_img_name(n)
         return structure
