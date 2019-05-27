@@ -1,119 +1,5 @@
-svhn.traintest() log results (reduced for 5 iterations each train):
-
-(env) Brunos-MBP:dit-dl-ca bambrozi$ python harness.py
-Reading Image file: [data/svhn/manualTest/data/svhn/full/test/246x0w.jpg]
-Resizing image to [64 x 64]...
-Loading model...
-Best Prediction: [123]. Time spent in seconds: [0.0269429683685]
-None
-Reading Image file: [data/svhn/manualTest/data/svhn/full/test/19.png]
-Loading model...
-Best Prediction: [60]. Time spent in seconds: [0.0271680355072]
-None
-Reading Image file: [data/svhn/manualTest/data/svhn/full/test/16.png]
-Loading model...
-Best Prediction: [14]. Time spent in seconds: [0.0314860343933]
-None
-Reading Image file: [data/svhn/full/test/323.png]
-Image with width [141] and height [66].
-Cropping to the centre on [64 x 64]...
-Loading model...
-Best Prediction: [2]. Time spent in seconds: [0.0268640518188]
-None
-Pre-processing - Start
-Prepare cropped version datasets...
-Saving to train_svhn_imgs.npy file done.
-Saving to train_svhn_labels.npy file done.
-Saving to valid_svhn_imgs.npy file done.
-Saving to valid_svhn_labels.npy file done.
-Saving to test_svhn_imgs.npy file done.
-Saving to test_svhn_labels.npy file done.
-Cropped version datasets done!
-Prepare full version datasets...
-extracting: data/svhn/full/train.tar.gz
-Directory [data/svhn/full/train] already exist. Assuming that the extraction was done before. Skipping...
-Getting all images and digit structure for the file [data/svhn/full/train/digitStruct.mat]...
-Image and digit structure for the file [data/svhn/full/train/digitStruct.mat] done!
-Skipping data/svhn/full/train/4111.png, only images with less than 5 numbers are allowed!
-Skipping data/svhn/full/train/6739.png, only images with less than 5 numbers are allowed!
-Skipping data/svhn/full/train/15958.png, only images with less than 5 numbers are allowed!
-Skipping data/svhn/full/train/18263.png, only images with less than 5 numbers are allowed!
-Skipping data/svhn/full/train/18944.png, only images with less than 5 numbers are allowed!
-Skipping data/svhn/full/train/24041.png, only images with less than 5 numbers are allowed!
-Skipping data/svhn/full/train/24552.png, only images with less than 5 numbers are allowed!
-Skipping data/svhn/full/train/26699.png, only images with less than 5 numbers are allowed!
-Skipping data/svhn/full/train/29930.png, only images with less than 5 numbers are allowed!
-Skipping data/svhn/full/train/33229.png, only images with less than 5 numbers are allowed!
-Saving to train_svhn_imgs.npy file done.
-Saving to train_svhn_labels.npy file done.
-Saving to valid_svhn_imgs.npy file done.
-Saving to valid_svhn_labels.npy file done.
-extracting: data/svhn/full/test.tar.gz
-Directory [data/svhn/full/test] already exist. Assuming that the extraction was done before. Skipping...
-Getting all images and digit structure for the file [data/svhn/full/test/digitStruct.mat]...
-Image and digit structure for the file [data/svhn/full/test/digitStruct.mat] done!
-Skipping data/svhn/full/test/2999.png, only images with less than 5 numbers are allowed!
-Skipping data/svhn/full/test/7314.png, only images with less than 5 numbers are allowed!
-Saving to test_svhn_imgs.npy file done.
-Saving to test_svhn_labels.npy file done.
-Full version datasets done!
-Pre-processing - Done
-Classifier training - Start
-Loading Saved Checkpoints From:  logs/svhn_classifier_logs/ckpt/classifier.ckpt
-Training (65931, 32, 32, 3)
-Valid (7326, 32, 32, 3)
-Test (26032, 32, 32, 3)
-Using drop out
-Not using dropout
-Model restored.
-Validation Accuracy: 0.08%
-Training Accuracy: 0.13%
-Adding run metadata for 0
-2019-05-26 17:13:42.285059: step 0, loss = 2.27  learning rate = 0.075000  (304.6 examples/sec; 0.84 sec/batch)
-Mini-Batch Accuracy: 0.11%
-Model saved in file: logs/svhn_classifier_logs/ckpt/classifier.ckpt
-Test Accuracy: 0.16797%
-Classifier training - Done
-Regressor training - Start
-Loading Saved Checkpoints From:  logs/svhn_regression_logs/ckpt/regression.ckpt
-TrainData (30061, 64, 64, 3)
-Valid Data (3341, 64, 64, 3)
-Test Data (13068, 64, 64, 3)
-Model restored.
-Validation Accuracy: 0.54
-Training Set Accuracy: 0.43
-Adding run metadata for 0
-Test Accuracy: 0.62500%
-Model saved in file: logs/svhn_regression_logs/ckpt/regression.ckpt
-Regressor training - Done
-
------------
-
-Dir structure after training:
-
-$ ls -lh
-total 272
--rw-r--r--  1 bambrozi  staff   243B 25 May 15:54 README.md
-drwxr-xr-x  4 bambrozi  staff   128B 25 May 11:57 data
--rw-r--r--  1 bambrozi  staff   2.4K 25 May 17:25 digit_struct.py
--rw-r--r--  1 bambrozi  staff   3.4K 25 May 17:51 digit_struct.pyc
-drwxr-xr-x  6 bambrozi  staff   192B 23 May 21:12 env
--rw-r--r--  1 bambrozi  staff   1.3K 25 May 17:04 harness.py
-drwxr-xr-x  4 bambrozi  staff   128B 25 May 22:26 logs
--rw-r--r--  1 bambrozi  staff    12K 25 May 22:28 logs.logs
--rw-r--r--  1 bambrozi  staff   586B 25 May 15:51 requirements.txt
--rw-r--r--  1 bambrozi  staff   956B 25 May 22:20 svhn.py
--rw-r--r--  1 bambrozi  staff   740B 25 May 22:20 svhn.pyc
--rw-r--r--  1 bambrozi  staff   6.3K 25 May 16:12 svhn_model.py
--rw-r--r--  1 bambrozi  staff   5.2K 25 May 17:04 svhn_model.pyc
--rw-r--r--  1 bambrozi  staff    11K 25 May 17:25 svhn_preprocessing.py
--rw-r--r--  1 bambrozi  staff    12K 25 May 17:51 svhn_preprocessing.pyc
--rw-r--r--  1 bambrozi  staff   3.6K 25 May 16:10 svhn_test.py
--rw-r--r--  1 bambrozi  staff   3.6K 25 May 16:10 svhn_test.pyc
--rw-r--r--  1 bambrozi  staff   9.2K 25 May 21:30 svhn_train_classifier.py
--rw-r--r--  1 bambrozi  staff   6.9K 25 May 21:41 svhn_train_classifier.pyc
--rw-r--r--  1 bambrozi  staff    10K 25 May 21:43 svhn_train_regressor.py
--rw-r--r--  1 bambrozi  staff   8.0K 25 May 21:45 svhn_train_regressor.pyc
+Model and Tensor board logs, after training:
+------------------------------------------------------------------------------------------------------------------
 $ tree logs
 logs
 ├── svhn_classifier_logs
@@ -124,12 +10,12 @@ logs
 │   │   ├── classifier.ckpt.index
 │   │   └── classifier.ckpt.meta
 │   ├── train
-│   │   └── events.out.tfevents.1558819591.Brunos-MBP
+│   │   └── events.out.tfevents.1558888792.Brunos-MBP
 │   ├── train-0.data-00000-of-00001
 │   ├── train-0.index
 │   ├── train-0.meta
 │   ├── validation
-│   │   └── events.out.tfevents.1558819591.Brunos-MBP
+│   │   └── events.out.tfevents.1558888792.Brunos-MBP
 │   ├── validation-0.data-00000-of-00001
 │   ├── validation-0.index
 │   └── validation-0.meta
@@ -141,25 +27,103 @@ logs
     │   ├── regression.ckpt.index
     │   └── regression.ckpt.meta
     ├── train
-    │   ├── events.out.tfevents.1558819600.Brunos-MBP
-    │   └── events.out.tfevents.1558819601.Brunos-MBP
+    │   └── events.out.tfevents.1558898584.Brunos-MBP
     ├── train-0.data-00000-of-00001
     ├── train-0.index
     ├── train-0.meta
     ├── validation
-    │   ├── events.out.tfevents.1558819600.Brunos-MBP
-    │   └── events.out.tfevents.1558819601.Brunos-MBP
+    │   └── events.out.tfevents.1558898584.Brunos-MBP
     ├── validation-0.data-00000-of-00001
     ├── validation-0.index
     └── validation-0.meta
 
------------
+8 directories, 26 files
 
-(env) Brunos-MBP:dit-dl-ca bambrozi$ python harness.py
-WARNING:tensorflow:From /Users/bambrozi/workspace/github.com/bambrozio/dit-dl-ca/env/lib/python2.7/site-packages/tensorflow/python/framework/op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecate
-d and will be removed in a future version.
-Instructions for updating:
-Colocations handled automatically by placer.
+==================================================================================================================
+==================================================================================================================
+
+Hardware spec:
+------------------------------------------------------------------------------------------------------------------
+$ uname -a
+Darwin Brunos-MBP 18.6.0 Darwin Kernel Version 18.6.0: Thu Apr 25 23:16:27 PDT 2019; root:xnu-4903.261.4~2/RELEASE_X86_64 x86_64
+$ sw_vers
+ProductName:    Mac OS X
+ProductVersion: 10.14.5
+BuildVersion:   18F132
+
+$ system_profiler SPHardwareDataType
+Hardware:
+
+    Hardware Overview:
+
+      Model Name: MacBook Pro
+      Model Identifier: MacBookPro14,3
+      Processor Name: Intel Core i7
+      Processor Speed: 2.9 GHz
+      Number of Processors: 1
+      Total Number of Cores: 4
+      L2 Cache (per Core): 256 KB
+      L3 Cache: 8 MB
+      Hyper-Threading Technology: Enabled
+      Memory: 16 GB
+      Boot ROM Version: 194.0.0.0.0
+      SMC Version (system): 2.45f0
+
+==================================================================================================================
+==================================================================================================================
+
+Python, pip and library versions:
+------------------------------------------------------------------------------------------------------------------
+$ python --version
+Python 2.7.10
+
+$ python -m pip --version
+pip 19.1.1 from /Users/bambrozi/workspace/github.com/bambrozio/dit-dl-ca/env/lib/python2.7/site-packages/pip (python 2.7)
+
+$ python -m pip freeze
+absl-py==0.7.1
+astor==0.8.0
+backports.functools-lru-cache==1.5
+backports.weakref==1.0.post1
+cycler==0.10.0
+enum34==1.1.6
+funcsigs==1.0.2
+futures==3.2.0
+gast==0.2.2
+grpcio==1.20.1
+h5py==2.9.0
+Keras-Applications==1.0.7
+Keras-Preprocessing==1.0.9
+kiwisolver==1.1.0
+Markdown==3.1.1
+matplotlib==2.2.4
+mock==3.0.5
+numpy==1.16.3
+Pillow==6.0.0
+protobuf==3.7.1
+pyparsing==2.4.0
+python-dateutil==2.8.0
+pytz==2019.1
+scikit-learn==0.20.3
+scipy==1.2.1
+six==1.12.0
+sklearn==0.0
+subprocess32==3.5.4
+tensorboard==1.13.1
+tensorflow==1.13.1
+tensorflow-estimator==1.13.0
+termcolor==1.1.0
+Werkzeug==0.15.4
+
+
+Train logs (Start: 26/May/2019 17:33)
+------------------------------------------------------------------------------------------------------------------
+
+$ python harness.py
+
+
+Pre-processing - Start
+Prepare cropped version datasets...
 Creating data directories
 Attempting to download train_32x32.mat
 0%....5%....10%....15%....20%....25%....30%....35%....40%....45%....50%....55%....60%....65%....70%....75%....80%....85%....90%....95%....100%
@@ -176,16 +140,16 @@ Download Complete!
 ('Found and verified', 'data/svhn/cropped/test_32x32.mat')
 Saving to test_svhn_imgs.npy file done.
 Saving to test_svhn_labels.npy file done.
-Cropped Files Done!!!
+Cropped version datasets done!
+Prepare full version datasets...
 Creating data directories
 Attempting to download train.tar.gz
 0%....5%....10%....15%....20%....25%....30%....35%....40%....45%....50%....55%....60%....65%....70%....75%....80%....85%....90%....95%....100%
 Download Complete!
 ('Found and verified', 'data/svhn/full/train.tar.gz')
-('extract', 'data/svhn/full/train.tar.gz')
-/Users/bambrozi/workspace/github.com/bambrozio/dit-dl-ca/env/lib/python2.7/site-packages/h5py/_hl/dataset.py:313: H5pyDeprecationWarning: dataset.value has been deprecated. Use dataset[()] instead.
-  "Use dataset[()] instead.", H5pyDeprecationWarning)
-Done extract
+extracting: data/svhn/full/train.tar.gz
+Getting all images and digit structure for the file [data/svhn/full/train/digitStruct.mat]...
+Image and digit structure for the file [data/svhn/full/train/digitStruct.mat] done!
 Skipping data/svhn/full/train/4111.png, only images with less than 5 numbers are allowed!
 Skipping data/svhn/full/train/6739.png, only images with less than 5 numbers are allowed!
 Skipping data/svhn/full/train/15958.png, only images with less than 5 numbers are allowed!
@@ -205,108 +169,207 @@ Attempting to download test.tar.gz
 0%....5%....10%....15%....20%....25%....30%....35%....40%....45%....50%....55%....60%....65%....70%....75%....80%....85%....90%....95%....100%
 Download Complete!
 ('Found and verified', 'data/svhn/full/test.tar.gz')
-('extract', 'data/svhn/full/test.tar.gz')
-Done extract
+extracting: data/svhn/full/test.tar.gz
+Getting all images and digit structure for the file [data/svhn/full/test/digitStruct.mat]...
+Image and digit structure for the file [data/svhn/full/test/digitStruct.mat] done!
 Skipping data/svhn/full/test/2999.png, only images with less than 5 numbers are allowed!
 Skipping data/svhn/full/test/7314.png, only images with less than 5 numbers are allowed!
 Saving to test_svhn_imgs.npy file done.
 Saving to test_svhn_labels.npy file done.
-Full Files Done!!!
-No weights file informed. Starting from scratch...
+Full version datasets done!
+Pre-processing - Done
+
+
+Classifier training - Start
+Loading Saved Checkpoints From:  logs/svhn_classifier_logs/ckpt/classifier.ckpt
+No weights file found. Starting from scratch...
 Training (65931, 32, 32, 3)
 Valid (7326, 32, 32, 3)
 Test (26032, 32, 32, 3)
 Using drop out
-WARNING:tensorflow:From /Users/bambrozi/workspace/github.com/bambrozio/dit-dl-ca/svhn_model.py:119: calling dropout (from tensorflow.python.ops.nn_ops) with keep_prob is deprecated and will be removed in a future version.
-Instructions for updating:
-Please use `rate` instead of `keep_prob`. Rate should be set to `rate = 1 - keep_prob`.
-WARNING:tensorflow:From /Users/bambrozi/workspace/github.com/bambrozio/dit-dl-ca/svhn_train_classifier.py:73: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
-Instructions for updating:
-
-Future major versions of TensorFlow will allow gradients to flow
-into the labels input on backprop by default.
-
-See `tf.nn.softmax_cross_entropy_with_logits_v2`.
-
 Not using dropout
-WARNING:tensorflow:From /Users/bambrozi/workspace/github.com/bambrozio/dit-dl-ca/env/lib/python2.7/site-packages/tensorflow/python/util/tf_should_use.py:193: initialize_all_variables (from tensorflow.python.ops.variables) is deprecated and will be removed after 2017-03-02.
-Instructions for updating:
-Use `tf.global_variables_initializer` instead.
-2019-05-24 08:50:43.020492: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
-Validation Accuracy: 0.11%
+Validation Accuracy: 0.07%
 Training Accuracy: 0.13%
 Adding run metadata for 0
-2019-05-24 08:50:44.726176: step 0, loss = 2.29  learning rate = 0.075000  (297.5 examples/sec; 0.86 sec/batch)
-Mini-Batch Accuracy: 0.05%
-2019-05-24 08:51:18.046590: step 100, loss = 1.97  learning rate = 0.075000  (7.7 examples/sec; 33.32 sec/batch)
-Mini-Batch Accuracy: 0.31%
-2019-05-24 08:51:51.869194: step 200, loss = 1.06  learning rate = 0.075000  (7.6 examples/sec; 33.82 sec/batch)
+2019-05-26 17:39:53.671446: step 0, loss = 2.29  learning rate = 0.075000  (324.6 examples/sec; 0.79 sec/batch)
+Mini-Batch Accuracy: 0.08%
+2019-05-26 17:40:26.997099: step 100, loss = 1.96  learning rate = 0.075000  (7.7 examples/sec; 33.33 sec/batch)
+Mini-Batch Accuracy: 0.32%
+2019-05-26 17:41:01.504217: step 200, loss = 1.08  learning rate = 0.075000  (7.4 examples/sec; 34.51 sec/batch)
 Mini-Batch Accuracy: 0.70%
-2019-05-24 08:52:24.318658: step 300, loss = 0.79  learning rate = 0.071250  (7.9 examples/sec; 32.45 sec/batch)
-Mini-Batch Accuracy: 0.77%
-2019-05-24 08:52:56.789254: step 400, loss = 0.48  learning rate = 0.071250  (7.9 examples/sec; 32.47 sec/batch)
-Mini-Batch Accuracy: 0.87%
-2019-05-24 08:53:29.008081: step 500, loss = 0.45  learning rate = 0.071250  (7.9 examples/sec; 32.22 sec/batch)
-Mini-Batch Accuracy: 0.86%
-2019-05-24 08:54:01.787935: step 600, loss = 0.48  learning rate = 0.067688  (7.8 examples/sec; 32.78 sec/batch)
-Mini-Batch Accuracy: 0.87%
-2019-05-24 08:54:33.997917: step 700, loss = 0.32  learning rate = 0.067688  (7.9 examples/sec; 32.21 sec/batch)
-Mini-Batch Accuracy: 0.93%
-2019-05-24 08:55:07.565075: step 800, loss = 0.47  learning rate = 0.064303  (7.6 examples/sec; 33.57 sec/batch)
+2019-05-26 17:41:35.814226: step 300, loss = 0.78  learning rate = 0.071250  (7.5 examples/sec; 34.31 sec/batch)
+Mini-Batch Accuracy: 0.78%
+2019-05-26 17:42:11.102225: step 400, loss = 0.47  learning rate = 0.071250  (7.3 examples/sec; 35.29 sec/batch)
 Mini-Batch Accuracy: 0.85%
-2019-05-24 08:55:40.797297: step 900, loss = 0.37  learning rate = 0.064303  (7.7 examples/sec; 33.23 sec/batch)
+2019-05-26 17:42:45.790075: step 500, loss = 0.46  learning rate = 0.071250  (7.4 examples/sec; 34.69 sec/batch)
+Mini-Batch Accuracy: 0.86%
+2019-05-26 17:43:19.225689: step 600, loss = 0.43  learning rate = 0.067688  (7.7 examples/sec; 33.44 sec/batch)
 Mini-Batch Accuracy: 0.87%
-Validation Accuracy: 0.88%
+2019-05-26 17:43:51.738370: step 700, loss = 0.35  learning rate = 0.067688  (7.9 examples/sec; 32.51 sec/batch)
+Mini-Batch Accuracy: 0.91%
+2019-05-26 17:44:23.165119: step 800, loss = 0.46  learning rate = 0.064303  (8.1 examples/sec; 31.43 sec/batch)
+Mini-Batch Accuracy: 0.86%
+2019-05-26 17:44:51.689449: step 900, loss = 0.37  learning rate = 0.064303  (9.0 examples/sec; 28.52 sec/batch)
+Mini-Batch Accuracy: 0.89%
+Validation Accuracy: 0.87%
 Training Accuracy: 0.91%
 Adding run metadata for 1000
-2019-05-24 08:56:16.427503: step 1000, loss = 0.32  learning rate = 0.064303  (7.3 examples/sec; 34.98 sec/batch)
-Mini-Batch Accuracy: 0.89%
-2019-05-24 08:56:50.591824: step 1100, loss = 0.31  learning rate = 0.061088  (7.5 examples/sec; 34.16 sec/batch)
-Mini-Batch Accuracy: 0.91%
-^CTraceback (most recent call last):
-  File "harness.py", line 21, in <module>
-    main()
-  File "harness.py", line 16, in main
-    average_f1_scores = svhn.traintest()
-  File "/Users/bambrozi/workspace/github.com/bambrozio/dit-dl-ca/svhn.py", line 12, in traintest
-    svhn_train_classifier.run()
-  File "/Users/bambrozi/workspace/github.com/bambrozio/dit-dl-ca/svhn_train_classifier.py", line 213, in run
-    main(saved_weights_path)
-  File "/Users/bambrozi/workspace/github.com/bambrozio/dit-dl-ca/svhn_train_classifier.py", line 201, in main
-    saved_weights_path)
-  File "/Users/bambrozi/workspace/github.com/bambrozio/dit-dl-ca/svhn_train_classifier.py", line 143, in train_classification
-    _, l, lr, acc = sess.run([optimizer, loss, learning_rate, accuracy], feed_dict=feed_dict)
-  File "/Users/bambrozi/workspace/github.com/bambrozio/dit-dl-ca/env/lib/python2.7/site-packages/tensorflow/python/client/session.py", line 929, in run
-    run_metadata_ptr)
-  File "/Users/bambrozi/workspace/github.com/bambrozio/dit-dl-ca/env/lib/python2.7/site-packages/tensorflow/python/client/session.py", line 1152, in _run
-    feed_dict_tensor, options, run_metadata)
-  File "/Users/bambrozi/workspace/github.com/bambrozio/dit-dl-ca/env/lib/python2.7/site-packages/tensorflow/python/client/session.py", line 1328, in _do_run
-    run_metadata)
-  File "/Users/bambrozi/workspace/github.com/bambrozio/dit-dl-ca/env/lib/python2.7/site-packages/tensorflow/python/client/session.py", line 1334, in _do_call
-    return fn(*args)
-  File "/Users/bambrozi/workspace/github.com/bambrozio/dit-dl-ca/env/lib/python2.7/site-packages/tensorflow/python/client/session.py", line 1319, in _run_fn
-    options, feed_dict, fetch_list, target_list, run_metadata)
-  File "/Users/bambrozi/workspace/github.com/bambrozio/dit-dl-ca/env/lib/python2.7/site-packages/tensorflow/python/client/session.py", line 1407, in _call_tf_sessionrun
-    run_metadata)
-KeyboardInterrupt
+(...)
+Adding run metadata for 3000
+2019-05-26 17:55:03.709884: step 3000, loss = 0.15  learning rate = 0.042660  (9.0 examples/sec; 28.45 sec/batch)
+Mini-Batch Accuracy: 0.95%
+2019-05-26 17:55:32.423594: step 3100, loss = 0.24  learning rate = 0.040527  (8.9 examples/sec; 28.71 sec/batch)
+Mini-Batch Accuracy: 0.94%
+2019-05-26 17:56:01.612411: step 3200, loss = 0.14  learning rate = 0.040527  (8.8 examples/sec; 29.19 sec/batch)
+Mini-Batch Accuracy: 0.97%
+2019-05-26 17:56:32.280084: step 3300, loss = 0.15  learning rate = 0.040527  (8.3 examples/sec; 30.67 sec/batch)
+Mini-Batch Accuracy: 0.98%
+2019-05-26 17:57:01.823768: step 3400, loss = 0.18  learning rate = 0.038501  (8.7 examples/sec; 29.54 sec/batch)
+Mini-Batch Accuracy: 0.96%
+2019-05-26 17:57:33.265342: step 3500, loss = 0.20  learning rate = 0.038501  (8.1 examples/sec; 31.44 sec/batch)
+Mini-Batch Accuracy: 0.95%
+2019-05-26 17:58:04.304654: step 3600, loss = 0.23  learning rate = 0.036576  (8.2 examples/sec; 31.04 sec/batch)
+Mini-Batch Accuracy: 0.95%
+2019-05-26 17:58:34.247302: step 3700, loss = 0.16  learning rate = 0.036576  (8.5 examples/sec; 29.94 sec/batch)
+Mini-Batch Accuracy: 0.96%
+2019-05-26 17:59:05.546625: step 3800, loss = 0.16  learning rate = 0.036576  (8.2 examples/sec; 31.30 sec/batch)
+Mini-Batch Accuracy: 0.95%
+2019-05-26 17:59:39.205883: step 3900, loss = 0.20  learning rate = 0.034747  (7.6 examples/sec; 33.66 sec/batch)
+Mini-Batch Accuracy: 0.93%
+Validation Accuracy: 0.91%
+Training Accuracy: 0.96%
+Adding run metadata for 4000
+(...)
+2019-05-26 20:18:20.770111: step 32000, loss = 0.03  learning rate = 0.000130  (9.2 examples/sec; 27.91 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 20:18:48.742422: step 32100, loss = 0.05  learning rate = 0.000130  (9.2 examples/sec; 27.97 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 20:19:17.636439: step 32200, loss = 0.11  learning rate = 0.000123  (8.9 examples/sec; 28.89 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 20:19:47.058130: step 32300, loss = 0.04  learning rate = 0.000123  (8.7 examples/sec; 29.42 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 20:20:16.543334: step 32400, loss = 0.04  learning rate = 0.000117  (8.7 examples/sec; 29.49 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 20:20:45.769229: step 32500, loss = 0.05  learning rate = 0.000117  (8.8 examples/sec; 29.23 sec/batch)
+Mini-Batch Accuracy: 1.00%
+2019-05-26 20:21:14.978697: step 32600, loss = 0.07  learning rate = 0.000117  (8.8 examples/sec; 29.21 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 20:21:44.212516: step 32700, loss = 0.07  learning rate = 0.000111  (8.8 examples/sec; 29.23 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 20:22:13.458904: step 32800, loss = 0.11  learning rate = 0.000111  (8.8 examples/sec; 29.25 sec/batch)
+Mini-Batch Accuracy: 0.99%
+2019-05-26 20:22:41.613185: step 32900, loss = 0.06  learning rate = 0.000106  (9.1 examples/sec; 28.15 sec/batch)
+Mini-Batch Accuracy: 1.00%
+Model saved in file: logs/svhn_classifier_logs/ckpt/classifier.ckpt
+Test Accuracy: 0.88281%
+Classifier training - Done
 
 
-===========================================================
-===========================================================
 
-Request Details:
-Due date: May 26, 2019 02:43 PM
-
-Current action: chooseCluster
-
-Completed date:
-
-Request ID: 2371665
-
-Template: Ubuntu-16-04-64
-RAM Size: 8
-CPU Size: 6
-Domain: swg.usma.ibm.com
-New VM Name: dit-dl-ca
-Owner: bambrozi@ie.ibm.com
-
+Regressor training - Start
+Loading Saved Checkpoints From:  logs/svhn_regression_logs/ckpt/regression.ckpt
+No weights file found. Starting from scratch...
+TrainData (30061, 64, 64, 3)
+Valid Data (3341, 64, 64, 3)
+Test Data (13068, 64, 64, 3)
+Model restored.
+Validation Accuracy: 0.54
+Training Set Accuracy: 0.44
+Adding run metadata for 0
+2019-05-26 20:23:26.430149: step 100, loss = 5.79  learning rate = 0.07  (1.4 examples/sec; 22.112 sec/batch)
+Minibatch accuracy2: 0.62
+2019-05-26 20:23:49.414590: step 200, loss = 6.16  learning rate = 0.07  (1.4 examples/sec; 22.763 sec/batch)
+Minibatch accuracy2: 0.61
+2019-05-26 20:24:12.430549: step 300, loss = 6.20  learning rate = 0.07  (1.4 examples/sec; 22.764 sec/batch)
+Minibatch accuracy2: 0.63
+2019-05-26 20:24:36.056815: step 400, loss = 6.11  learning rate = 0.07  (1.4 examples/sec; 23.397 sec/batch)
+Minibatch accuracy2: 0.61
+2019-05-26 20:24:58.927051: step 500, loss = 5.64  learning rate = 0.07  (1.4 examples/sec; 22.651 sec/batch)
+Minibatch accuracy2: 0.65
+2019-05-26 20:25:21.580978: step 600, loss = 5.70  learning rate = 0.07  (1.4 examples/sec; 22.432 sec/batch)
+Minibatch accuracy2: 0.64
+2019-05-26 20:25:43.974425: step 700, loss = 6.72  learning rate = 0.07  (1.4 examples/sec; 22.171 sec/batch)
+Minibatch accuracy2: 0.59
+2019-05-26 20:26:06.571054: step 800, loss = 5.95  learning rate = 0.07  (1.4 examples/sec; 22.375 sec/batch)
+Minibatch accuracy2: 0.61
+2019-05-26 20:26:30.508100: step 900, loss = 6.04  learning rate = 0.07  (1.3 examples/sec; 23.714 sec/batch)
+Minibatch accuracy2: 0.62
+Validation Accuracy: 0.57
+Training Set Accuracy: 0.64
+Adding run metadata for 1000
+(...)
+Adding run metadata for 6000
+2019-05-26 20:45:07.036247: step 6100, loss = 1.07  learning rate = 0.05  (0.8 examples/sec; 42.502 sec/batch)
+Minibatch accuracy2: 0.94
+2019-05-26 20:45:28.227581: step 6200, loss = 0.30  learning rate = 0.05  (1.5 examples/sec; 20.983 sec/batch)
+Minibatch accuracy2: 0.99
+2019-05-26 20:45:49.341806: step 6300, loss = 0.93  learning rate = 0.05  (1.5 examples/sec; 20.903 sec/batch)
+Minibatch accuracy2: 0.93
+2019-05-26 20:46:10.479990: step 6400, loss = 0.63  learning rate = 0.05  (1.5 examples/sec; 20.929 sec/batch)
+Minibatch accuracy2: 0.96
+2019-05-26 20:46:31.597423: step 6500, loss = 0.52  learning rate = 0.05  (1.5 examples/sec; 20.907 sec/batch)
+Minibatch accuracy2: 0.96
+2019-05-26 20:46:53.299171: step 6600, loss = 1.18  learning rate = 0.05  (1.5 examples/sec; 21.485 sec/batch)
+Minibatch accuracy2: 0.92
+2019-05-26 20:47:14.766646: step 6700, loss = 1.21  learning rate = 0.05  (1.5 examples/sec; 21.255 sec/batch)
+Minibatch accuracy2: 0.94
+2019-05-26 20:47:35.919050: step 6800, loss = 0.50  learning rate = 0.05  (1.5 examples/sec; 20.941 sec/batch)
+Minibatch accuracy2: 0.98
+2019-05-26 20:47:57.127503: step 6900, loss = 0.71  learning rate = 0.05  (1.5 examples/sec; 20.998 sec/batch)
+Minibatch accuracy2: 0.94
+Validation Accuracy: 0.88
+Training Set Accuracy: 0.96
+Adding run metadata for 7000
+(...)
+Adding run metadata for 29000
+2019-05-26 22:09:59.210809: step 29100, loss = 0.02  learning rate = 0.02  (0.7 examples/sec; 44.579 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 22:10:22.728261: step 29200, loss = 0.02  learning rate = 0.02  (1.4 examples/sec; 23.292 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 22:10:45.333153: step 29300, loss = 0.02  learning rate = 0.02  (1.4 examples/sec; 22.385 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 22:11:07.941000: step 29400, loss = 0.03  learning rate = 0.02  (1.4 examples/sec; 22.381 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 22:11:30.578979: step 29500, loss = 0.02  learning rate = 0.01  (1.4 examples/sec; 22.408 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 22:11:53.612564: step 29600, loss = 0.03  learning rate = 0.01  (1.4 examples/sec; 22.809 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 22:12:16.906875: step 29700, loss = 0.01  learning rate = 0.01  (1.4 examples/sec; 23.068 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 22:12:39.512861: step 29800, loss = 0.04  learning rate = 0.01  (1.4 examples/sec; 22.386 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-26 22:13:02.176012: step 29900, loss = 0.06  learning rate = 0.01  (1.4 examples/sec; 22.442 sec/batch)
+Minibatch accuracy2: 1.00
+Validation Accuracy: 0.90
+Training Set Accuracy: 1.00
+Adding run metadata for 30000
+(...)
+Adding run metadata for 119000
+2019-05-27 03:28:08.310394: step 119100, loss = 0.01  learning rate = 0.00  (0.8 examples/sec; 41.950 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-27 03:28:29.187935: step 119200, loss = 0.01  learning rate = 0.00  (1.5 examples/sec; 20.669 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-27 03:28:50.066142: step 119300, loss = 0.01  learning rate = 0.00  (1.5 examples/sec; 20.670 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-27 03:29:10.933894: step 119400, loss = 0.02  learning rate = 0.00  (1.5 examples/sec; 20.659 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-27 03:29:31.791799: step 119500, loss = 0.01  learning rate = 0.00  (1.5 examples/sec; 20.648 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-27 03:29:52.614263: step 119600, loss = 0.01  learning rate = 0.00  (1.6 examples/sec; 20.613 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-27 03:30:13.480214: step 119700, loss = 0.02  learning rate = 0.00  (1.5 examples/sec; 20.659 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-27 03:30:34.325897: step 119800, loss = 0.01  learning rate = 0.00  (1.6 examples/sec; 20.636 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-27 03:30:55.237474: step 119900, loss = 0.01  learning rate = 0.00  (1.5 examples/sec; 20.699 sec/batch)
+Minibatch accuracy2: 1.00
+Validation Accuracy: 0.93
+Training Set Accuracy: 1.00
+Adding run metadata for 120000
+2019-05-27 03:31:37.430503: step 120100, loss = 0.02  learning rate = 0.00  (0.8 examples/sec; 41.981 sec/batch)
+Minibatch accuracy2: 1.00
+2019-05-27 03:31:58.382632: step 120200, loss = 0.01  learning rate = 0.00  (1.5 examples/sec; 20.742 sec/batch)
+Minibatch accuracy2: 1.00
+Test Accuracy: 0.91250%
+Model saved in file: logs/svhn_regression_logs/ckpt/regression.ckpt
+Regressor training - Done

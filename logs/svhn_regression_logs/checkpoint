@@ -1,0 +1,3 @@
+model_checkpoint_path: "validation-0"
+all_model_checkpoint_paths: "train-0"
+all_model_checkpoint_paths: "validation-0"

@@ -1,6 +1,6 @@
 # Project ignores
 data/
-logs/
+#logs/
 
 # IDE's
 .idea/*

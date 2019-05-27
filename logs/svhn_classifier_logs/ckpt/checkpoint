@@ -1,0 +1,4 @@
+model_checkpoint_path: "classifier.ckpt"
+all_model_checkpoint_paths: "../train-0"
+all_model_checkpoint_paths: "../validation-0"
+all_model_checkpoint_paths: "classifier.ckpt"
