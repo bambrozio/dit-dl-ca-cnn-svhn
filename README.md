@@ -1,3 +1,5 @@
+*Archived (Concluded on Sep 2020).*
+
 # C-NN & Street View House Numbers Dataset (SVHN)
 DIT / TU Dublin: Repository to track the Deep Learning Continuous Assignment.
 
